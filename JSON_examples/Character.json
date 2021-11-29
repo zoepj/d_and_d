@@ -1,0 +1,13 @@
+{
+    "name": "Kerri Amblecrown",
+    "imagePath": "assets/img.png",
+    "level": 3,
+    "armor": 14,
+    "indicative": 1,
+    "speed": 35,
+    "currentHitPoints": 34,
+    "temporaryHitPoints": 0,
+    "race": "Elf",
+    "characterClass": "Sorcerer",
+    "background": "Gambler"
+}
