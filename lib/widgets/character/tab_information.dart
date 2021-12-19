@@ -17,7 +17,6 @@ class TabInformation {
   final String title;
 }
 
-// TODO make something better
 const int nbTabs = 4;
 
 List<TabInformation> getAllTabInformation(BuildContext context) {
@@ -25,22 +24,22 @@ List<TabInformation> getAllTabInformation(BuildContext context) {
     TabInformation(
       order: 1,
       title: "Details",
-      icon: Icons.calendar_today,
+      icon: Icons.person,
     ),
     TabInformation(
       order: 2,
       title: "Equipment",
-      icon: Icons.dashboard,
+      icon: Icons.pending,
     ),
     TabInformation(
       order: 3,
       title: "Characteristics",
-      icon: Icons.map,
+      icon: Icons.pending,
     ),
     TabInformation(
       order: 4,
       title: "Spells",
-      icon: Icons.chat,
+      icon: Icons.pending,
     ),
   ];
 }

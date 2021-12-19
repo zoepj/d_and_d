@@ -49,7 +49,42 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     List<TabInformation> tabs = getAllTabInformation(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        }),
+        title: const Text('Character name'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () {
+              // handle the press
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              // handle the press
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
+            tooltip: 'Open shopping cart',
+            onPressed: () {
+              // handle the press
+            },
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 13,
+        unselectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
         currentIndex: tabController.index,
         items: [
