@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DetailsPage extends StatelessWidget{
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return const Text("Details page");
   }
-
-
 }
