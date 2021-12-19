@@ -1,3 +1,4 @@
+import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/widgets/character/spells_page.dart';
 import 'package:d_and_d/widgets/character/tab_information.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +9,12 @@ import 'details_page.dart';
 import 'equipment_page.dart';
 
 class CharacterMainPage extends StatefulWidget {
-  const CharacterMainPage({Key? key}) : super(key: key);
+  const CharacterMainPage({
+    Key? key,
+    required this.character,
+  }) : super(key: key);
+
+  final Character character;
 
   @override
   _CharacterMainPageState createState() => _CharacterMainPageState();
@@ -18,7 +24,6 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     with SingleTickerProviderStateMixin {
   /// Controller instance to coordinate the tabs
   late TabController tabController;
-  int _navigationBarIndex = 0;
 
   void _updateIndex(int value) {
     setState(() {
@@ -59,7 +64,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
           );
         }),
-        title: const Text('Character name'),
+        title: Text(widget.character.name),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.share),
