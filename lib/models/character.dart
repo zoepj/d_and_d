@@ -14,31 +14,34 @@ class Character {
   String characterClass;
   String background;
 
-  Character(
-      {required this.name,
-        required this.imagePath,
-        required this.level,
-        required this.armor,
-        required this.indicative,
-        required this.speed,
-        required this.currentHitPoints,
-        required this.temporaryHitPoints,
-        required this.race,
-        required this.characterClass,
-        required this.background});
+  Character({
+    required this.name,
+    this.imagePath = "",
+    this.level = 0,
+    this.armor = 0,
+    this.indicative = 0,
+    this.speed = 0,
+    this.currentHitPoints = 0,
+    this.temporaryHitPoints = 0,
+    this.race = "",
+    this.characterClass = "",
+    this.background = "",
+  });
 
-  fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    imagePath = json['imagePath'];
-    level = json['level'];
-    armor = json['armor'];
-    indicative = json['indicative'];
-    speed = json['speed'];
-    currentHitPoints = json['currentHitPoints'];
-    temporaryHitPoints = json['temporaryHitPoints'];
-    race = json['race'];
-    characterClass = json['characterClass'];
-    background = json['background'];
+  factory Character.fromJson(Map<String, dynamic> json) {
+    return Character(
+      name: json['name'],
+      imagePath: json['imagePath'],
+      level: json['level'],
+      armor: json['armor'],
+      indicative: json['indicative'],
+      speed: json['speed'],
+      currentHitPoints: json['currentHitPoints'],
+      temporaryHitPoints: json['temporaryHitPoints'],
+      race: json['race'],
+      characterClass: json['characterClass'],
+      background: json['background'],
+    );
   }
 
   Map<String, dynamic> toJson() {
