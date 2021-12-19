@@ -1,6 +1,7 @@
 # d_and_d
 
 A new Flutter project.
+Runs with Flutter 2.5.1
 
 ## Getting Started
 
