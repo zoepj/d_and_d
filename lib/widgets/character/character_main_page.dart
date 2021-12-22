@@ -67,18 +67,6 @@ class _CharacterMainPageState extends State<CharacterMainPage>
         title: Text(widget.character.name),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.share),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-          IconButton(
             icon: const Icon(Icons.more_vert),
             tooltip: 'Open shopping cart',
             onPressed: () {
