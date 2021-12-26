@@ -4,6 +4,7 @@ import 'package:d_and_d/widgets/character/tab_information.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../side_drawer.dart';
 import 'characteristics_page.dart';
 import 'details_page.dart';
 import 'equipment_page.dart';
@@ -37,7 +38,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     // Tab controller initialization
     tabController = TabController(
       length: 4,
-      initialIndex: 1,
+      initialIndex: 0,
       vsync: this,
     );
 /*
@@ -54,6 +55,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     List<TabInformation> tabs = getAllTabInformation(context);
 
     return Scaffold(
+      drawer: SideDrawer(),
       appBar: AppBar(
         leading: Builder(builder: (BuildContext context) {
           return IconButton(
@@ -67,20 +69,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
         title: Text(widget.character.name),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.share),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-          IconButton(
             icon: const Icon(Icons.more_vert),
-            tooltip: 'Open shopping cart',
             onPressed: () {
               // handle the press
             },
@@ -104,11 +93,13 @@ class _CharacterMainPageState extends State<CharacterMainPage>
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: const [
-          DetailsPage(),
-          EquipmentPage(),
-          CharacteristicsPage(),
-          SpellsPage(),
+        children: [
+          DetailsPage(
+            character: widget.character,
+          ),
+          const EquipmentPage(),
+          const CharacteristicsPage(),
+          const SpellsPage(),
         ],
       ),
     );
