@@ -1,3 +1,4 @@
+import 'package:d_and_d/icons/my_icons.dart';
 import 'package:flutter/material.dart';
 
 /// CLass and function used to have internationalize bottom page navigation
@@ -24,22 +25,22 @@ List<TabInformation> getAllTabInformation(BuildContext context) {
     TabInformation(
       order: 1,
       title: "Details",
-      icon: Icons.person,
+      icon: MyIcons.userId,
     ),
     TabInformation(
       order: 2,
       title: "Equipment",
-      icon: Icons.pending,
+      icon: MyIcons.sword,
     ),
     TabInformation(
       order: 3,
       title: "Characteristics",
-      icon: Icons.pending,
+      icon: MyIcons.octahedron,
     ),
     TabInformation(
       order: 4,
       title: "Spells",
-      icon: Icons.pending,
+      icon: MyIcons.shield,
     ),
   ];
 }
