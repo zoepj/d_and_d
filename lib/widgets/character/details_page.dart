@@ -42,7 +42,7 @@ class DetailsPage extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text(character.indicative.toString()),
+                      Text(character.initiative.toString()),
                       const Text("INDICATIVE"),
                     ],
                   ),
@@ -63,6 +63,8 @@ class DetailsPage extends StatelessWidget {
                       Text("RACE: ${character.race}"),
                       Text("CLASS: ${character.characterClass}"),
                       Text("BACKGROUND: ${character.background}"),
+                      Text("ARMORS: ${character.armors}"),
+                      Text("WEAPONS: ${character.weapons}")
                     ],
                   ),
                   Expanded(child: Container()),
