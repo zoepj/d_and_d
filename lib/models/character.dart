@@ -1,7 +1,3 @@
-import 'package:d_and_d/models/Weapon.dart';
-import 'package:d_and_d/models/Armor.dart';
-
-
 /// Made using https://jsontodart.com/
 /// example used is in d_and_d/JSON_examples
 
@@ -20,6 +16,7 @@ class Character {
   String background;
   List armors;
   List weapons;
+  List objects;
 
   Character({
     required this.name,
@@ -34,7 +31,8 @@ class Character {
     this.characterClass = "",
     this.background = "",
     required this.armors,
-    required this.weapons
+    required this.weapons,
+    required this.objects,
   });
 
   factory Character.fromJson(Map<String, dynamic> json) {
@@ -51,7 +49,8 @@ class Character {
       characterClass: json['characterClass'],
       background: json['background'],
       armors: json['armors'],
-      weapons: (json['weapons'])
+      weapons: (json['weapons']),
+      objects: (json['objects'])
     );
   }
 
@@ -70,6 +69,7 @@ class Character {
     data['background'] = background;
     data['armors'] = armors;
     data['weapons'] = weapons;
+    data['objects'] = objects;
     return data;
   }
 }
