@@ -20,23 +20,30 @@ const Map<String, dynamic> jsonSample = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
-  "armors": [],
-  "weapons": [{"ammunition": 0,
-    "type": "Light",
-    "damage": "1d6",
-    "cost": "5 po",
-    "weight": "5lb",
-    "features": "",
-    "info": ""
-    },
-    {"ammunition": 0,
-      "type": "Heavy",
+  "armors": [
+    {
+      "equipped": true,
+      "type": "light armor",
+      "armorClass": 14,
+      "characteristic": "idk",
+      "cost": "5 po",
+      "strength": 1,
+      "stealth": false,
+      "weight": "-",
+      "info": "-",
+    }
+  ],
+  "weapons": [
+    {
+      "ammunition": 0,
+      "type": "Light",
       "damage": "1d6",
       "cost": "5 po",
       "weight": "5lb",
       "features": "",
       "info": ""
-    }],
+    },
+  ],
   "objects": []
 };
 
@@ -52,8 +59,30 @@ const Map<String, dynamic> jsonSample2 = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
-  "armors": [1, 2, 3],
-  "weapons": [1, 2, 3],
+  "armors": [
+    {
+      "equipped": true,
+      "type": "lightArmor",
+      "armorClass": 14,
+      "characteristic": "idk",
+      "cost": "5 po",
+      "strength": 1,
+      "stealth": false,
+      "weight": "-",
+      "info": "-",
+    }
+  ],
+  "weapons": [
+    {
+      "ammunition": 0,
+      "type": "Light",
+      "damage": "1d6",
+      "cost": "5 po",
+      "weight": "5lb",
+      "features": "",
+      "info": ""
+    },
+  ],
   "objects": []
 };
 

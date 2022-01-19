@@ -1,6 +1,10 @@
+import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/weapon.dart';
+
+import 'armor.dart';
+
 /// Made using https://jsontodart.com/
 /// example used is in d_and_d/JSON_examples
-
 
 class Character {
   String name;
@@ -14,9 +18,9 @@ class Character {
   String race;
   String characterClass;
   String background;
-  List armors;
-  List weapons;
-  List objects;
+  List<Armor> armors;
+  List<dynamic> weapons;
+  List<dynamic> objects;
 
   Character({
     required this.name,
@@ -36,6 +40,30 @@ class Character {
   });
 
   factory Character.fromJson(Map<String, dynamic> json) {
+    final armors = json['armors'];
+    List<Map<String, Object>> armorsListMap =
+        List<Map<String, Object>>.from(armors);
+    List<Armor> armorsList = List.empty(growable: true);
+    for (int i = 0; i < armorsListMap.length; i++) {
+      armorsList.add(Armor.fromJson(armorsListMap[i]));
+    }
+
+    final weapons = json['weapons'];
+    List<Map<String, Object>> weaponsListMap =
+        List<Map<String, Object>>.from(weapons);
+    List<Weapon> weaponsList = List.empty(growable: true);
+    for (int i = 0; i < weaponsListMap.length; i++) {
+      weaponsList.add(Weapon.fromJson(weaponsListMap[i]));
+    }
+
+    final object = json['objects'];
+    List<Map<String, Object>> objectsListMap =
+        List<Map<String, Object>>.from(object);
+    List<MyObject> objectsList = List.empty(growable: true);
+    for (int i = 0; i < objectsListMap.length; i++) {
+      objectsList.add(MyObject.fromJson(objectsListMap[i]));
+    }
+
     return Character(
       name: json['name'],
       imagePath: json['imagePath'],
@@ -48,9 +76,9 @@ class Character {
       race: json['race'],
       characterClass: json['characterClass'],
       background: json['background'],
-      armors: json['armors'],
-      weapons: (json['weapons']),
-      objects: (json['objects'])
+      armors: armorsList,
+      weapons: weaponsList,
+      objects: objectsList,
     );
   }
 

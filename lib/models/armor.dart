@@ -9,21 +9,20 @@ class Armor {
   String weight;
   String info;
 
-  Armor({
-    this.equipped = false,
-    required this.type,
-    required this.armorClass,
-    this.characteristic = "",
-    this.cost = "",
-    this.strength = 0,
-    this.stealth = false,
-    this.weight = "",
-    this.info = ""
-  });
+  Armor(
+      {this.equipped = false,
+      required this.type,
+      required this.armorClass,
+      this.characteristic = "",
+      this.cost = "",
+      this.strength = 0,
+      this.stealth = false,
+      this.weight = "",
+      this.info = ""});
 
   factory Armor.fromJson(Map<String, dynamic> json) {
     return Armor(
-        equipped: json['equipped'],
+        equipped: json['equipped'] ?? false,
         type: json['type'],
         armorClass: json['armorClass'],
         characteristic: json['characteristic'],
@@ -31,8 +30,7 @@ class Armor {
         strength: json['strength'],
         stealth: json['stealth'],
         weight: json['weight'],
-        info: json['info']
-    );
+        info: json['info']);
   }
 
   Map<String, dynamic> toJson() {

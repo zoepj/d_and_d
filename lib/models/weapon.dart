@@ -7,15 +7,14 @@ class Weapon {
   String features;
   String info;
 
-  Weapon({
-    this.ammunition = 0,
-    this.type = "",
-    this.damage = "",
-    this.cost = "",
-    this.weight = "",
-    this.features = "",
-    this.info = ""
-  });
+  Weapon(
+      {this.ammunition = 0,
+      required this.type,
+      this.damage = "",
+      this.cost = "",
+      this.weight = "",
+      this.features = "",
+      this.info = ""});
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
     return Weapon(
@@ -25,8 +24,7 @@ class Weapon {
         cost: json['cost'],
         weight: json['weight'],
         features: json['features'],
-        info: json['info']
-    );
+        info: json['info']);
   }
 
   Map<String, dynamic> toJson() {
