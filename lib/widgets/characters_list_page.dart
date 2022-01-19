@@ -13,13 +13,38 @@ const Map<String, dynamic> jsonSample = {
   "imagePath": "assets/img.png",
   "level": 3,
   "armor": 14,
-  "indicative": 1,
+  "initiative": 1,
   "speed": 35,
   "currentHitPoints": 34,
   "temporaryHitPoints": 0,
   "race": "Elf",
   "characterClass": "Sorcerer",
-  "background": "Gambler"
+  "background": "Gambler",
+  "armors": [
+    {
+      "equipped": true,
+      "type": "light armor",
+      "armorClass": 14,
+      "characteristic": "idk",
+      "cost": "5 po",
+      "strength": 1,
+      "stealth": false,
+      "weight": "-",
+      "info": "-",
+    }
+  ],
+  "weapons": [
+    {
+      "ammunition": 0,
+      "type": "Light",
+      "damage": "1d6",
+      "cost": "5 po",
+      "weight": "5lb",
+      "features": "",
+      "info": ""
+    },
+  ],
+  "objects": []
 };
 
 const Map<String, dynamic> jsonSample2 = {
@@ -27,13 +52,38 @@ const Map<String, dynamic> jsonSample2 = {
   "imagePath": "assets/img.png",
   "level": 5,
   "armor": 20,
-  "indicative": 0,
+  "initiative": 0,
   "speed": 33,
   "currentHitPoints": 36,
   "temporaryHitPoints": 2,
   "race": "Elf",
   "characterClass": "Sorcerer",
-  "background": "Gambler"
+  "background": "Gambler",
+  "armors": [
+    {
+      "equipped": true,
+      "type": "lightArmor",
+      "armorClass": 14,
+      "characteristic": "idk",
+      "cost": "5 po",
+      "strength": 1,
+      "stealth": false,
+      "weight": "-",
+      "info": "-",
+    }
+  ],
+  "weapons": [
+    {
+      "ammunition": 0,
+      "type": "Light",
+      "damage": "1d6",
+      "cost": "5 po",
+      "weight": "5lb",
+      "features": "",
+      "info": ""
+    },
+  ],
+  "objects": []
 };
 
 Future<Character> getJsonData(String path) async {

@@ -55,7 +55,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     List<TabInformation> tabs = getAllTabInformation(context);
 
     return Scaffold(
-      drawer: SideDrawer(),
+      drawer: const SideDrawer(),
       appBar: AppBar(
         leading: Builder(builder: (BuildContext context) {
           return IconButton(
@@ -97,7 +97,9 @@ class _CharacterMainPageState extends State<CharacterMainPage>
           DetailsPage(
             character: widget.character,
           ),
-          const EquipmentPage(),
+          EquipmentPage(
+            character: widget.character,
+          ),
           const CharacteristicsPage(),
           const SpellsPage(),
         ],
