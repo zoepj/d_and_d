@@ -117,8 +117,6 @@ class CharactersListPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    Character character = Character.fromJson(jsonSample);
-    Character character2 = Character.fromJson(jsonSample2);
     return Scaffold(
       drawer: const SideDrawer(),
       appBar: AppBar(
@@ -132,14 +130,6 @@ class CharactersListPage extends StatelessWidget {
           );
         }),
         title: const Text("Characters"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-        ],
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(8),

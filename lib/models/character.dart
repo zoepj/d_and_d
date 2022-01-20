@@ -21,6 +21,7 @@ class Character {
   List<Armor> armors;
   List<dynamic> weapons;
   List<dynamic> objects;
+  bool favorite;
 
   Character({
     required this.name,
@@ -37,6 +38,7 @@ class Character {
     required this.armors,
     required this.weapons,
     required this.objects,
+    this.favorite = false,
   });
 
   factory Character.fromJson(Map<String, dynamic> json) {
