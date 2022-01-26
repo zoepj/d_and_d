@@ -44,7 +44,8 @@ const Map<String, dynamic> jsonSample = {
       "info": ""
     },
   ],
-  "objects": []
+  "objects": [],
+  "spells": []
 };
 
 const Map<String, dynamic> jsonSample2 = {
@@ -83,7 +84,8 @@ const Map<String, dynamic> jsonSample2 = {
       "info": ""
     },
   ],
-  "objects": []
+  "objects": [],
+  "spells": []
 };
 
 Future<Character> getJsonData(String path) async {
