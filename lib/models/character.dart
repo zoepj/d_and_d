@@ -23,7 +23,7 @@ class Character {
   List<dynamic> weapons;
   List<dynamic> objects;
   List<dynamic> spells;
-
+  bool favorite;
 
   Character({
     required this.name,
@@ -41,6 +41,7 @@ class Character {
     required this.weapons,
     required this.objects,
     required this.spells,
+    this.favorite = false,
   });
 
   factory Character.fromJson(Map<String, dynamic> json) {
