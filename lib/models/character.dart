@@ -1,8 +1,12 @@
+import 'package:d_and_d/models/characteristicsEnum.dart';
 import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/savingThrows.dart';
+import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
 
 import 'armor.dart';
+import 'characteristics.dart';
 
 /// Made using https://jsontodart.com/
 /// example used is in d_and_d/JSON_examples
@@ -24,6 +28,12 @@ class Character {
   List<dynamic> objects;
   List<dynamic> spells;
   bool favorite;
+  Characteristics characteristics;
+  SavingThrows savingThrows;
+  Skills skills;
+  int spellSave;
+  int spellAttackBonus;
+  characteristicsEnum spellcastingAbility;
 
   Character({
     required this.name,
@@ -42,6 +52,12 @@ class Character {
     required this.objects,
     required this.spells,
     this.favorite = false,
+    required this.characteristics,
+    required this.savingThrows,
+    required this.skills,
+    this.spellSave = 0,
+    this.spellAttackBonus = 0,
+    this.spellcastingAbility = characteristicsEnum.intelligence
   });
 
   factory Character.fromJson(Map<String, dynamic> json) {
@@ -93,6 +109,12 @@ class Character {
       weapons: weaponsList,
       objects: objectsList,
       spells: spellsList,
+      characteristics: Characteristics.fromJson(json['characteristics']),
+      savingThrows: SavingThrows.fromJson(json['savingThrows']),
+      skills: Skills.fromJson(json['skills']),
+      spellSave: json['spellSave'],
+      spellAttackBonus: json['spellAttackBonus'],
+      spellcastingAbility: json['spellcastingAbility']
     );
   }
 
@@ -113,6 +135,12 @@ class Character {
     data['weapons'] = weapons;
     data['objects'] = objects;
     data['spells'] = spells;
+    data['characteristics'] = characteristics;
+    data['savingThrows'] = savingThrows;
+    data['skills'] = skills;
+    data['spellSave'] = spellSave;
+    data['spellAttackBonus'] = spellAttackBonus;
+    data['spellcastingAbility'] = spellcastingAbility;
     return data;
   }
 }
