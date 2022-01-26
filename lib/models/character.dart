@@ -1,4 +1,5 @@
 import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
 
 import 'armor.dart';
@@ -21,6 +22,7 @@ class Character {
   List<Armor> armors;
   List<dynamic> weapons;
   List<dynamic> objects;
+  List<dynamic> spells;
   bool favorite;
 
   Character({
@@ -38,6 +40,7 @@ class Character {
     required this.armors,
     required this.weapons,
     required this.objects,
+    required this.spells,
     this.favorite = false,
   });
 
@@ -66,6 +69,14 @@ class Character {
       objectsList.add(MyObject.fromJson(objectsListMap[i]));
     }
 
+    final spell = json['spells'];
+    List<Map<String, Spell>> spellsListMap =
+    List<Map<String, Spell>>.from(spell);
+    List<Spell> spellsList = List.empty(growable: true);
+    for (int i = 0; i < spellsListMap.length; i++) {
+      spellsList.add(Spell.fromJson(spellsListMap[i]));
+    }
+
     return Character(
       name: json['name'],
       imagePath: json['imagePath'],
@@ -81,6 +92,7 @@ class Character {
       armors: armorsList,
       weapons: weaponsList,
       objects: objectsList,
+      spells: spellsList,
     );
   }
 
@@ -100,6 +112,7 @@ class Character {
     data['armors'] = armors;
     data['weapons'] = weapons;
     data['objects'] = objects;
+    data['spells'] = spells;
     return data;
   }
 }
