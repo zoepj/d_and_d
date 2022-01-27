@@ -1,3 +1,4 @@
+import 'package:d_and_d/models/characteristicsEnum.dart';
 import 'package:d_and_d/models/damageType.dart';
 import 'package:d_and_d/models/school.dart';
 
