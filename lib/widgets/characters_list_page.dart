@@ -60,32 +60,6 @@ const Map<String, dynamic> jsonSample2 = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
-  "armors": [
-    {
-      "equipped": true,
-      "type": "lightArmor",
-      "armorClass": 14,
-      "characteristic": "idk",
-      "cost": "5 po",
-      "strength": 1,
-      "stealth": false,
-      "weight": "-",
-      "info": "-",
-    }
-  ],
-  "weapons": [
-    {
-      "ammunition": 0,
-      "type": "Light",
-      "damage": "1d6",
-      "cost": "5 po",
-      "weight": "5lb",
-      "features": "",
-      "info": ""
-    },
-  ],
-  "objects": [],
-  "spells": []
 };
 
 Future<Character> getJsonData(String path) async {

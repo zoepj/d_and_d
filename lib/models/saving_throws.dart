@@ -1,4 +1,4 @@
-class Characteristics {
+class SavingThrows {
   int strength;
   int dexterity;
   int constitution;
@@ -6,7 +6,7 @@ class Characteristics {
   int wisdom;
   int charisma;
 
-  Characteristics({
+  SavingThrows({
     this.strength = 0,
     this.dexterity = 0,
     this.constitution = 0,
@@ -15,8 +15,8 @@ class Characteristics {
     this.charisma = 0,
   });
 
-  factory Characteristics.fromJson(Map<String, dynamic> json) {
-    return Characteristics(
+  factory SavingThrows.fromJson(Map<String, dynamic> json) {
+    return SavingThrows(
         strength: json['strength'],
         dexterity: json['dexterity'],
         constitution: json['constitution'],
