@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'add_character_page.dart';
 import 'character/character_main_page.dart';
 
 const Map<String, dynamic> jsonSample = {
@@ -126,6 +127,17 @@ class CharactersListPage extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) => const Divider(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddCharacterPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
