@@ -1,6 +1,6 @@
-import 'package:d_and_d/models/characteristicsEnum.dart';
+import 'package:d_and_d/models/characteristics_enum.dart';
 import 'package:d_and_d/models/my_object.dart';
-import 'package:d_and_d/models/savingThrows.dart';
+import 'package:d_and_d/models/saving_throws.dart';
 import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
