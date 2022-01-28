@@ -1,4 +1,5 @@
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/widgets/character/pop_up_menu.dart';
 import 'package:d_and_d/widgets/character/spells_page.dart';
 import 'package:d_and_d/widgets/character/tab_information.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,13 +68,8 @@ class _CharacterMainPageState extends State<CharacterMainPage>
           );
         }),
         title: Text(widget.character.name),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              // handle the press
-            },
-          ),
+        actions: const [
+          PopUpMenu(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

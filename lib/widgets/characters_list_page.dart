@@ -59,31 +59,6 @@ const Map<String, dynamic> jsonSample2 = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
-  "armors": [
-    {
-      "equipped": true,
-      "type": "lightArmor",
-      "armorClass": 14,
-      "characteristic": "idk",
-      "cost": "5 po",
-      "strength": 1,
-      "stealth": false,
-      "weight": "-",
-      "info": "-",
-    }
-  ],
-  "weapons": [
-    {
-      "ammunition": 0,
-      "type": "Light",
-      "damage": "1d6",
-      "cost": "5 po",
-      "weight": "5lb",
-      "features": "",
-      "info": ""
-    },
-  ],
-  "objects": []
 };
 
 Future<Character> getJsonData(String path) async {
@@ -117,8 +92,6 @@ class CharactersListPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    Character character = Character.fromJson(jsonSample);
-    Character character2 = Character.fromJson(jsonSample2);
     return Scaffold(
       drawer: const SideDrawer(),
       appBar: AppBar(
@@ -132,14 +105,6 @@ class CharactersListPage extends StatelessWidget {
           );
         }),
         title: const Text("Characters"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              // handle the press
-            },
-          ),
-        ],
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(8),
