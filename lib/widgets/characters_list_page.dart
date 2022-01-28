@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/school.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ const Map<String, dynamic> jsonSample = {
   "armors": [
     {
       "equipped": true,
+      "name": "leather armor",
       "type": "light armor",
       "armorClass": 14,
       "characteristic": "idk",
@@ -37,6 +39,7 @@ const Map<String, dynamic> jsonSample = {
   "weapons": [
     {
       "ammunition": 0,
+      "name": "Longbow",
       "type": "Light",
       "damage": "1d6",
       "cost": "5 po",
@@ -46,7 +49,45 @@ const Map<String, dynamic> jsonSample = {
     },
   ],
   "objects": [],
-  "spells": []
+  "spells": [
+    {
+      "level": 0,
+      "name": "name",
+      "damageType": "damageType.acid",
+      "school": "School.divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": ""
+    },
+
+    {
+      "level": 2,
+      "name": "name2",
+      "damageType": "damageType.acid",
+      "school": "School.divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": ""
+    },
+
+    {
+      "level": 0,
+      "name": "name2",
+      "damageType": "damageType.acid",
+      "school": "School.divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": ""
+    }
+
+
+  ]
 };
 
 const Map<String, dynamic> jsonSample2 = {

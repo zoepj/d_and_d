@@ -93,8 +93,8 @@ class Character {
     List<Spell> spellsList = List.empty(growable: true);
     final spell = json['spells'];
     if (spell != null) {
-      List<Map<String, Spell>> spellsListMap =
-          List<Map<String, Spell>>.from(spell);
+      List<Map<String, Object>> spellsListMap =
+          List<Map<String, Object>>.from(spell);
       for (int i = 0; i < spellsListMap.length; i++) {
         spellsList.add(Spell.fromJson(spellsListMap[i]));
       }
