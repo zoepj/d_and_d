@@ -1,10 +1,10 @@
 enum School {
-  ABJURATION,
-  CONJURATION,
-  DIVINATION,
-  ENCHANTMENT,
-  EVOCATION,
-  ILLUSION,
-  NECROMANCY,
-  TRANSMUTATION
+  abjuration,
+  conjuration,
+  divination,
+  enchantment,
+  evocation,
+  illusion,
+  necromancy,
+  transmutation
 }

@@ -1,5 +1,6 @@
-import 'package:d_and_d/models/damageType.dart';
+import 'package:d_and_d/models/damage_type.dart';
 import 'package:d_and_d/models/school.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 
 class Spell {
   int level;
@@ -14,40 +15,39 @@ class Spell {
 
   Spell(
       {this.level = 0,
-        required this.name,
-        this.damageType = DamageType.ACID,
-        this.school = School.ABJURATION,
-        this.castingTime = "",
-        this.range = "",
-        this.components = "",
-        this.duration = "",
-        this.description = ""});
+      required this.name,
+      this.damageType = DamageType.acid,
+      this.school = School.abjuration,
+      this.castingTime = "",
+      this.range = "",
+      this.components = "",
+      this.duration = "",
+      this.description = ""});
 
   factory Spell.fromJson(Map<String, dynamic> json) {
     return Spell(
         name: json['name'],
         level: json['level'],
-        damageType: json['damageType'],
+        damageType: EnumToString.fromString(DamageType.values, json['damageType']),
         school: json['school'],
         castingTime: json['castingTime'],
         range: json['range'],
         components: json['components'],
         duration: json['duration'],
-        description: json['description']
-        );
+        description: json['description']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['level'] = this.level;
-    data['name'] = this.name;
-    data['damageType'] = this.damageType;
-    data['school'] = this.school;
-    data['castingTime'] = this.castingTime;
-    data['range'] = this.range;
-    data['components'] = this.components;
-    data['duration'] = this.duration;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['level'] = level;
+    data['name'] = name;
+    data['damageType'] = damageType;
+    data['school'] = school;
+    data['castingTime'] = castingTime;
+    data['range'] = range;
+    data['components'] = components;
+    data['duration'] = duration;
+    data['description'] = description;
     return data;
   }
 }

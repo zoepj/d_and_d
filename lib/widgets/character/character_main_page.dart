@@ -97,7 +97,9 @@ class _CharacterMainPageState extends State<CharacterMainPage>
             character: widget.character,
           ),
           const CharacteristicsPage(),
-          const SpellsPage(),
+          SpellsPage(
+            character: widget.character,
+          ),
         ],
       ),
     );
