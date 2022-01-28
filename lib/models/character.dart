@@ -60,36 +60,44 @@ class Character {
       this.spellcastingAbility = characteristicsEnum.intelligence});
 
   factory Character.fromJson(Map<String, dynamic> json) {
-    final armors = json['armors'];
-    List<Map<String, Object>> armorsListMap =
-        List<Map<String, Object>>.from(armors);
     List<Armor> armorsList = List.empty(growable: true);
-    for (int i = 0; i < armorsListMap.length; i++) {
-      armorsList.add(Armor.fromJson(armorsListMap[i]));
+    final armors = json['armors'];
+    if (armors != null) {
+      List<Map<String, Object>> armorsListMap =
+          List<Map<String, Object>>.from(armors);
+      for (int i = 0; i < armorsListMap.length; i++) {
+        armorsList.add(Armor.fromJson(armorsListMap[i]));
+      }
     }
 
-    final weapons = json['weapons'];
-    List<Map<String, Object>> weaponsListMap =
-        List<Map<String, Object>>.from(weapons);
     List<Weapon> weaponsList = List.empty(growable: true);
-    for (int i = 0; i < weaponsListMap.length; i++) {
-      weaponsList.add(Weapon.fromJson(weaponsListMap[i]));
+    final weapons = json['weapons'];
+    if (weapons != null) {
+      List<Map<String, Object>> weaponsListMap =
+          List<Map<String, Object>>.from(weapons);
+      for (int i = 0; i < weaponsListMap.length; i++) {
+        weaponsList.add(Weapon.fromJson(weaponsListMap[i]));
+      }
     }
 
-    final object = json['objects'];
-    List<Map<String, Object>> objectsListMap =
-        List<Map<String, Object>>.from(object);
     List<MyObject> objectsList = List.empty(growable: true);
-    for (int i = 0; i < objectsListMap.length; i++) {
-      objectsList.add(MyObject.fromJson(objectsListMap[i]));
+    final object = json['objects'];
+    if (object != null) {
+      List<Map<String, Object>> objectsListMap =
+          List<Map<String, Object>>.from(object);
+      for (int i = 0; i < objectsListMap.length; i++) {
+        objectsList.add(MyObject.fromJson(objectsListMap[i]));
+      }
     }
 
-    final spell = json['spells'];
-    List<Map<String, Spell>> spellsListMap =
-        List<Map<String, Spell>>.from(spell);
     List<Spell> spellsList = List.empty(growable: true);
-    for (int i = 0; i < spellsListMap.length; i++) {
-      spellsList.add(Spell.fromJson(spellsListMap[i]));
+    final spell = json['spells'];
+    if (spell != null) {
+      List<Map<String, Spell>> spellsListMap =
+          List<Map<String, Spell>>.from(spell);
+      for (int i = 0; i < spellsListMap.length; i++) {
+        spellsList.add(Spell.fromJson(spellsListMap[i]));
+      }
     }
 
     return Character(
