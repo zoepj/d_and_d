@@ -1,4 +1,4 @@
-import 'package:d_and_d/widgets/characters_list_page.dart';
+import 'package:d_and_d/widgets/character/characters_list_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
