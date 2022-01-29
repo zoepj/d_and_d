@@ -4,6 +4,7 @@ import 'package:d_and_d/models/saving_throws.dart';
 import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -13,6 +14,7 @@ import 'characteristics.dart';
 
 class Character {
   String name;
+  int? _id;
   String? imagePath;
   int? level;
   int? armor;
@@ -23,17 +25,26 @@ class Character {
   String? race;
   String? characterClass;
   String? background;
-  List<Armor> armors;
-  List<dynamic> weapons;
-  List<dynamic> objects;
-  List<dynamic> spells;
+  List<dynamic>? armors;
+  List<dynamic>? weapons;
+  List<dynamic>? objects;
+  List<dynamic>? spells;
   bool? favorite;
-  Characteristics characteristics;
-  SavingThrows savingThrows;
-  Skills skills;
+  Characteristics? characteristics;
+  SavingThrows? savingThrows;
+  Skills? skills;
   int? spellSave;
   int? spellAttackBonus;
   characteristicsEnum? spellcastingAbility;
+  static int idCounter = 0;
+
+  int? get id => _id;
+
+  int _getNewID() {
+    int id = idCounter++;
+    DB.incrementCharacterCounter(id);
+    return id;
+  }
 
   Character(
       {required this.name,
@@ -47,17 +58,19 @@ class Character {
       this.race = "",
       this.characterClass = "",
       this.background = "",
-      required this.armors,
-      required this.weapons,
-      required this.objects,
-      required this.spells,
+      this.armors,
+      this.weapons,
+      this.objects,
+      this.spells,
       this.favorite = false,
-      required this.characteristics,
-      required this.savingThrows,
-      required this.skills,
+      this.characteristics,
+      this.savingThrows,
+      this.skills,
       this.spellSave = 0,
       this.spellAttackBonus = 0,
-      this.spellcastingAbility = characteristicsEnum.intelligence});
+      this.spellcastingAbility = characteristicsEnum.intelligence}) {
+    _id = _getNewID();
+  }
 
   factory Character.fromJson(Map<String, dynamic> json) {
     List<Armor> armorsList = List.empty(growable: true);
@@ -101,37 +114,44 @@ class Character {
     }
 
     return Character(
-        name: json['name'],
-        imagePath: json['imagePath'],
-        level: json['level'],
-        armor: json['armor'],
-        initiative: json['initiative'],
-        speed: json['speed'],
-        currentHitPoints: json['currentHitPoints'],
-        temporaryHitPoints: json['temporaryHitPoints'],
-        race: json['race'],
-        characterClass: json['characterClass'],
-        background: json['background'],
-        armors: armorsList,
-        weapons: weaponsList,
-        objects: objectsList,
-        spells: spellsList,
-        characteristics: json['characteristics'] == null
-            ? Characteristics()
-            : Characteristics.fromJson(json['characteristics']),
-        savingThrows: json['savingThrows'] == null
-            ? SavingThrows()
-            : SavingThrows.fromJson(json['savingThrows']),
-        skills:
-            json['skills'] == null ? Skills() : Skills.fromJson(json['skills']),
-        spellSave: json['spellSave'],
-        spellAttackBonus: json['spellAttackBonus'],
-        spellcastingAbility: json['spellcastingAbility']);
+      name: json['name'],
+      imagePath: json['imagePath'] ?? "",
+      level: int.parse(json['level']),
+      armor: int.parse(json['armor']),
+      initiative: int.parse(json['initiative']),
+      speed: int.parse(json['speed']),
+      currentHitPoints: int.parse(json['currentHitPoints']),
+      temporaryHitPoints: int.parse(json['temporaryHitPoints']),
+      race: json['race'] ?? "",
+      characterClass: json['characterClass'] ?? "",
+      background: json['background'] ?? "",
+      armors: armorsList,
+      weapons: weaponsList,
+      objects: objectsList,
+      spells: spellsList,
+      /*
+      characteristics: json['characteristics'] == null
+          ? Characteristics()
+          : Characteristics.fromJson(json['characteristics']),
+      savingThrows: json['savingThrows'] == null
+          ? SavingThrows()
+          : SavingThrows.fromJson(json['savingThrows']),
+      skills:
+          json['skills'] == null ? Skills() : Skills.fromJson(json['skills']),
+          */
+      characteristics: Characteristics(),
+      savingThrows: SavingThrows(),
+      skills: Skills(),
+      spellSave: int.parse(json['spellSave']),
+      spellAttackBonus: int.parse(json['spellAttackBonus']),
+      spellcastingAbility:
+          characteristicsEnum.intelligence, //json['spellcastingAbility'] ?? "",
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
+    data["name"] = name;
     data['imagePath'] = imagePath;
     data['level'] = level;
     data['armor'] = armor;
@@ -153,5 +173,52 @@ class Character {
     data['spellAttackBonus'] = spellAttackBonus;
     data['spellcastingAbility'] = spellcastingAbility;
     return data;
+  }
+
+  @override
+  String toString() {
+    return '{"name": "' +
+        name +
+        '", "imagePath": "' +
+        imagePath! +
+        '", "level": "' +
+        level.toString() +
+        '", "armor": "' +
+        armor.toString() +
+        '", "initiative": "' +
+        initiative!.toString() +
+        '", "speed": "' +
+        speed.toString() +
+        '", "currentHitPoints": "' +
+        currentHitPoints.toString() +
+        '", "temporaryHitPoints": "' +
+        temporaryHitPoints.toString() +
+        '", "race": "' +
+        race! +
+        '", "characterClass": "' +
+        characterClass! +
+        '", "background": "' +
+        background! +
+        '", "armors": ' +
+        armors.toString() +
+        ', "weapons": ' +
+        weapons.toString() +
+        ', "objects": ' +
+        objects.toString() +
+        ', "spells": ' +
+        spells.toString() +
+        ', "characteristics": "' +
+        characteristics.toString() +
+        '", "savingThrows": "' +
+        savingThrows.toString() +
+        '", "skills": "' +
+        skills.toString() +
+        '", "spellSave": "' +
+        spellSave.toString() +
+        '", "spellAttackBonus": "' +
+        spellAttackBonus.toString() +
+        '", "spellcastingAbility": "' +
+        spellcastingAbility.toString() +
+        '"}';
   }
 }

@@ -1,7 +1,11 @@
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/characters_list_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DB.init();
+  DB.clear();
   runApp(const MyApp());
 }
 

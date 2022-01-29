@@ -46,4 +46,10 @@ class Armor {
     data['info'] = info;
     return data;
   }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of armor";
+  }
 }

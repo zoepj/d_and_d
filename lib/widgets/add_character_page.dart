@@ -1,3 +1,5 @@
+import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
 
   @override
   Widget build(BuildContext context) {
+    Character c1 = Character(name: "");
+    DB.setTest(false);
     // Build a Form widget using the _formKey created above.
     return Scaffold(
       drawer: const SideDrawer(),
@@ -57,6 +61,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (name) {
                               if (name == null || name.isEmpty) {
                                 return 'Please enter name';
+                              } else {
+                                c1.name = name;
                               }
                               return null;
                             },
@@ -77,6 +83,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               } else if (int.parse(level) < 1 ||
                                   int.parse(level) > 20) {
                                 return 'Level must be between 1 and 20';
+                              } else {
+                                c1.level = int.parse(level);
                               }
                               return null;
                             },
@@ -96,6 +104,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                                 return 'Please enter armor';
                               } else if (int.parse(armor) < 0) {
                                 return 'Armor must be positive';
+                              } else {
+                                c1.armor = int.parse(armor);
                               }
                               return null;
                             },
@@ -116,6 +126,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                                 return 'Please enter initiative';
                               } else if (int.parse(initiative) < 0) {
                                 return 'Initiative must be positive';
+                              } else {
+                                c1.initiative = int.parse(initiative);
                               }
                               return null;
                             },
@@ -123,7 +135,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         ),
                       ],
                     ),
-
+/*
                     Row(
                       children: [
                         const Text("Speed: "),
@@ -453,22 +465,22 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         ),
                       ],
                     ),
+ */
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            // If the form is valid, display a snackbar. In the real world,
-                            // you'd often call a server or save the information in a database.
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
+                            // there exist a data in prefs
+                            DB.addCharacter(c1);
                           }
+                          DB.setTest(true);
                         },
                         child: const Text('Submit'),
                       ),
                     ),
+                    Text(DB.getTest().toString()),
                   ],
                 ),
               ),

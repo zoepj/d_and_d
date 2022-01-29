@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -81,19 +82,11 @@ class CharactersListPage extends StatelessWidget {
   CharactersListPage({
     Key? key,
   }) : super(key: key);
-  final List<Character> charactersList = [
-    character,
-    character2,
-    character,
-    character,
-    character2,
-    character,
-    character,
-    character,
-    character,
-  ];
+  List<Character> charactersList = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
+    charactersList = DB.getCharacters();
     return Scaffold(
       drawer: const SideDrawer(),
       appBar: AppBar(
