@@ -3,7 +3,7 @@ import 'package:d_and_d/models/school.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 
 class Spell {
-  int? level;
+  int level;
   String name;
   DamageType? damageType;
   School? school;
@@ -14,7 +14,7 @@ class Spell {
   String? description;
 
   Spell(
-      {this.level = 0,
+      {required this.level,
       required this.name,
       this.damageType = DamageType.acid,
       this.school = School.abjuration,

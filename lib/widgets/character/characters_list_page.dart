@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'add_character_page.dart';
-import 'character/character_main_page.dart';
+import '../add_character_page.dart';
+import 'character_main_page.dart';
 
 const Map<String, dynamic> jsonSample = {
   "name": "Kerri Amblecrown",
@@ -53,8 +53,8 @@ const Map<String, dynamic> jsonSample = {
     {
       "level": 0,
       "name": "name",
-      "damageType": "damageType.acid",
-      "school": "School.divination",
+      "damageType": "acid",
+      "school": "divination",
       "castingTime": "1 action",
       "range": "Personal",
       "components": "",
@@ -65,8 +65,8 @@ const Map<String, dynamic> jsonSample = {
     {
       "level": 2,
       "name": "name2",
-      "damageType": "damageType.acid",
-      "school": "School.divination",
+      "damageType": "acid",
+      "school": "divination",
       "castingTime": "1 action",
       "range": "Personal",
       "components": "",
@@ -76,9 +76,9 @@ const Map<String, dynamic> jsonSample = {
 
     {
       "level": 0,
-      "name": "name2",
-      "damageType": "damageType.acid",
-      "school": "School.divination",
+      "name": "name3",
+      "damageType": "acid",
+      "school": "divination",
       "castingTime": "1 action",
       "range": "Personal",
       "components": "",

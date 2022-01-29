@@ -1,5 +1,12 @@
+import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/weapon.dart';
+import 'package:d_and_d/widgets/character/object_page.dart';
+import 'package:d_and_d/widgets/character/weapon_page.dart';
 import 'package:flutter/material.dart';
+
+import 'armor_page.dart';
 
 class EquipmentPage extends StatelessWidget {
   const EquipmentPage({Key? key, required this.character}) : super(key: key);
@@ -11,24 +18,49 @@ class EquipmentPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("ARMORS:"),
-          Text("ARMORS: ${character.armors.first.armorClass}"),
-          Text("Type: " + character.armors.first.type),
-          Text("Characteristic: ${character.armors.first.characteristic}"),
-          Text("cost: ${character.armors.first.cost}"),
-          Text("equipped: ${character.armors.first.equipped}"),
-          Text("info: ${character.armors.first.info}"),
-          Text("strength: ${character.armors.first.strength}"),
-          Text("stealth: ${character.armors.first.stealth}"),
-          Text("weight: ${character.armors.first.weight}"),
+          for(Armor a in character.armors)
+            TextButton(
+              child: Center(child: Text(a.name)),
+              onPressed: () {
+                Navigator.push( context,
+                  MaterialPageRoute(
+                    builder: (context) => ArmorPage(
+                      armor: a,
+                    ),
+                  ),
+                );
+              },
+            ),
           const Text(""),
           const Text("WEAPONS:"),
-          Text("Type: ${character.weapons.first.type}"),
-          Text("ammunition: ${character.weapons.first.ammunition}"),
-          Text("damage: ${character.weapons.first.damage}"),
-          Text("cost: ${character.weapons.first.cost}"),
-          Text("weight: ${character.weapons.first.weight}"),
-          Text("features: ${character.weapons.first.features}"),
-          Text("info: ${character.weapons.first.info}"),
+          for(Weapon w in character.weapons)
+            TextButton(
+              child: Center(child: Text(w.name)),
+              onPressed: () {
+                Navigator.push( context,
+                  MaterialPageRoute(
+                    builder: (context) => WeaponPage(
+                      weapon: w,
+                    ),
+                  ),
+                );
+              },
+            ),
+          const Text(""),
+          const Text("OBJECTS:"),
+          for(MyObject o in character.objects)
+            TextButton(
+              child: Center(child: Text(o.name)),
+              onPressed: () {
+                Navigator.push( context,
+                  MaterialPageRoute(
+                    builder: (context) => MyObjectPage(
+                      myObject: o,
+                    ),
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );
