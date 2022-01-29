@@ -27,11 +27,18 @@ class MyObjectPage extends StatelessWidget {
 
 
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Quantity: ${myObject.quantity}"),
-            Text("Information: ${myObject.info}"),
+            Text("QUANTITY: ${myObject.quantity}",
+                style: const TextStyle(height: 1.5,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17)),
+            Text("INFORMATION: ${myObject.info}",
+                style: const TextStyle(height: 1.5,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17)),
           ],
         ),
       )
