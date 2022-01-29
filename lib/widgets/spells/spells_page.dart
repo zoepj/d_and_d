@@ -1,5 +1,6 @@
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/spell.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
 import '../side_drawer.dart';
@@ -14,7 +15,31 @@ class SpellsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Catnips (level 0):"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    Text("${character.spellSave}"),
+                    const Text("SPELL SAVE\nDC"),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text("${character.spellAttackBonus}"),
+                    const Text("SPELL ATTACK\nBONUS"),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(EnumToString.convertToString(character.spellcastingAbility)),
+                    const Text("SPELLCASTING\nABILITY"),
+                  ],
+                ),
+              ],
+            ),
+
+            const Text("\n\nCatnips (level 0):"),
             for (Spell s in character.spells)
               if (s.level == 0)... [
                 TextButton(

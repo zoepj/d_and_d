@@ -4,6 +4,7 @@ import 'package:d_and_d/models/saving_throws.dart';
 import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -33,7 +34,7 @@ class Character {
   Skills skills;
   int? spellSave;
   int? spellAttackBonus;
-  characteristicsEnum? spellcastingAbility;
+  CharacteristicsEnum? spellcastingAbility;
 
   Character(
       {required this.name,
@@ -57,7 +58,7 @@ class Character {
       required this.skills,
       this.spellSave = 0,
       this.spellAttackBonus = 0,
-      this.spellcastingAbility = characteristicsEnum.intelligence});
+      this.spellcastingAbility = CharacteristicsEnum.intelligence});
 
   factory Character.fromJson(Map<String, dynamic> json) {
     List<Armor> armorsList = List.empty(growable: true);
@@ -126,7 +127,8 @@ class Character {
             json['skills'] == null ? Skills() : Skills.fromJson(json['skills']),
         spellSave: json['spellSave'],
         spellAttackBonus: json['spellAttackBonus'],
-        spellcastingAbility: json['spellcastingAbility']);
+        spellcastingAbility: EnumToString.fromString(CharacteristicsEnum.values, json['spellcastingAbility'])
+    );
   }
 
   Map<String, dynamic> toJson() {

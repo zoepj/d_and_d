@@ -1,4 +1,4 @@
-enum characteristicsEnum {
+enum CharacteristicsEnum {
   strength,
   dexterity,
   constitution,
