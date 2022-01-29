@@ -3,15 +3,15 @@ import 'package:d_and_d/models/school.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 
 class Spell {
-  int level;
+  int? level;
   String name;
-  DamageType damageType;
-  School school;
-  String castingTime;
-  String range;
-  String components;
-  String duration;
-  String description;
+  DamageType? damageType;
+  School? school;
+  String? castingTime;
+  String? range;
+  String? components;
+  String? duration;
+  String? description;
 
   Spell(
       {this.level = 0,
@@ -28,8 +28,9 @@ class Spell {
     return Spell(
         name: json['name'],
         level: json['level'],
-        damageType: EnumToString.fromString(DamageType.values, json['damageType']),
-        school: json['school'],
+        damageType:
+            EnumToString.fromString(DamageType.values, json['damageType']),
+        school: EnumToString.fromString(School.values, json['school']),
         castingTime: json['castingTime'],
         range: json['range'],
         components: json['components'],
