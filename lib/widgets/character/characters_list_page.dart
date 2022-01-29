@@ -85,9 +85,10 @@ const Map<String, dynamic> jsonSample = {
       "duration": "",
       "description": ""
     }
-
-
-  ]
+  ],
+  'spellSave' : 2,
+  'spellAttackBonus': 7,
+  'spellcastingAbility': 'charisma',
 };
 
 const Map<String, dynamic> jsonSample2 = {
@@ -102,6 +103,7 @@ const Map<String, dynamic> jsonSample2 = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
+  "spellcastingAbility": "charisma"
 };
 
 Future<Character> getJsonData(String path) async {

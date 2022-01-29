@@ -2,8 +2,8 @@ import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/my_object.dart';
 import 'package:d_and_d/models/weapon.dart';
-import 'package:d_and_d/widgets/character/object_page.dart';
-import 'package:d_and_d/widgets/character/weapon_page.dart';
+import 'package:d_and_d/widgets/equipment/object_page.dart';
+import 'package:d_and_d/widgets/equipment/weapon_page.dart';
 import 'package:flutter/material.dart';
 
 import 'armor_page.dart';
