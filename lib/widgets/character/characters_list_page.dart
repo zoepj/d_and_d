@@ -83,7 +83,7 @@ const Map<String, dynamic> jsonSample = {
       "range": "Personal",
       "components": "",
       "duration": "",
-      "description": ""
+      "description": "After touching an object that is not being carried or worn, you place a curse on it that harvests the cold regrets of a creature that you've killed. The next creature that attempts to pick up the object must succeed on a Wisdom saving throw or be grabbed by a ghastly transparent claw manifesting from the object. The claw deals 2d4 cold damage and 1d4 necrotic damage when this happens. If the Wisdom save succeeds, no necrotic damage is dealt, the cold damage dealt is halved, and the claw manifests only to slap whoever picks up the object."
     }
   ],
   'spellSave' : 2,

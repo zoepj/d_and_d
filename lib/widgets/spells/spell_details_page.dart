@@ -26,17 +26,35 @@ class SpellDetailsPage extends StatelessWidget {
 
 
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Level:  ${spell.level}"),
-            Text("Damage Type: ${EnumToString.convertToString(spell.damageType)}"),
-            Text("School of magic: ${EnumToString.convertToString(spell.school)}"),
-            Text("Casting Time: ${spell.castingTime}"),
-            Text("Range: ${spell.range}"),
-            Text("Components: ${spell.components}"),
-            Text("Duration: ${spell.duration}"),
-            Text("Description: ${spell.description}")
+            Text("LEVEL:  ${spell.level}",
+              style: const TextStyle(height: 1.5,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 17),),
+            Text("DAMAGE TYPE: ${EnumToString.convertToString(spell.damageType)}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("SCHOOL OF MAGIC: ${EnumToString.convertToString(spell.school)}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("CASTING TIME: ${spell.castingTime}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("RANGE: ${spell.range}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("COMPONENTS: ${spell.components}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("DURATION: ${spell.duration}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),),
+            Text("DESCRIPTION: ${spell.description}", style: const TextStyle(height: 1.5,
+                fontWeight: FontWeight.w400,
+                fontSize: 17),)
           ],
         ),
       )

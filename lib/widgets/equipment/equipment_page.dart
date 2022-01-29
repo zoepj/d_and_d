@@ -14,13 +14,17 @@ class EquipmentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("ARMORS:"),
+          const Text("ARMORS:",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20),),
           for(Armor a in character.armors)
             TextButton(
-              child: Center(child: Text(a.name)),
+              child: Text(a.name),
               onPressed: () {
                 Navigator.push( context,
                   MaterialPageRoute(
@@ -31,11 +35,17 @@ class EquipmentPage extends StatelessWidget {
                 );
               },
             ),
-          const Text(""),
-          const Text("WEAPONS:"),
+          const Divider(
+            color: Colors.grey,
+            thickness: 1,
+          ),
+          const Text("\nWEAPONS:",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20),),
           for(Weapon w in character.weapons)
             TextButton(
-              child: Center(child: Text(w.name)),
+              child: Text(w.name),
               onPressed: () {
                 Navigator.push( context,
                   MaterialPageRoute(
@@ -46,11 +56,17 @@ class EquipmentPage extends StatelessWidget {
                 );
               },
             ),
-          const Text(""),
-          const Text("OBJECTS:"),
+          const Divider(
+            color: Colors.grey,
+            thickness: 1,
+          ),
+          const Text("\nOBJECTS:",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20),),
           for(MyObject o in character.objects)
             TextButton(
-              child: Center(child: Text(o.name)),
+              child: Text(o.name),
               onPressed: () {
                 Navigator.push( context,
                   MaterialPageRoute(

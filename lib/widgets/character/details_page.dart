@@ -18,7 +18,9 @@ class DetailsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("level ${character.level}"),
+                    Text("Level ${character.level}", style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,),),
                   ],
                 ),
                 Text(
@@ -37,33 +39,103 @@ class DetailsPage extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Text(character.armor.toString()),
-                        const Text("ARMOR"),
+                        Text(character.armor.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 17),),
+                        const Text("ARMOR",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),),
                       ],
                     ),
                     Column(
                       children: [
-                        Text(character.initiative.toString()),
-                        const Text("INDICATIVE"),
+                        Text(character.initiative.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 17),),
+                        const Text("INITIATIVE",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),),
                       ],
                     ),
                     Column(
                       children: [
-                        Text(character.speed.toString()),
-                        const Text("SPEED"),
+                        Text(character.speed.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 17),),
+                        const Text("SPEED",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),),
                       ],
                     ),
                   ],
                 ),
                 const SizedBox(height: 15),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Text(character.currentHitPoints.toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 17),),
+                        const Text("CURRENT HIT POINTS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text("${character.temporaryHitPoints!}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 17),),
+                        const Text("TEMPORARY HIT POINTS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),),
+                      ],
+                    ),
+                  ],
+                ),const Divider(
+                  color: Colors.grey,
+                  thickness: 1,
+                ),
                 Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("RACE: ${character.race}"),
-                        Text("CLASS: ${character.characterClass}"),
-                        Text("BACKGROUND: ${character.background}"),
+                        Text("RACE: ${character.race}",
+                            style: const TextStyle(height: 2,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        Text("CLASS: ${character.characterClass}",
+                            style: const TextStyle(height: 1.5,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
+                        Text("BACKGROUND: ${character.background}",
+                            style: const TextStyle(height: 1.5,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17)),
                       ],
                     ),
                     Expanded(child: Container()),
