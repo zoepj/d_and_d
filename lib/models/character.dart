@@ -24,6 +24,13 @@ class Character {
   String? race;
   String? characterClass;
   String? background;
+  String? looks;
+  String? traits;
+  String? ideals;
+  String? bonds;
+  String? flaws;
+  String? languages;
+  String? abilities;
   List<Armor> armors;
   List<dynamic> weapons;
   List<dynamic> objects;
@@ -48,6 +55,13 @@ class Character {
       this.race = "",
       this.characterClass = "",
       this.background = "",
+      this.looks = "",
+      this.traits = "",
+      this.ideals = "",
+      this.bonds = "",
+      this.flaws = "",
+      this.languages = "",
+      this.abilities = "",
       required this.armors,
       required this.weapons,
       required this.objects,
@@ -113,6 +127,13 @@ class Character {
         race: json['race'],
         characterClass: json['characterClass'],
         background: json['background'],
+        looks: json['looks'],
+        traits: json['traits'],
+        ideals: json['ideals'],
+        bonds: json['bonds'],
+        flaws: json['flaws'],
+        languages: json['languages'],
+        abilities: json['abilities'],
         armors: armorsList,
         weapons: weaponsList,
         objects: objectsList,
@@ -144,6 +165,13 @@ class Character {
     data['race'] = race;
     data['characterClass'] = characterClass;
     data['background'] = background;
+    data['looks'] = looks;
+    data['traits'] = traits;
+    data['ideals'] = ideals;
+    data['bonds'] = bonds;
+    data['flaws'] = flaws;
+    data['languages'] = languages;
+    data['abilities'] = abilities;
     data['armors'] = armors;
     data['weapons'] = weapons;
     data['objects'] = objects;
