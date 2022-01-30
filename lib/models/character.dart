@@ -72,6 +72,13 @@ class Character {
       this.spellAttackBonus = 0,
       this.spellcastingAbility = characteristicsEnum.intelligence}) {
     _id = _getNewID();
+    armors = List.empty(growable: true);
+    weapons = List.empty(growable: true);
+    objects = List.empty(growable: true);
+    spells = List.empty(growable: true);
+    characteristics = Characteristics();
+    savingThrows = SavingThrows();
+    skills = Skills();
   }
 
   factory Character.fromJson(Map<String, dynamic> jsonData) {

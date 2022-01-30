@@ -3,6 +3,8 @@ import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
 
+import 'characters_list_page.dart';
+
 // Define a custom Form widget.
 class AddCharacterPage extends StatefulWidget {
   const AddCharacterPage({Key? key}) : super(key: key);
@@ -66,6 +68,9 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: "Character Name",
+                            ),
                           ),
                         ),
                       ],
@@ -79,7 +84,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (level) {
                               if (level == null || level.isEmpty) {
-                                return 'Please enter level';
+                                c1.level = 0;
                               } else if (int.parse(level) < 1 ||
                                   int.parse(level) > 20) {
                                 return 'Level must be between 1 and 20';
@@ -88,6 +93,9 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -101,7 +109,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (armor) {
                               if (armor == null || armor.isEmpty) {
-                                return 'Please enter armor';
+                                c1.armor = 0;
                               } else if (int.parse(armor) < 0) {
                                 return 'Armor must be positive';
                               } else {
@@ -109,6 +117,9 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -123,7 +134,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (initiative) {
                               if (initiative == null || initiative.isEmpty) {
-                                return 'Please enter initiative';
+                                c1.initiative = 0;
                               } else if (int.parse(initiative) < 0) {
                                 return 'Initiative must be positive';
                               } else {
@@ -131,11 +142,13 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
                     ),
-/*
                     Row(
                       children: [
                         const Text("Speed: "),
@@ -145,12 +158,17 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (speed) {
                               if (speed == null || speed.isEmpty) {
-                                return 'Please enter speed';
+                                c1.speed = 0;
                               } else if (int.parse(speed) < 0) {
                                 return 'Speed must be positive';
+                              } else {
+                                c1.speed = int.parse(speed);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -165,17 +183,22 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (currentHitPoints) {
                               if (currentHitPoints == null ||
                                   currentHitPoints.isEmpty) {
-                                return 'Please enter hit points';
+                                c1.currentHitPoints = 0;
                               } else if (int.parse(currentHitPoints) < 0) {
                                 return 'Hit points must be positive';
+                              } else {
+                                c1.currentHitPoints =
+                                    int.parse(currentHitPoints);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
                     ),
-
                     Row(
                       children: [
                         const Text("Race: "),
@@ -184,10 +207,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             validator: (race) {
                               if (race == null || race.isEmpty) {
-                                return 'Please enter race';
+                                c1.race = "Elf";
+                              } else {
+                                c1.race = race;
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: 'Elf',
+                            ),
                           ),
                         ),
                       ],
@@ -202,15 +230,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (characterClass) {
                               if (characterClass == null ||
                                   characterClass.isEmpty) {
-                                return 'Please enter class';
+                                c1.characterClass = "Sorcerer";
+                              } else {
+                                c1.characterClass = characterClass;
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: 'Sorcerer',
+                            ),
                           ),
                         ),
                       ],
                     ),
-
                     Row(
                       children: [
                         const Text("Background: "),
@@ -219,15 +251,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             validator: (background) {
                               if (background == null || background.isEmpty) {
-                                return 'Please enter background';
+                                c1.background = "Gambler";
+                              } else {
+                                c1.background = background;
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: 'Gambler',
+                            ),
                           ),
                         ),
                       ],
                     ),
-
                     Row(
                       children: [
                         const Text("Strength: "),
@@ -237,13 +273,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (strength) {
                               if (strength == null || strength.isEmpty) {
-                                return 'Please enter strength';
+                                c1.characteristics!.strength = 0;
                               } else if (int.parse(strength) < 3 ||
                                   int.parse(strength) > 18) {
                                 return 'Level must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.strength =
+                                    int.parse(strength);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -258,18 +300,23 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (dexterity) {
                               if (dexterity == null || dexterity.isEmpty) {
-                                return 'Please enter dexterity';
+                                c1.characteristics!.dexterity = 0;
                               } else if (int.parse(dexterity) < 3 ||
                                   int.parse(dexterity) > 18) {
                                 return 'Dexterity must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.dexterity =
+                                    int.parse(dexterity);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
                     ),
-
                     Row(
                       children: [
                         const Text("Charisma: "),
@@ -279,13 +326,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (charisma) {
                               if (charisma == null || charisma.isEmpty) {
-                                return 'Please enter charisma';
+                                c1.characteristics!.charisma = 0;
                               } else if (int.parse(charisma) < 3 ||
                                   int.parse(charisma) > 18) {
                                 return 'Charisma must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.charisma =
+                                    int.parse(charisma);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -300,13 +353,18 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (wisdom) {
                               if (wisdom == null || wisdom.isEmpty) {
-                                return 'Please enter wisdom';
+                                c1.characteristics!.wisdom = 0;
                               } else if (int.parse(wisdom) < 3 ||
                                   int.parse(wisdom) > 18) {
                                 return 'Wisdom must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.wisdom = int.parse(wisdom);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -322,13 +380,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (intelligence) {
                               if (intelligence == null ||
                                   intelligence.isEmpty) {
-                                return 'Please enter intelligence';
+                                c1.characteristics!.intelligence = 0;
                               } else if (int.parse(intelligence) < 3 ||
                                   int.parse(intelligence) > 18) {
                                 return 'Intelligence must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.intelligence =
+                                    int.parse(intelligence);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -344,13 +408,19 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (constitution) {
                               if (constitution == null ||
                                   constitution.isEmpty) {
-                                return 'Please enter constitution';
+                                c1.characteristics!.constitution = 0;
                               } else if (int.parse(constitution) < 3 ||
                                   int.parse(constitution) > 18) {
                                 return 'Constitution must be between 3 and 18';
+                              } else {
+                                c1.characteristics!.constitution =
+                                    int.parse(constitution);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -365,10 +435,16 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (strengthST) {
                               if (strengthST == null || strengthST.isEmpty) {
-                                return 'Please enter strength saving throw';
+                                c1.savingThrows!.strength = 0;
+                              } else {
+                                c1.savingThrows!.strength =
+                                    int.parse(strengthST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -383,15 +459,20 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (dexterityST) {
                               if (dexterityST == null || dexterityST.isEmpty) {
-                                return 'Please enter dexterity saving throw';
+                                c1.savingThrows!.dexterity = 0;
+                              } else {
+                                c1.savingThrows!.dexterity =
+                                    int.parse(dexterityST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
                     ),
-
                     Row(
                       children: [
                         const Text("Charisma (Saving Throws): "),
@@ -401,10 +482,16 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (charismaST) {
                               if (charismaST == null || charismaST.isEmpty) {
-                                return 'Please enter charisma saving throw';
+                                c1.savingThrows!.charisma = 0;
+                              } else {
+                                c1.savingThrows!.charisma =
+                                    int.parse(charismaST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -419,10 +506,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (wisdomST) {
                               if (wisdomST == null || wisdomST.isEmpty) {
-                                return 'Please enter wisdom saving throw';
+                                c1.savingThrows!.wisdom = 0;
+                              } else {
+                                c1.savingThrows!.wisdom = int.parse(wisdomST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -438,10 +530,16 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (intelligenceST) {
                               if (intelligenceST == null ||
                                   intelligenceST.isEmpty) {
-                                return 'Please enter intelligence saving throw';
+                                c1.savingThrows!.intelligence = 0;
+                              } else {
+                                c1.savingThrows!.intelligence =
+                                    int.parse(intelligenceST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
@@ -457,15 +555,20 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (constitutionST) {
                               if (constitutionST == null ||
                                   constitutionST.isEmpty) {
-                                return 'Please enter constitution saving throw';
+                                c1.savingThrows!.constitution = 0;
+                              } else {
+                                c1.savingThrows!.constitution =
+                                    int.parse(constitutionST);
                               }
                               return null;
                             },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
                           ),
                         ),
                       ],
                     ),
- */
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
@@ -475,7 +578,12 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // there exist a data in prefs
                             DB.addCharacter(c1);
                           }
-                          DB.setTest(true);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CharactersListPage(),
+                            ),
+                          );
                         },
                         child: const Text('Submit'),
                       ),
