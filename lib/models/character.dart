@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:d_and_d/models/characteristics_enum.dart';
 import 'package:d_and_d/models/my_object.dart';
 import 'package:d_and_d/models/saving_throws.dart';
@@ -72,9 +74,9 @@ class Character {
     _id = _getNewID();
   }
 
-  factory Character.fromJson(Map<String, dynamic> json) {
+  factory Character.fromJson(Map<String, dynamic> jsonData) {
     List<Armor> armorsList = List.empty(growable: true);
-    final armors = json['armors'];
+    final armors = jsonData['armors'];
     if (armors != null) {
       List<Map<String, Object>> armorsListMap =
           List<Map<String, Object>>.from(armors);
@@ -84,7 +86,7 @@ class Character {
     }
 
     List<Weapon> weaponsList = List.empty(growable: true);
-    final weapons = json['weapons'];
+    final weapons = jsonData['weapons'];
     if (weapons != null) {
       List<Map<String, Object>> weaponsListMap =
           List<Map<String, Object>>.from(weapons);
@@ -94,7 +96,7 @@ class Character {
     }
 
     List<MyObject> objectsList = List.empty(growable: true);
-    final object = json['objects'];
+    final object = jsonData['objects'];
     if (object != null) {
       List<Map<String, Object>> objectsListMap =
           List<Map<String, Object>>.from(object);
@@ -104,7 +106,7 @@ class Character {
     }
 
     List<Spell> spellsList = List.empty(growable: true);
-    final spell = json['spells'];
+    final spell = jsonData['spells'];
     if (spell != null) {
       List<Map<String, Spell>> spellsListMap =
           List<Map<String, Spell>>.from(spell);
@@ -114,36 +116,32 @@ class Character {
     }
 
     return Character(
-      name: json['name'],
-      imagePath: json['imagePath'] ?? "",
-      level: int.parse(json['level']),
-      armor: int.parse(json['armor']),
-      initiative: int.parse(json['initiative']),
-      speed: int.parse(json['speed']),
-      currentHitPoints: int.parse(json['currentHitPoints']),
-      temporaryHitPoints: int.parse(json['temporaryHitPoints']),
-      race: json['race'] ?? "",
-      characterClass: json['characterClass'] ?? "",
-      background: json['background'] ?? "",
+      name: jsonData['name'],
+      imagePath: jsonData['imagePath'] ?? "",
+      level: int.parse(jsonData['level']),
+      armor: int.parse(jsonData['armor']),
+      initiative: int.parse(jsonData['initiative']),
+      speed: int.parse(jsonData['speed']),
+      currentHitPoints: int.parse(jsonData['currentHitPoints']),
+      temporaryHitPoints: int.parse(jsonData['temporaryHitPoints']),
+      race: jsonData['race'] ?? "",
+      characterClass: jsonData['characterClass'] ?? "",
+      background: jsonData['background'] ?? "",
       armors: armorsList,
       weapons: weaponsList,
       objects: objectsList,
       spells: spellsList,
-      /*
-      characteristics: json['characteristics'] == null
-          ? Characteristics()
-          : Characteristics.fromJson(json['characteristics']),
-      savingThrows: json['savingThrows'] == null
-          ? SavingThrows()
-          : SavingThrows.fromJson(json['savingThrows']),
-      skills:
-          json['skills'] == null ? Skills() : Skills.fromJson(json['skills']),
-          */
-      characteristics: Characteristics(),
-      savingThrows: SavingThrows(),
-      skills: Skills(),
-      spellSave: int.parse(json['spellSave']),
-      spellAttackBonus: int.parse(json['spellAttackBonus']),
+      characteristics: jsonData['characteristics'] == null
+          ? Characteristics.fromJson(json.decode(jsonData['characteristics']))
+          : Characteristics(),
+      savingThrows: jsonData['savingThrows'] == null
+          ? SavingThrows.fromJson(json.decode(jsonData['savingThrows']))
+          : SavingThrows(),
+      skills: jsonData['skills'] == null
+          ? Skills.fromJson(json.decode(jsonData['skills']))
+          : Skills(),
+      spellSave: int.parse(jsonData['spellSave']),
+      spellAttackBonus: int.parse(jsonData['spellAttackBonus']),
       spellcastingAbility:
           characteristicsEnum.intelligence, //json['spellcastingAbility'] ?? "",
     );
