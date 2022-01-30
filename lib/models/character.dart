@@ -142,8 +142,9 @@ class Character {
           : Skills(),
       spellSave: int.parse(jsonData['spellSave']),
       spellAttackBonus: int.parse(jsonData['spellAttackBonus']),
-      spellcastingAbility:
-          characteristicsEnum.intelligence, //json['spellcastingAbility'] ?? "",
+      spellcastingAbility: jsonData['spellcastingAbility'] == null
+          ? jsonData['spellcastingAbility']
+          : characteristicsEnum.intelligence,
     );
   }
 
