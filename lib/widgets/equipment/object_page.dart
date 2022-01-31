@@ -22,7 +22,7 @@ class MyObjectPage extends StatelessWidget {
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
-          title: Text(myObject.name),
+          title: Text(""),
         ),
 
 
@@ -31,7 +31,11 @@ class MyObjectPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("QUANTITY: ${myObject.quantity}",
+            Text(myObject.name.toUpperCase(),
+                style: const TextStyle(height: 1.5,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+            Text("\nQUANTITY: ${myObject.quantity}",
                 style: const TextStyle(height: 1.5,
                     fontWeight: FontWeight.w400,
                     fontSize: 17)),

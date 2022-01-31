@@ -21,7 +21,7 @@ class SpellDetailsPage extends StatelessWidget {
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
-          title: Text(spell.name),
+          title: Text(""),
         ),
 
 
@@ -30,7 +30,11 @@ class SpellDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("LEVEL:  ${spell.level}",
+            Text(spell.name.toUpperCase(),
+              style: const TextStyle(height: 1.5,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),),
+            Text("\nLEVEL:  ${spell.level}",
               style: const TextStyle(height: 1.5,
                   fontWeight: FontWeight.w400,
                   fontSize: 17),),
