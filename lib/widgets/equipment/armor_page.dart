@@ -21,7 +21,7 @@ class ArmorPage extends StatelessWidget {
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
-          title: Text(armor.name),
+          title: Text(""),
         ),
 
 
@@ -30,7 +30,11 @@ class ArmorPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text("ARMOR CLASS: ${armor.armorClass}",
+            Text(armor.name.toUpperCase(),
+                style: const TextStyle(height: 1.5,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+          Text("\nARMOR CLASS: ${armor.armorClass}",
               style: const TextStyle(height: 1.5,
                   fontWeight: FontWeight.w400,
                   fontSize: 17)),

@@ -21,7 +21,7 @@ class WeaponPage extends StatelessWidget {
             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
-          title: Text(weapon.name),
+          title: Text(""),
         ),
 
 
@@ -30,7 +30,11 @@ class WeaponPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("AMMUNITION: ${weapon.ammunition}",
+            Text(weapon.name.toUpperCase(),
+                style: const TextStyle(height: 1.5,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+            Text("\nAMMUNITION: ${weapon.ammunition}",
                 style: const TextStyle(height: 1.5,
                     fontWeight: FontWeight.w400,
                     fontSize: 17)),
