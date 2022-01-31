@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:d_and_d/models/character.dart';
-import 'package:d_and_d/models/school.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

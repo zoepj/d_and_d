@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'character/characters_list_page.dart';
+import 'dices/roll_page.dart';
 
 class SideDrawer extends StatelessWidget {
   const SideDrawer({Key? key}) : super(key: key);
@@ -38,9 +39,17 @@ class SideDrawer extends StatelessWidget {
                 );
               },
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.crop_square),
-              title: Text('Dices'),
+              title: const Text('Dices'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RollPage(),
+                  ),
+                );
+              },
             ),
             const ListTile(
               leading: Icon(Icons.settings),
