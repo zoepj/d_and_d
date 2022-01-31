@@ -158,8 +158,11 @@ class _RollPageState extends State<RollPage> {
                       FloatingActionButton(
                           onPressed: _incrementDC2,
                           child: const Icon(Icons.add)
-                      ),],
-                  ),
+                      ),
+                    ],
+                  ),Column(
+                    children: [Image.asset('assets/images/dices/d2.png', height: 60, width: 60,)],
+                  )
                 ]
               ),
               const SizedBox(height: 20),
@@ -181,7 +184,9 @@ class _RollPageState extends State<RollPage> {
                             onPressed: _incrementDC4,
                             child: const Icon(Icons.add)
                         ),],
-                    ),
+                    ),Column(
+                      children: [Image.asset('assets/images/dices/d4.png', height: 60, width: 60,)],
+                    )
                   ]
               ),
               const SizedBox(height: 20),
@@ -202,8 +207,11 @@ class _RollPageState extends State<RollPage> {
                         FloatingActionButton(
                             onPressed: _incrementDC6,
                             child: const Icon(Icons.add)
-                        ),],
-                    ),
+                        ),
+                      ],
+                    ),Column(
+                      children: [Image.asset('assets/images/dices/d6.png', height: 60, width: 60,)],
+                    )
                   ]
               ),
               const SizedBox(height: 20),
@@ -224,8 +232,11 @@ class _RollPageState extends State<RollPage> {
                         FloatingActionButton(
                             onPressed: _incrementDC8,
                             child: const Icon(Icons.add)
-                        ),],
-                    ),
+                        ),
+                      ],
+                    ),Column(
+                      children: [Image.asset('assets/images/dices/d8.png', height: 60, width: 60,)],
+                    )
                   ]
               ),
 
@@ -247,8 +258,11 @@ class _RollPageState extends State<RollPage> {
                         FloatingActionButton(
                             onPressed: _incrementDC10,
                             child: const Icon(Icons.add)
-                        ),],
-                    ),
+                        ),
+                      ],
+                    ),Column(
+                      children: [Image.asset('assets/images/dices/d10.png', height: 60, width: 60,)],
+                    )
                   ]
               ),
               const SizedBox(height: 20),
@@ -269,10 +283,15 @@ class _RollPageState extends State<RollPage> {
                         FloatingActionButton(
                             onPressed: _incrementDC20,
                             child: const Icon(Icons.add)
-                        ),],
-                    ),
+                        ),
+                      ],
+                    ),Column(
+                      children: [Image.asset('assets/images/dices/d20.png', height: 60, width: 60,)],
+                    )
                   ]
               ),
+
+              Row(children:const [Text("")]),
 
               const SizedBox(height: 20),
               Row (
@@ -287,7 +306,10 @@ class _RollPageState extends State<RollPage> {
               const SizedBox(height: 20),
               Row (
                   mainAxisAlignment:MainAxisAlignment.spaceAround,
-                  children: [ Text("$_res", style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),]
+                  children: [
+                    if (_res != 0)
+                      Text("$_res", style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                  ]
               ),
             ],
           ),
