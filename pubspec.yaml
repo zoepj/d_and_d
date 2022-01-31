@@ -64,6 +64,12 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/dices/d2.png
+    - assets/images/dices/d4.png
+    - assets/images/dices/d6.png
+    - assets/images/dices/d8.png
+    - assets/images/dices/d10.png
+    - assets/images/dices/d20.png
 
   fonts:
     - family: MyFlutterApp
