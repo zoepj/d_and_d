@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'add_character_page.dart';
-import 'character/character_main_page.dart';
+import '../add_character_page.dart';
+import 'character_main_page.dart';
 
 const Map<String, dynamic> jsonSample = {
   "name": "Kerri Amblecrown",
@@ -25,6 +25,7 @@ const Map<String, dynamic> jsonSample = {
   "armors": [
     {
       "equipped": true,
+      "name": "leather armor",
       "type": "light armor",
       "armorClass": 14,
       "characteristic": "idk",
@@ -38,6 +39,7 @@ const Map<String, dynamic> jsonSample = {
   "weapons": [
     {
       "ammunition": 0,
+      "name": "Longbow",
       "type": "Light",
       "damage": "1d6",
       "cost": "5 po",
@@ -47,7 +49,46 @@ const Map<String, dynamic> jsonSample = {
     },
   ],
   "objects": [],
-  "spells": []
+  "spells": [
+    {
+      "level": 0,
+      "name": "name",
+      "damageType": "acid",
+      "school": "divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": ""
+    },
+
+    {
+      "level": 2,
+      "name": "name2",
+      "damageType": "acid",
+      "school": "divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": ""
+    },
+
+    {
+      "level": 0,
+      "name": "name3",
+      "damageType": "acid",
+      "school": "divination",
+      "castingTime": "1 action",
+      "range": "Personal",
+      "components": "",
+      "duration": "",
+      "description": "After touching an object that is not being carried or worn, you place a curse on it that harvests the cold regrets of a creature that you've killed. The next creature that attempts to pick up the object must succeed on a Wisdom saving throw or be grabbed by a ghastly transparent claw manifesting from the object. The claw deals 2d4 cold damage and 1d4 necrotic damage when this happens. If the Wisdom save succeeds, no necrotic damage is dealt, the cold damage dealt is halved, and the claw manifests only to slap whoever picks up the object."
+    }
+  ],
+  'spellSave' : 2,
+  'spellAttackBonus': 7,
+  'spellcastingAbility': 'charisma',
 };
 
 const Map<String, dynamic> jsonSample2 = {
@@ -62,6 +103,7 @@ const Map<String, dynamic> jsonSample2 = {
   "race": "Elf",
   "characterClass": "Sorcerer",
   "background": "Gambler",
+  "spellcastingAbility": "charisma"
 };
 
 Future<Character> getJsonData(String path) async {

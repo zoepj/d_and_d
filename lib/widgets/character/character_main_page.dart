@@ -1,6 +1,6 @@
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/widgets/character/pop_up_menu.dart';
-import 'package:d_and_d/widgets/character/spells_page.dart';
+import 'package:d_and_d/widgets/spells/spells_page.dart';
 import 'package:d_and_d/widgets/character/tab_information.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../side_drawer.dart';
 import 'characteristics_page.dart';
 import 'details_page.dart';
-import 'equipment_page.dart';
+import '../equipment/equipment_page.dart';
 
 class CharacterMainPage extends StatefulWidget {
   const CharacterMainPage({
@@ -96,8 +96,12 @@ class _CharacterMainPageState extends State<CharacterMainPage>
           EquipmentPage(
             character: widget.character,
           ),
-          const CharacteristicsPage(),
-          const SpellsPage(),
+          CharacteristicsPage(
+            character: widget.character,
+          ),
+          SpellsPage(
+            character: widget.character,
+          ),
         ],
       ),
     );

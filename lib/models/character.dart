@@ -7,6 +7,7 @@ import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -27,6 +28,13 @@ class Character {
   String? race;
   String? characterClass;
   String? background;
+  String? looks;
+  String? traits;
+  String? ideals;
+  String? bonds;
+  String? flaws;
+  String? languages;
+  String? abilities;
   List<dynamic>? armors;
   List<dynamic>? weapons;
   List<dynamic>? objects;
@@ -37,7 +45,7 @@ class Character {
   Skills? skills;
   int? spellSave;
   int? spellAttackBonus;
-  characteristicsEnum? spellcastingAbility;
+  CharacteristicsEnum? spellcastingAbility;
   static int idCounter = 0;
 
   int? get id => _id;
@@ -60,6 +68,13 @@ class Character {
       this.race = "",
       this.characterClass = "",
       this.background = "",
+      this.looks = "",
+      this.traits = "",
+      this.ideals = "",
+      this.bonds = "",
+      this.flaws = "",
+      this.languages = "",
+      this.abilities = "",
       this.armors,
       this.weapons,
       this.objects,
@@ -115,8 +130,8 @@ class Character {
     List<Spell> spellsList = List.empty(growable: true);
     final spell = jsonData['spells'];
     if (spell != null) {
-      List<Map<String, Spell>> spellsListMap =
-          List<Map<String, Spell>>.from(spell);
+      List<Map<String, Object>> spellsListMap =
+          List<Map<String, Object>>.from(spell);
       for (int i = 0; i < spellsListMap.length; i++) {
         spellsList.add(Spell.fromJson(spellsListMap[i]));
       }
@@ -168,6 +183,13 @@ class Character {
     data['race'] = race;
     data['characterClass'] = characterClass;
     data['background'] = background;
+    data['looks'] = looks;
+    data['traits'] = traits;
+    data['ideals'] = ideals;
+    data['bonds'] = bonds;
+    data['flaws'] = flaws;
+    data['languages'] = languages;
+    data['abilities'] = abilities;
     data['armors'] = armors;
     data['weapons'] = weapons;
     data['objects'] = objects;
