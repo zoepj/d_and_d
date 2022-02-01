@@ -98,7 +98,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                     headerBuilder: (BuildContext context, isExpanded) {
                       return const ListTile(
                         title: Text(
-                          "ARMORS:",
+                          "ARMORS",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
@@ -115,15 +115,47 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 MaterialPageRoute(
                                   builder: (context) => ArmorWidget(
                                     armor: a,
+                                    character: widget.character,
                                   ),
                                 ),
                               );
                             },
                           ),
                         _modifying
-                            ? IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: () {},
+                            ? Container(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  validator: (enteredValue) {
+                                    if (enteredValue == null ||
+                                        enteredValue.isEmpty) {
+                                      return 'Missing element';
+                                    } else {
+                                      int i = DB.getNewArmorId();
+                                      Armor a =
+                                          Armor(name: enteredValue, id: i);
+                                      widget.character.armors.add(a);
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    label: Center(
+                                      child: Text(
+                                        "+",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 23,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                  ),
+                                ),
                               )
                             : const SizedBox(),
                       ],

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -67,6 +68,28 @@ class DB {
     if (list != []) {
       list.remove(c.id.toString());
       _preferences!.setStringList("character_id_list", list);
+    }
+  }
+
+  static int getNewArmorId() {
+    int counter = _preferences!.getInt("armor_counter") ?? -1;
+    counter++;
+    _preferences!.setInt("armor_counter", counter);
+    return counter;
+  }
+
+  static void updateArmor(Armor a, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      Armor oldArmor = inDB.armors
+          .where(
+            (e) => e.id == a.id,
+          )
+          .first;
+      inDB.armors.remove(oldArmor);
+      inDB.armors.add(a);
+      updateCharacter(c);
     }
   }
 }
