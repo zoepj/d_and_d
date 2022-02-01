@@ -56,7 +56,6 @@ class Armor {
     return data;
   }
 
-  //TODO
   @override
   String toString() {
     return '{"equipped": "' +

@@ -36,9 +36,20 @@ class SavingThrows {
     return data;
   }
 
-  //TODO
   @override
   String toString() {
-    return "instance of SavingThrows";
+    return '{"strength": "' +
+        strength.toString() +
+        '", "dexterity": "' +
+        dexterity.toString() +
+        '", "constitution": "' +
+        constitution.toString() +
+        '", "intelligence": "' +
+        intelligence.toString() +
+        '", "wisdom": "' +
+        wisdom.toString() +
+        '", "charisma": "' +
+        charisma.toString() +
+        '"}';
   }
 }

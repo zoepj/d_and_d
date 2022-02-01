@@ -52,9 +52,26 @@ class Spell {
     return data;
   }
 
-  //TODO
   @override
   String toString() {
-    return "instance of Spells";
+    return '{"level": "' +
+        level.toString() +
+        '", "name": "' +
+        name +
+        '", "damageType": "' +
+        damageType.toString() +
+        '", "school": "' +
+        school.toString() +
+        '", "castingTime": "' +
+        castingTime! +
+        '", "range": "' +
+        range! +
+        '", "components": "' +
+        components! +
+        '", "duration": "' +
+        duration! +
+        '", "description": "' +
+        description! +
+        '"}';
   }
 }

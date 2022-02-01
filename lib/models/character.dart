@@ -252,13 +252,13 @@ class Character {
         objects.toString() +
         ', "spells": ' +
         spells.toString() +
-        ', "characteristics": "' +
+        ', "characteristics": ' +
         characteristics.toString() +
-        '", "savingThrows": "' +
+        ', "savingThrows": ' +
         savingThrows.toString() +
-        '", "skills": "' +
+        ', "skills": ' +
         skills.toString() +
-        '", "spellSave": "' +
+        ', "spellSave": "' +
         spellSave.toString() +
         '", "spellAttackBonus": "' +
         spellAttackBonus.toString() +
