@@ -280,6 +280,27 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                     ),
                     Row(
                       children: [
+                        const Text("Alignment: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (alignment) {
+                              if (alignment == null || alignment.isEmpty) {
+                                c1.alignment = "N";
+                              } else {
+                                c1.looks = alignment;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'CN',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
                         const Text("Looks: "),
                         Flexible(
                           child: TextFormField(
@@ -1179,7 +1200,6 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         child: const Text('Submit'),
                       ),
                     ),
-                    Text(DB.getTest().toString()),
                   ],
                 ),
               ),
