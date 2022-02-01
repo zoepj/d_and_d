@@ -156,7 +156,8 @@ class Default {
   });
   String url;
   int width;
-  int height;factory Default.fromJson(Map<String, dynamic> json) => Default(
+  int height;
+  factory Default.fromJson(Map<String, dynamic> json) => Default(
     url: json["url"],
     width: json["width"],
     height: json["height"],
