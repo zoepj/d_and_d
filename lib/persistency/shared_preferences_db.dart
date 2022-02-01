@@ -79,6 +79,20 @@ class DB {
     return counter;
   }
 
+  static int getNewWeaponId() {
+    int counter = _preferences!.getInt("weapon_counter") ?? -1;
+    counter++;
+    _preferences!.setInt("weapon_counter", counter);
+    return counter;
+  }
+
+  static int getNewObjectId() {
+    int counter = _preferences!.getInt("object_counter") ?? -1;
+    counter++;
+    _preferences!.setInt("object_counter", counter);
+    return counter;
+  }
+
   static void updateArmor(Armor a, Character c) {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
     if (char != "null") {

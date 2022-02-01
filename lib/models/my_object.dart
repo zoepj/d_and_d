@@ -1,10 +1,12 @@
 class MyObject {
   String name;
+  int id;
   int quantity;
   String info;
 
   MyObject({
     required this.name,
+    required this.id,
     this.quantity = 0,
     this.info = "",
   });
@@ -13,6 +15,7 @@ class MyObject {
     return MyObject(
       name: json['name'],
       quantity: int.parse(json['quantity']),
+      id: int.parse(json['id']),
       info: json['info'],
     );
   }
@@ -28,6 +31,8 @@ class MyObject {
   String toString() {
     return '{"name": "' +
         name +
+        '", "id": "' +
+        id.toString() +
         '", "quantity": "' +
         quantity.toString() +
         '", "info": "' +

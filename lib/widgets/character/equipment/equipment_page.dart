@@ -173,22 +173,61 @@ class _EquipmentPageState extends State<EquipmentPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Weapon w in widget.character.weapons)
-                        TextButton(
-                          child: Text(w.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => WeaponWidget(
-                                  weapon: w,
+                    body: Column(
+                      children: [
+                        for (Weapon w in widget.character.weapons)
+                          TextButton(
+                            child: Text(w.name.toUpperCase()),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WeaponWidget(
+                                    weapon: w,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]),
+                              );
+                            },
+                          ),
+                        _modifying
+                            ? Container(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  validator: (enteredValue) {
+                                    if (enteredValue == null ||
+                                        enteredValue.isEmpty) {
+                                      return 'Missing element';
+                                    } else {
+                                      int i = DB.getNewWeaponId();
+                                      Weapon a =
+                                          Weapon(name: enteredValue, id: i);
+                                      widget.character.weapons.add(a);
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    label: Center(
+                                      child: Text(
+                                        "+",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 23,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
                     isExpanded: _expanded2,
                     canTapOnHeader: true,
                   ),
@@ -202,22 +241,61 @@ class _EquipmentPageState extends State<EquipmentPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (MyObject o in widget.character.objects)
-                        TextButton(
-                          child: Text(o.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MyObjectWidget(
-                                  myObject: o,
+                    body: Column(
+                      children: [
+                        for (MyObject o in widget.character.objects)
+                          TextButton(
+                            child: Text(o.name.toUpperCase()),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyObjectWidget(
+                                    myObject: o,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]),
+                              );
+                            },
+                          ),
+                        _modifying
+                            ? Container(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  validator: (enteredValue) {
+                                    if (enteredValue == null ||
+                                        enteredValue.isEmpty) {
+                                      return 'Missing element';
+                                    } else {
+                                      int i = DB.getNewObjectId();
+                                      MyObject a =
+                                          MyObject(name: enteredValue, id: i);
+                                      widget.character.objects.add(a);
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    label: Center(
+                                      child: Text(
+                                        "+",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 23,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
                     isExpanded: _expanded3,
                     canTapOnHeader: true,
                   ),
