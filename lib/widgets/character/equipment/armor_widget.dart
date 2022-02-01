@@ -43,15 +43,18 @@ class _ArmorWidgetState extends State<ArmorWidget> {
       child: Scaffold(
           drawer: const SideDrawer(),
           appBar: AppBar(
-            leading: Builder(builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            }),
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            ),
             title: Text(widget.character.name),
             actions: [
               _modifying

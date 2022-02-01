@@ -127,7 +127,8 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue != null) {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
                                       int i = DB.getNewArmorId();
                                       Armor a =
                                           Armor(name: enteredValue, id: i);
@@ -154,7 +155,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                   ),
                                 ),
                               )
-                            : const SizedBox(),
+                            : Container(child: null),
                       ],
                     ),
                     isExpanded: _expanded1,
@@ -181,6 +182,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 MaterialPageRoute(
                                   builder: (context) => WeaponWidget(
                                     weapon: w,
+                                    character: widget.character,
                                   ),
                                 ),
                               );
@@ -192,13 +194,14 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue != null) {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
                                       int i = DB.getNewWeaponId();
                                       Weapon a =
                                           Weapon(name: enteredValue, id: i);
                                       widget.character.weapons.add(a);
+                                      return null;
                                     }
-                                    return null;
                                   },
                                   decoration: const InputDecoration(
                                     isDense: true,
@@ -219,7 +222,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                   ),
                                 ),
                               )
-                            : const SizedBox(),
+                            : Container(child: null),
                       ],
                     ),
                     isExpanded: _expanded2,
@@ -246,6 +249,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 MaterialPageRoute(
                                   builder: (context) => MyObjectWidget(
                                     myObject: o,
+                                    character: widget.character,
                                   ),
                                 ),
                               );
@@ -257,7 +261,8 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue != null) {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
                                       int i = DB.getNewObjectId();
                                       MyObject a =
                                           MyObject(name: enteredValue, id: i);
@@ -284,7 +289,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                   ),
                                 ),
                               )
-                            : const SizedBox(),
+                            : Container(child: null),
                       ],
                     ),
                     isExpanded: _expanded3,

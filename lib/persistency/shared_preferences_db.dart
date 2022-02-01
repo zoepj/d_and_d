@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/weapon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DB {
@@ -104,6 +106,36 @@ class DB {
           .first;
       inDB.armors.remove(oldArmor);
       inDB.armors.add(a);
+      updateCharacter(c);
+    }
+  }
+
+  static void updateWeapon(Weapon w, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      Weapon oldWeapon = inDB.weapons
+          .where(
+            (e) => e.id == w.id,
+          )
+          .first;
+      inDB.weapons.remove(oldWeapon);
+      inDB.weapons.add(w);
+      updateCharacter(c);
+    }
+  }
+
+  static void updateMyObject(MyObject o, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      MyObject oldObject = inDB.objects
+          .where(
+            (e) => e.id == o.id,
+          )
+          .first;
+      inDB.objects.remove(oldObject);
+      inDB.objects.add(o);
       updateCharacter(c);
     }
   }
