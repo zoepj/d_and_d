@@ -1,7 +1,7 @@
 import 'package:d_and_d/models/my_object.dart';
 import 'package:flutter/material.dart';
 
-import '../side_drawer.dart';
+import '../../side_drawer.dart';
 
 class MyObjectWidget extends StatelessWidget {
   const MyObjectWidget({Key? key, required this.myObject}) : super(key: key);

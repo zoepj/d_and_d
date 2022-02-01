@@ -1,7 +1,7 @@
 import 'package:d_and_d/models/weapon.dart';
 import 'package:flutter/material.dart';
 
-import '../side_drawer.dart';
+import '../../side_drawer.dart';
 
 class WeaponWidget extends StatelessWidget {
   const WeaponWidget({Key? key, required this.weapon}) : super(key: key);

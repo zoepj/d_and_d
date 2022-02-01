@@ -1,7 +1,7 @@
 import 'package:d_and_d/models/armor.dart';
 import 'package:flutter/material.dart';
 
-import '../side_drawer.dart';
+import '../../side_drawer.dart';
 
 class ArmorWidget extends StatelessWidget {
   const ArmorWidget({Key? key, required this.armor}) : super(key: key);
