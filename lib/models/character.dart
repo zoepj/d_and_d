@@ -6,7 +6,6 @@ import 'package:d_and_d/models/saving_throws.dart';
 import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
-import 'package:d_and_d/persistency/shared_preferences_db.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -16,7 +15,7 @@ import 'characteristics.dart';
 
 class Character {
   String name;
-  int? _id;
+  int id;
   String? imagePath;
   int? level;
   int? armor;
@@ -47,16 +46,9 @@ class Character {
   CharacteristicsEnum? spellcastingAbility;
   static int idCounter = 0;
 
-  int? get id => _id;
-
-  int _getNewID() {
-    int id = idCounter++;
-    DB.incrementCharacterCounter(id);
-    return id;
-  }
-
   Character(
       {required this.name,
+      required this.id,
       this.imagePath = "",
       this.level = 0,
       this.armor = 0,
@@ -85,7 +77,6 @@ class Character {
       this.spellSave = 0,
       this.spellAttackBonus = 0,
       this.spellcastingAbility = CharacteristicsEnum.intelligence}) {
-    _id = _getNewID();
     characteristics = Characteristics();
     savingThrows = SavingThrows();
     skills = Skills();
@@ -134,6 +125,7 @@ class Character {
 
     return Character(
       name: jsonData['name'],
+      id: int.parse(jsonData['id']),
       imagePath: jsonData['imagePath'] ?? "",
       level: int.parse(jsonData['level']),
       armor: int.parse(jsonData['armor']),
@@ -168,6 +160,7 @@ class Character {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["name"] = name;
+    data["id"] = id;
     data['imagePath'] = imagePath;
     data['level'] = level;
     data['armor'] = armor;
@@ -202,6 +195,8 @@ class Character {
   String toString() {
     return '{"name": "' +
         name +
+        '", "id": "' +
+        id.toString() +
         '", "imagePath": "' +
         imagePath! +
         '", "level": "' +

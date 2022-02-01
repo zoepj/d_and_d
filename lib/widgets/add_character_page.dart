@@ -3,8 +3,6 @@ import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
 
-import 'characters_list_page.dart';
-
 // Define a custom Form widget.
 class AddCharacterPage extends StatefulWidget {
   const AddCharacterPage({Key? key}) : super(key: key);
@@ -25,10 +23,18 @@ class AddCharacterPageState extends State<AddCharacterPage> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
+  int idCounter = 0;
+
+  int getNewID() {
+    int id = DB.getNewCharacterId();
+    return id;
+  }
+
   @override
   Widget build(BuildContext context) {
     Character c1 = Character(
       name: "",
+      id: getNewID(),
       weapons: [],
       armors: [],
       objects: [],
@@ -584,12 +590,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // there exist a data in prefs
                             print("id character = " + c1.id.toString());
                             DB.addCharacter(c1);
-                            Navigator.push(
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, "/", (Route<dynamic> route) => false);
+                            /*
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CharactersListPage(),
                               ),
-                            );
+                            );*/
                           }
                         },
                         child: const Text('Submit'),

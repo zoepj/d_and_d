@@ -33,6 +33,13 @@ class DB {
     return resList;
   }
 
+  static int getNewCharacterId() {
+    int counter = _preferences!.getInt("character_counter") ?? -1;
+    counter++;
+    _preferences!.setInt("character_counter", counter);
+    return counter;
+  }
+
   static Future incrementCharacterCounter(int value) async {
     await _preferences!.setInt("character_counter", value);
   }
@@ -51,5 +58,11 @@ class DB {
       list.add(c.id.toString());
       _preferences!.setStringList("character_id_list", list);
     }
+  }
+
+  static Future removeCharacter(Character c) async {
+    print("id: " + c.id.toString());
+    await _preferences!.remove(c.id.toString());
+    print("deleted");
   }
 }

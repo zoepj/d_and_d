@@ -31,11 +31,10 @@ class SideDrawer extends StatelessWidget {
               leading: const Icon(Icons.people),
               title: const Text('Characters'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => CharactersListPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => CharactersListPage()),
+                  (Route<dynamic> route) => false,
                 );
               },
             ),

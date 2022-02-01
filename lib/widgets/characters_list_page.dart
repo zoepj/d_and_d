@@ -119,10 +119,16 @@ Future<Character> getJsonData(String path) async {
 Character character = Character.fromJson(jsonSample);
 Character character2 = Character.fromJson(jsonSample2);
 
-class CharactersListPage extends StatelessWidget {
+class CharactersListPage extends StatefulWidget {
   CharactersListPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CharactersListPage> createState() => _CharactersListPageState();
+}
+
+class _CharactersListPageState extends State<CharactersListPage> {
   List<Character> charactersList = List.empty(growable: true);
 
   @override
@@ -157,6 +163,43 @@ class CharactersListPage extends StatelessWidget {
                   ),
                 ),
               );
+            },
+            onLongPress: () {
+              print("longPress");
+              setState(() {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Do you want to delete ' +
+                          charactersList[index].name),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('CANCEL'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            print("id char: " +
+                                charactersList[index].id.toString());
+                            DB.removeCharacter(charactersList[index]);
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CharactersListPage()),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          child: const Text('DELETE'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              });
             },
           );
         },
