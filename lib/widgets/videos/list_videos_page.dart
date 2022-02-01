@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:d_and_d/models/videos_list.dart';
@@ -17,7 +16,6 @@ PageInfo pageInfo = PageInfo();
 const String _playListId = "PLJmFJXf3BXjwXkNFo_-iwtHb24AuJcXqx";
 VideosList _videosList = VideosList(videos: videos, pageInfo: pageInfo);
 
-
 class ListVideosPage extends StatefulWidget {
   const ListVideosPage({Key? key}) : super(key: key);
 
@@ -25,13 +23,12 @@ class ListVideosPage extends StatefulWidget {
   _ListVideosPageState createState() => _ListVideosPageState();
 }
 
-class _ListVideosPageState extends State<ListVideosPage>{
+class _ListVideosPageState extends State<ListVideosPage> {
   String _nextPageToken = "";
   VideosList _videosList = VideosList(videos: videos, pageInfo: pageInfo);
   var _first = true;
 
-  Future<VideosList> getVideosList(
-      {required String playListId}) async {
+  Future<VideosList> getVideosList({required String playListId}) async {
     Map<String, String> parameters = {
       'part': 'snippet',
       'playlistId': playListId,
@@ -51,10 +48,8 @@ class _ListVideosPageState extends State<ListVideosPage>{
     var response = await http.get(uri, headers: headers);
     // print(response.body);
     VideosList videosList = videosListFromJson(response.body);
-    print ("AQUI" + videosList.videos.length.toString());
     return videosList;
   }
-
 
   _loadVideos() async {
     VideosList tempVideosList = await getVideosList(
@@ -63,10 +58,7 @@ class _ListVideosPageState extends State<ListVideosPage>{
     _videosList.videos = [];
     _nextPageToken = tempVideosList.nextPageToken;
     _videosList.videos.addAll(tempVideosList.videos);
-    print('videos: ${_videosList.videos.length}');
-    print('_nextPageToken $_nextPageToken');
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -74,30 +66,29 @@ class _ListVideosPageState extends State<ListVideosPage>{
     ScrollController _scrollController = ScrollController();
 
     if (_first) {
-        _loadVideos().then((_videosList) => setState(() {
-          _first = false;
-        }));
-      }
+      _loadVideos().then((_videosList) => setState(() {
+            _first = false;
+          }));
+    }
 
-      if (_videosList == null) {
-        return  Scaffold(
-                drawer: const SideDrawer(),
-                appBar: AppBar(
-                  leading: Builder(builder: (BuildContext context) {
-                    return IconButton(
-                      icon: const Icon(Icons.menu),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                    );
-                  }),
-                  title: const Text("Guide"),
-            )
-        );
-      }
-
+    if (_videosList == null) {
       return Scaffold(
+          drawer: const SideDrawer(),
+          appBar: AppBar(
+            leading: Builder(builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            }),
+            title: const Text("Guide"),
+          ));
+    }
+
+    return Scaffold(
       drawer: const SideDrawer(),
       appBar: AppBar(
         leading: Builder(builder: (BuildContext context) {
@@ -111,39 +102,34 @@ class _ListVideosPageState extends State<ListVideosPage>{
         }),
         title: const Text("Guide"),
       ),
-
       body: ListView.builder(
-      controller: _scrollController,
-      itemCount: _videosList.videos.length,
-      itemBuilder: (context, index) {
-        VideoItem videoItem = _videosList.videos[index];
-        return
-          InkWell(
-          onTap: () async {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) {
-                  return VideoPlayerPage(
-                    videoItem: videoItem,
-                  );
-                }));
-          },
-          child: Container(
-            padding: EdgeInsets.all(20.0),
-            child: Row(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: videoItem
-                      .video.thumbnails.thumbnailsDefault.url,
-                ),
-                SizedBox(width: 20),
-                Flexible(child: Text(videoItem.video.title)),
-              ],
+        controller: _scrollController,
+        itemCount: _videosList.videos.length,
+        itemBuilder: (context, index) {
+          VideoItem videoItem = _videosList.videos[index];
+          return InkWell(
+            onTap: () async {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return VideoPlayerPage(
+                  videoItem: videoItem,
+                );
+              }));
+            },
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: videoItem.video.thumbnails.thumbnailsDefault.url,
+                  ),
+                  SizedBox(width: 20),
+                  Flexible(child: Text(videoItem.video.title)),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-
+          );
+        },
       ),
-      );
+    );
   }
 }

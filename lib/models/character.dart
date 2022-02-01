@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:d_and_d/models/characteristics_enum.dart';
 import 'package:d_and_d/models/my_object.dart';
 import 'package:d_and_d/models/saving_throws.dart';
@@ -124,8 +122,11 @@ class Character {
         spellsList.add(Spell.fromJson(spellsListMap[i]));
       }
     }
+    Characteristics c = Characteristics.fromJson(jsonData['characteristics']);
+    SavingThrows st = SavingThrows.fromJson(jsonData['savingThrows']);
+    Skills s = Skills.fromJson(jsonData['skills']);
 
-    return Character(
+    Character resChar = Character(
       name: jsonData['name'],
       id: int.parse(jsonData['id']),
       imagePath: jsonData['imagePath'] ?? "",
@@ -150,21 +151,16 @@ class Character {
       weapons: weaponsList,
       objects: objectsList,
       spells: spellsList,
-      characteristics: jsonData['characteristics'] == null
-          ? Characteristics.fromJson(json.decode(jsonData['characteristics']))
-          : Characteristics(),
-      savingThrows: jsonData['savingThrows'] == null
-          ? SavingThrows.fromJson(json.decode(jsonData['savingThrows']))
-          : SavingThrows(),
-      skills: jsonData['skills'] == null
-          ? Skills.fromJson(json.decode(jsonData['skills']))
-          : Skills(),
       spellSave: int.parse(jsonData['spellSave']),
       spellAttackBonus: int.parse(jsonData['spellAttackBonus']),
       spellcastingAbility: jsonData['spellcastingAbility'] == null
           ? jsonData['spellcastingAbility']
           : CharacteristicsEnum.intelligence,
     );
+    resChar.characteristics = c;
+    resChar.savingThrows = st;
+    resChar.skills = s;
+    return resChar;
   }
 
   Map<String, dynamic> toJson() {

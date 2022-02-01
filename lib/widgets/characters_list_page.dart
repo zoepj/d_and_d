@@ -166,7 +166,6 @@ class _CharactersListPageState extends State<CharactersListPage> {
               );
             },
             onLongPress: () {
-              print("longPress");
               setState(() {
                 showDialog(
                   context: context,
@@ -184,8 +183,6 @@ class _CharactersListPageState extends State<CharactersListPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            print("id char: " +
-                                charactersList[index].id.toString());
                             DB.removeCharacter(charactersList[index]);
                             Navigator.pushAndRemoveUntil(
                               context,

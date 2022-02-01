@@ -17,12 +17,13 @@ class SavingThrows {
 
   factory SavingThrows.fromJson(Map<String, dynamic> json) {
     return SavingThrows(
-        strength: json['strength'],
-        dexterity: json['dexterity'],
-        constitution: json['constitution'],
-        intelligence: json['intelligence'],
-        wisdom: json['wisdom'],
-        charisma: json['charisma']);
+      strength: int.parse(json['strength']),
+      dexterity: int.parse(json['dexterity']),
+      constitution: int.parse(json['constitution']),
+      intelligence: int.parse(json['intelligence']),
+      wisdom: int.parse(json['wisdom']),
+      charisma: int.parse(json['charisma']),
+    );
   }
 
   Map<String, dynamic> toJson() {
