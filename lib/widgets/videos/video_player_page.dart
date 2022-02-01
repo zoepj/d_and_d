@@ -1,5 +1,3 @@
-
-
 import 'package:d_and_d/models/videos_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +6,12 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../side_drawer.dart';
 
 class VideoPlayerPage extends StatefulWidget {
-//
-VideoPlayerPage({required this.videoItem});
-final VideoItem videoItem;
+  const VideoPlayerPage({required this.videoItem});
+  final VideoItem videoItem;
 
-@override
-_VideoPlayerPageState createState() => _VideoPlayerPageState();
+  @override
+  _VideoPlayerPageState createState() => _VideoPlayerPageState();
 }
-
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
   //
@@ -28,24 +24,32 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     _isPlayerReady = false;
     _controller = YoutubePlayerController(
       initialVideoId: widget.videoItem.video.resourceId.videoId,
-      flags: YoutubePlayerFlags(
+      flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
       ),
     )..addListener(_listener);
-  }void _listener() {
+  }
+
+  void _listener() {
     if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
       //
     }
-  }@override
+  }
+
+  @override
   void deactivate() {
     _controller.pause();
     super.deactivate();
-  }@override
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }@override
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SideDrawer(),
@@ -61,15 +65,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         }),
         title: const Text("Guide"),
       ),
-      body: Container(
-        child: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          onReady: () {
-            print('Player is ready.');
-            _isPlayerReady = true;
-          },
-        ),
+      body: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
+        onReady: () {
+          _isPlayerReady = true;
+        },
       ),
     );
   }

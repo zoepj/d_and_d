@@ -40,7 +40,6 @@ class AddCharacterPageState extends State<AddCharacterPage> {
       objects: [],
       spells: [],
     );
-    DB.setTest(false);
     // Build a Form widget using the _formKey created above.
     return Scaffold(
       drawer: const SideDrawer(),
@@ -66,9 +65,14 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                 child: Column(
                   children: <Widget>[
                     // Add TextFormFields and ElevatedButton here.
-                    Row (
-                      children: const [Text("GENERAL INFORMATION", style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    Row(
+                      children: const [
+                        Text(
+                          "GENERAL INFORMATION",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        )
+                      ],
                     ),
                     Row(
                       children: [
@@ -446,9 +450,14 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         ),
                       ],
                     ),
-                    Row (
-                      children: const [Text("\nCHARACTERISTICS", style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    Row(
+                      children: const [
+                        Text(
+                          "\nCHARACTERISTICS",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        )
+                      ],
                     ),
                     Row(
                       children: [
@@ -611,10 +620,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         ),
                       ],
                     ),
-
-                    Row (
-                      children: const [Text("\nSAVING THROWS", style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    const SizedBox(height: 15),
+                    Row(
+                      children: const [
+                        Text(
+                          "SAVING THROWS",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ],
                     ),
                     Row(
                       children: [
@@ -759,9 +773,14 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                         ),
                       ],
                     ),
-                    Row (
-                      children: const [Text("\nSKILLS", style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    Row(
+                      children: const [
+                        Text(
+                          "\nSKILLS",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        )
+                      ],
                     ),
                     Row(
                       children: [
@@ -774,8 +793,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (athletics == null || athletics.isEmpty) {
                                 c1.skills!.athletics = 0;
                               } else {
-                                c1.skills!.athletics =
-                                    int.parse(athletics);
+                                c1.skills!.athletics = int.parse(athletics);
                               }
                               return null;
                             },
@@ -797,8 +815,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (acrobatics == null || acrobatics.isEmpty) {
                                 c1.skills!.acrobatics = 0;
                               } else {
-                                c1.skills!.acrobatics =
-                                    int.parse(acrobatics);
+                                c1.skills!.acrobatics = int.parse(acrobatics);
                               }
                               return null;
                             },
@@ -817,7 +834,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             keyboardType: TextInputType.number,
                             validator: (sleightOfHand) {
-                              if (sleightOfHand == null || sleightOfHand.isEmpty) {
+                              if (sleightOfHand == null ||
+                                  sleightOfHand.isEmpty) {
                                 c1.skills!.sleightOfHand = 0;
                               } else {
                                 c1.skills!.sleightOfHand =
@@ -843,8 +861,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (stealth == null || stealth.isEmpty) {
                                 c1.skills!.stealth = 0;
                               } else {
-                                c1.skills!.stealth =
-                                    int.parse(stealth);
+                                c1.skills!.stealth = int.parse(stealth);
                               }
                               return null;
                             },
@@ -866,8 +883,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (arcana == null || arcana.isEmpty) {
                                 c1.skills!.arcana = 0;
                               } else {
-                                c1.skills!.arcana =
-                                    int.parse(arcana);
+                                c1.skills!.arcana = int.parse(arcana);
                               }
                               return null;
                             },
@@ -889,8 +905,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (history == null || history.isEmpty) {
                                 c1.skills!.history = 0;
                               } else {
-                                c1.skills!.history =
-                                    int.parse(history);
+                                c1.skills!.history = int.parse(history);
                               }
                               return null;
                             },
@@ -909,7 +924,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             keyboardType: TextInputType.number,
                             validator: (investigation) {
-                              if (investigation == null || investigation.isEmpty) {
+                              if (investigation == null ||
+                                  investigation.isEmpty) {
                                 c1.skills!.investigation = 0;
                               } else {
                                 c1.skills!.investigation =
@@ -935,8 +951,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (nature == null || nature.isEmpty) {
                                 c1.skills!.nature = 0;
                               } else {
-                                c1.skills!.nature =
-                                    int.parse(nature);
+                                c1.skills!.nature = int.parse(nature);
                               }
                               return null;
                             },
@@ -958,8 +973,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (religion == null || religion.isEmpty) {
                                 c1.skills!.religion = 0;
                               } else {
-                                c1.skills!.religion =
-                                    int.parse(religion);
+                                c1.skills!.religion = int.parse(religion);
                               }
                               return null;
                             },
@@ -978,7 +992,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             keyboardType: TextInputType.number,
                             validator: (animalHandling) {
-                              if (animalHandling == null || animalHandling.isEmpty) {
+                              if (animalHandling == null ||
+                                  animalHandling.isEmpty) {
                                 c1.skills!.animalHandling = 0;
                               } else {
                                 c1.skills!.animalHandling =
@@ -1004,8 +1019,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (insight == null || insight.isEmpty) {
                                 c1.skills!.insight = 0;
                               } else {
-                                c1.skills!.insight =
-                                    int.parse(insight);
+                                c1.skills!.insight = int.parse(insight);
                               }
                               return null;
                             },
@@ -1027,8 +1041,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (medicine == null || medicine.isEmpty) {
                                 c1.skills!.medicine = 0;
                               } else {
-                                c1.skills!.medicine =
-                                    int.parse(medicine);
+                                c1.skills!.medicine = int.parse(medicine);
                               }
                               return null;
                             },
@@ -1050,8 +1063,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (perception == null || perception.isEmpty) {
                                 c1.skills!.perception = 0;
                               } else {
-                                c1.skills!.perception =
-                                    int.parse(perception);
+                                c1.skills!.perception = int.parse(perception);
                               }
                               return null;
                             },
@@ -1073,8 +1085,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (survival == null || survival.isEmpty) {
                                 c1.skills!.survival = 0;
                               } else {
-                                c1.skills!.survival =
-                                    int.parse(survival);
+                                c1.skills!.survival = int.parse(survival);
                               }
                               return null;
                             },
@@ -1096,8 +1107,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (deception == null || deception.isEmpty) {
                                 c1.skills!.deception = 0;
                               } else {
-                                c1.skills!.deception =
-                                    int.parse(deception);
+                                c1.skills!.deception = int.parse(deception);
                               }
                               return null;
                             },
@@ -1116,7 +1126,8 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             keyboardType: TextInputType.number,
                             validator: (intimidation) {
-                              if (intimidation == null || intimidation.isEmpty) {
+                              if (intimidation == null ||
+                                  intimidation.isEmpty) {
                                 c1.skills!.intimidation = 0;
                               } else {
                                 c1.skills!.intimidation =
@@ -1142,8 +1153,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (performance == null || performance.isEmpty) {
                                 c1.skills!.performance = 0;
                               } else {
-                                c1.skills!.performance =
-                                    int.parse(performance);
+                                c1.skills!.performance = int.parse(performance);
                               }
                               return null;
                             },
@@ -1165,8 +1175,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               if (persuasion == null || persuasion.isEmpty) {
                                 c1.skills!.persuasion = 0;
                               } else {
-                                c1.skills!.persuasion =
-                                    int.parse(persuasion);
+                                c1.skills!.persuasion = int.parse(persuasion);
                               }
                               return null;
                             },
@@ -1181,20 +1190,10 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            // there exist a data in prefs
-                            print("id character = " + c1.id.toString());
                             DB.addCharacter(c1);
                             Navigator.pushNamedAndRemoveUntil(
                                 context, "/", (Route<dynamic> route) => false);
-                            /*
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CharactersListPage(),
-                              ),
-                            );*/
                           }
                         },
                         child: const Text('Submit'),
