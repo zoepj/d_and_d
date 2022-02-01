@@ -1,8 +1,11 @@
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/spell.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
+import '../../side_drawer.dart';
+import '../character_main_page.dart';
 import 'spell_details_widget.dart';
 
 class SpellsPage extends StatefulWidget {
@@ -24,6 +27,7 @@ class _SpellsPageState extends State<SpellsPage> {
   bool _expanded7 = false;
   bool _expanded8 = false;
   bool _expanded9 = false;
+  bool _modifying = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -32,6 +36,57 @@ class _SpellsPageState extends State<SpellsPage> {
     return Form(
       key: _formKey,
       child: Scaffold(
+        drawer: const SideDrawer(),
+        appBar: AppBar(
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          }),
+          title: Text(widget.character.name),
+          actions: [
+            _modifying
+                ? IconButton(
+                    icon: const Icon(
+                      Icons.check,
+                    ),
+                    onPressed: () {
+                      setState(
+                        () {
+                          _modifying = false;
+                          if (_formKey.currentState!.validate()) {
+                            DB.updateCharacter(widget.character);
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CharacterMainPage(
+                                          initialIndex: 1,
+                                          character: widget.character,
+                                        )),
+                                (Route<dynamic> route) => false);
+                          }
+                        },
+                      );
+                    },
+                  )
+                : IconButton(
+                    icon: const Icon(
+                      Icons.edit,
+                    ),
+                    onPressed: () {
+                      setState(
+                        () {
+                          _modifying = true;
+                        },
+                      );
+                    },
+                  ),
+          ],
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15),
           child: Column(
