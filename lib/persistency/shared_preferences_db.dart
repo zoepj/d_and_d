@@ -37,19 +37,19 @@ class DB {
     await _preferences!.setInt("character_counter", value);
   }
 
-  static Future addCharacter(Character c) async {
+  static void addCharacter(Character c) {
     // add character with key being the id of the character and value being json data
-    await _preferences!.setString(
+    _preferences!.setString(
       c.id.toString(),
       c.toString(),
     );
     // add
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     if (list == []) {
-      await _preferences!.setStringList("character_id_list", [c.id.toString()]);
+      _preferences!.setStringList("character_id_list", [c.id.toString()]);
     } else {
       list.add(c.id.toString());
-      await _preferences!.setStringList("character_id_list", list);
+      _preferences!.setStringList("character_id_list", list);
     }
   }
 }

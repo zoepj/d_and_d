@@ -27,7 +27,13 @@ class AddCharacterPageState extends State<AddCharacterPage> {
 
   @override
   Widget build(BuildContext context) {
-    Character c1 = Character(name: "");
+    Character c1 = Character(
+      name: "",
+      weapons: [],
+      armors: [],
+      objects: [],
+      spells: [],
+    );
     DB.setTest(false);
     // Build a Form widget using the _formKey created above.
     return Scaffold(
@@ -576,14 +582,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
                             // there exist a data in prefs
+                            print("id character = " + c1.id.toString());
                             DB.addCharacter(c1);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CharactersListPage(),
+                              ),
+                            );
                           }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CharactersListPage(),
-                            ),
-                          );
                         },
                         child: const Text('Submit'),
                       ),

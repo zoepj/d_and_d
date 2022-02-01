@@ -34,10 +34,10 @@ class Character {
   String? flaws;
   String? languages;
   String? abilities;
-  List<dynamic>? armors;
-  List<dynamic>? weapons;
-  List<dynamic>? objects;
-  List<dynamic>? spells;
+  List<dynamic> armors;
+  List<dynamic> weapons;
+  List<dynamic> objects;
+  List<dynamic> spells;
   bool? favorite;
   Characteristics? characteristics;
   SavingThrows? savingThrows;
@@ -74,10 +74,10 @@ class Character {
       this.flaws = "",
       this.languages = "",
       this.abilities = "",
-      this.armors,
-      this.weapons,
-      this.objects,
-      this.spells,
+      required this.armors,
+      required this.weapons,
+      required this.objects,
+      required this.spells,
       this.favorite = false,
       this.characteristics,
       this.savingThrows,
@@ -86,10 +86,6 @@ class Character {
       this.spellAttackBonus = 0,
       this.spellcastingAbility = CharacteristicsEnum.intelligence}) {
     _id = _getNewID();
-    armors = List.empty(growable: true);
-    weapons = List.empty(growable: true);
-    objects = List.empty(growable: true);
-    spells = List.empty(growable: true);
     characteristics = Characteristics();
     savingThrows = SavingThrows();
     skills = Skills();

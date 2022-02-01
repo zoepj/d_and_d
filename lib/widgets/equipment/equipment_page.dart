@@ -12,7 +12,6 @@ class EquipmentPage extends StatefulWidget {
   const EquipmentPage({Key? key, required this.character}) : super(key: key);
   final Character character;
 
-
   @override
   _EquipmentPageState createState() => _EquipmentPageState();
 }
@@ -35,28 +34,30 @@ class _EquipmentPageState extends State<EquipmentPage> {
               ExpansionPanel(
                 headerBuilder: (BuildContext context, isExpanded) {
                   return const ListTile(
-                    title: Text("ARMORS:",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),),
+                    title: Text(
+                      "ARMORS:",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   );
                 },
                 body: Column(
-                    children: [
-                      for (Armor a in widget.character.armors)
-                        TextButton(
-                          child: Text(a.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push( context,
-                              MaterialPageRoute(
-                                builder: (context) => ArmorPage(
-                                  armor: a,
-                                ),
+                  children: [
+                    for (Armor a in widget.character.armors)
+                      TextButton(
+                        child: Text(a.name.toUpperCase()),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ArmorPage(
+                                armor: a,
                               ),
-                            );
-                          },
-                        ),
-                    ]
+                            ),
+                          );
+                        },
+                      ),
+                  ],
                 ),
                 isExpanded: _expanded1,
                 canTapOnHeader: true,
@@ -64,74 +65,72 @@ class _EquipmentPageState extends State<EquipmentPage> {
               ExpansionPanel(
                 headerBuilder: (BuildContext context, isExpanded) {
                   return const ListTile(
-                    title: Text('WEAPONS',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),),
+                    title: Text(
+                      'WEAPONS',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   );
                 },
-                body: Column(
-                    children: [
-                      for(Weapon w in widget.character.weapons)
-                        TextButton(
-                          child: Text(w.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push( context,
-                              MaterialPageRoute(
-                                builder: (context) => WeaponPage(
-                                  weapon: w,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]
-                ),
+                body: Column(children: [
+                  for (Weapon w in widget.character.weapons)
+                    TextButton(
+                      child: Text(w.name.toUpperCase()),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WeaponPage(
+                              weapon: w,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                ]),
                 isExpanded: _expanded2,
                 canTapOnHeader: true,
               ),
               ExpansionPanel(
                 headerBuilder: (BuildContext context, isExpanded) {
                   return const ListTile(
-                    title: Text('OBJECTS',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),),
+                    title: Text(
+                      'OBJECTS',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   );
                 },
-                body: Column(
-                    children: [
-                      for(MyObject o in widget.character.objects)
-                        TextButton(
-                          child: Text(o.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push( context,
-                              MaterialPageRoute(
-                                builder: (context) => MyObjectPage(
-                                  myObject: o,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]
-                ),
+                body: Column(children: [
+                  for (MyObject o in widget.character.objects)
+                    TextButton(
+                      child: Text(o.name.toUpperCase()),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyObjectPage(
+                              myObject: o,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                ]),
                 isExpanded: _expanded3,
                 canTapOnHeader: true,
               ),
             ],
             dividerColor: Colors.grey,
             expansionCallback: (panelIndex, isExpanded) {
-              if (panelIndex==0) {
+              if (panelIndex == 0) {
                 _expanded1 = !isExpanded;
-              } else if(panelIndex == 1) {
+              } else if (panelIndex == 1) {
                 _expanded2 = !isExpanded;
-              } else if(panelIndex == 2){
+              } else if (panelIndex == 2) {
                 _expanded3 = !isExpanded;
               }
-              setState(() {
-
-              });
+              setState(() {});
             },
           ),
         ],

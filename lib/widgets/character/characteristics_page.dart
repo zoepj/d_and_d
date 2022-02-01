@@ -42,7 +42,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               Column(
                 children: [
                   Text(
-                    "${widget.character.characteristics.dexterity}",
+                    "${widget.character.characteristics!.dexterity}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 17),
                   ),
@@ -57,7 +57,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               Column(
                 children: [
                   Text(
-                    "${widget.character.characteristics.constitution}",
+                    "${widget.character.characteristics!.constitution}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 17),
                   ),
@@ -71,14 +71,14 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               ),
             ],
           ),
-          Text("\n"),
+          const Text("\n"),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Column(
                 children: [
                   Text(
-                    "${widget.character.characteristics.wisdom}",
+                    "${widget.character.characteristics!.wisdom}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 17),
                   ),
@@ -93,7 +93,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               Column(
                 children: [
                   Text(
-                    "${widget.character.characteristics.intelligence}",
+                    "${widget.character.characteristics!.intelligence}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 17),
                   ),
@@ -108,7 +108,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               Column(
                 children: [
                   Text(
-                    "${widget.character.characteristics.charisma}",
+                    "${widget.character.characteristics!.charisma}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 17),
                   ),
@@ -122,7 +122,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
               ),
             ],
           ),
-          Text("\n"),
+          const Text("\n"),
           ExpansionPanelList(
             animationDuration: const Duration(milliseconds: 1500),
             children: [
@@ -142,7 +142,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Strength: ${widget.character.savingThrows.strength}",
+                          "Strength: ${widget.character.savingThrows!.strength}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -153,7 +153,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Dexterity: ${widget.character.savingThrows.dexterity}",
+                          "Dexterity: ${widget.character.savingThrows!.dexterity}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -164,7 +164,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Constitution: ${widget.character.savingThrows.constitution}",
+                          "Constitution: ${widget.character.savingThrows!.constitution}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -175,7 +175,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Wisdom: ${widget.character.savingThrows.wisdom}",
+                          "Wisdom: ${widget.character.savingThrows!.wisdom}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -186,7 +186,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Intelligence: ${widget.character.savingThrows.intelligence}",
+                          "Intelligence: ${widget.character.savingThrows!.intelligence}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -197,7 +197,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Charisma: ${widget.character.savingThrows.charisma}",
+                          "Charisma: ${widget.character.savingThrows!.charisma}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -226,7 +226,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Athletics: ${widget.character.skills.athletics}",
+                          "Athletics: ${widget.character.skills!.athletics}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -237,7 +237,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Acrobatics: ${widget.character.skills.acrobatics}",
+                          "Acrobatics: ${widget.character.skills!.acrobatics}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -248,7 +248,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Sleight of hand: ${widget.character.skills.sleightOfHand}",
+                          "Sleight of hand: ${widget.character.skills!.sleightOfHand}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -259,7 +259,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Stealth: ${widget.character.skills.stealth}",
+                          "Stealth: ${widget.character.skills!.stealth}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -270,7 +270,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Arcana: ${widget.character.skills.arcana}",
+                          "Arcana: ${widget.character.skills!.arcana}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -281,7 +281,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "History: ${widget.character.skills.history}",
+                          "History: ${widget.character.skills!.history}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -292,7 +292,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Investigation: ${widget.character.skills.investigation}",
+                          "Investigation: ${widget.character.skills!.investigation}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -303,7 +303,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Nature: ${widget.character.skills.nature}",
+                          "Nature: ${widget.character.skills!.nature}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -314,7 +314,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Religion: ${widget.character.skills.religion}",
+                          "Religion: ${widget.character.skills!.religion}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -325,7 +325,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Animal handling: ${widget.character.skills.animalHandling}",
+                          "Animal handling: ${widget.character.skills!.animalHandling}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -336,7 +336,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Insight: ${widget.character.skills.insight}",
+                          "Insight: ${widget.character.skills!.insight}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -347,7 +347,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Medicine: ${widget.character.skills.medicine}",
+                          "Medicine: ${widget.character.skills!.medicine}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -358,7 +358,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Perception: ${widget.character.skills.perception}",
+                          "Perception: ${widget.character.skills!.perception}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -369,7 +369,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Survival: ${widget.character.skills.survival}",
+                          "Survival: ${widget.character.skills!.survival}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -380,7 +380,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Deception: ${widget.character.skills.deception}",
+                          "Deception: ${widget.character.skills!.deception}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -391,7 +391,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Intimidation: ${widget.character.skills.intimidation}",
+                          "Intimidation: ${widget.character.skills!.intimidation}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -402,7 +402,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Performance: ${widget.character.skills.performance}",
+                          "Performance: ${widget.character.skills!.performance}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
@@ -413,7 +413,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                     Row(
                       children: [
                         Text(
-                          "Persuasion: ${widget.character.skills.persuasion}",
+                          "Persuasion: ${widget.character.skills!.persuasion}",
                           style: const TextStyle(
                               height: 1.5,
                               fontWeight: FontWeight.w400,
