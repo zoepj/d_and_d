@@ -160,6 +160,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
                 MaterialPageRoute(
                   builder: (context) => CharacterMainPage(
                     character: charactersList[index],
+                    initialIndex: 0,
                   ),
                 ),
               );

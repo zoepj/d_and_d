@@ -13,20 +13,13 @@ class DB {
     _preferences!.clear();
   }
 
-  static Future setTest(bool value) async =>
-      await _preferences!.setBool("key", value);
-
-  static bool? getTest() => _preferences!.getBool("key");
-
   static List<Character> getCharacters() {
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     List<Character> resList = List.empty(growable: true);
     for (int i = 0; i < list.length; i++) {
       String? characterString = _preferences!.getString(list[i]);
       if (characterString != null) {
-        print("_____string: " + characterString);
         Map<String, dynamic> jsonData = json.decode(characterString);
-        print("______map: " + jsonData.toString());
         resList.add(Character.fromJson(jsonData));
       }
     }
@@ -60,9 +53,20 @@ class DB {
     }
   }
 
+  static void updateCharacter(Character c) {
+    _preferences!.remove(c.id.toString());
+    _preferences!.setString(
+      c.id.toString(),
+      c.toString(),
+    );
+  }
+
   static Future removeCharacter(Character c) async {
-    print("id: " + c.id.toString());
     await _preferences!.remove(c.id.toString());
-    print("deleted");
+    List<String> list = _preferences!.getStringList("character_id_list") ?? [];
+    if (list != []) {
+      list.remove(c.id.toString());
+      _preferences!.setStringList("character_id_list", list);
+    }
   }
 }

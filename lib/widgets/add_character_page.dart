@@ -40,7 +40,6 @@ class AddCharacterPageState extends State<AddCharacterPage> {
       objects: [],
       spells: [],
     );
-    DB.setTest(false);
     // Build a Form widget using the _formKey created above.
     return Scaffold(
       drawer: const SideDrawer(),
@@ -585,26 +584,15 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            // there exist a data in prefs
-                            print("id character = " + c1.id.toString());
                             DB.addCharacter(c1);
                             Navigator.pushNamedAndRemoveUntil(
                                 context, "/", (Route<dynamic> route) => false);
-                            /*
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CharactersListPage(),
-                              ),
-                            );*/
                           }
                         },
                         child: const Text('Submit'),
                       ),
                     ),
-                    Text(DB.getTest().toString()),
                   ],
                 ),
               ),
