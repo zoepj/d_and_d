@@ -146,6 +146,7 @@ class _RollPageState extends State<RollPage> {
                 children: [
                   Column(
                     children: [FloatingActionButton(
+                        heroTag: "btn1",
                         onPressed: _decrementDC2,
                         child: const Icon(Icons.remove)
                     ),],
@@ -156,6 +157,7 @@ class _RollPageState extends State<RollPage> {
                   ),Column(
                     children: [
                       FloatingActionButton(
+                          heroTag: "btn2",
                           onPressed: _incrementDC2,
                           child: const Icon(Icons.add)
                       ),
@@ -171,6 +173,7 @@ class _RollPageState extends State<RollPage> {
                   children: [
                     Column(
                       children: [FloatingActionButton(
+                          heroTag: "btn3",
                           onPressed: _decrementDC4,
                           child: const Icon(Icons.remove)
                       ),],
@@ -181,6 +184,7 @@ class _RollPageState extends State<RollPage> {
                     ),Column(
                       children: [
                         FloatingActionButton(
+                            heroTag: "btn4",
                             onPressed: _incrementDC4,
                             child: const Icon(Icons.add)
                         ),],
@@ -195,6 +199,7 @@ class _RollPageState extends State<RollPage> {
                   children: [
                     Column(
                       children: [FloatingActionButton(
+                          heroTag: "btn5",
                           onPressed: _decrementDC6,
                           child: const Icon(Icons.remove)
                       ),],
@@ -205,6 +210,7 @@ class _RollPageState extends State<RollPage> {
                     ),Column(
                       children: [
                         FloatingActionButton(
+                            heroTag: "btn6",
                             onPressed: _incrementDC6,
                             child: const Icon(Icons.add)
                         ),
@@ -220,6 +226,7 @@ class _RollPageState extends State<RollPage> {
                   children: [
                     Column(
                       children: [FloatingActionButton(
+                          heroTag: "btn7",
                           onPressed: _decrementDC8,
                           child: const Icon(Icons.remove)
                       ),],
@@ -230,6 +237,7 @@ class _RollPageState extends State<RollPage> {
                     ),Column(
                       children: [
                         FloatingActionButton(
+                            heroTag: "btn8",
                             onPressed: _incrementDC8,
                             child: const Icon(Icons.add)
                         ),
@@ -246,6 +254,7 @@ class _RollPageState extends State<RollPage> {
                   children: [
                     Column(
                       children: [FloatingActionButton(
+                          heroTag: "btn9",
                           onPressed: _decrementDC10,
                           child: const Icon(Icons.remove)
                       ),],
@@ -256,6 +265,7 @@ class _RollPageState extends State<RollPage> {
                     ),Column(
                       children: [
                         FloatingActionButton(
+                            heroTag: "btn10",
                             onPressed: _incrementDC10,
                             child: const Icon(Icons.add)
                         ),
@@ -271,6 +281,7 @@ class _RollPageState extends State<RollPage> {
                   children: [
                     Column(
                       children: [FloatingActionButton(
+                          heroTag: "btn11",
                           onPressed: _decrementDC20,
                           child: const Icon(Icons.remove)
                       ),],
@@ -281,6 +292,7 @@ class _RollPageState extends State<RollPage> {
                     ),Column(
                       children: [
                         FloatingActionButton(
+                            heroTag: "btn12",
                             onPressed: _incrementDC20,
                             child: const Icon(Icons.add)
                         ),
@@ -297,6 +309,7 @@ class _RollPageState extends State<RollPage> {
               Row (
                   mainAxisAlignment:MainAxisAlignment.spaceAround,
                   children: [FloatingActionButton(
+                    heroTag: "btn13",
                     onPressed: _roll,
                     child: const Text("ROLL", style: TextStyle(fontSize: 18),),
                   ),
