@@ -166,38 +166,40 @@ class _CharactersListPageState extends State<CharactersListPage> {
               );
             },
             onLongPress: () {
-              setState(() {
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Do you want to delete ' +
-                          charactersList[index].name),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('CANCEL'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            DB.removeCharacter(charactersList[index]);
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CharactersListPage()),
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                          child: const Text('DELETE'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              });
+              setState(
+                () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Do you want to delete ' +
+                            charactersList[index].name),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('CANCEL'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              DB.removeCharacter(charactersList[index]);
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CharactersListPage()),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            child: const Text('DELETE'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              );
             },
           );
         },

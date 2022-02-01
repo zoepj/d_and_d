@@ -120,6 +120,47 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 ),
                               );
                             },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + a.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeArmor(
+                                                  a, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
                           ),
                         _modifying
                             ? Container(
@@ -187,6 +228,47 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 ),
                               );
                             },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + w.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeWeapon(
+                                                  w, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
                           ),
                         _modifying
                             ? Container(
@@ -252,6 +334,47 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     character: widget.character,
                                   ),
                                 ),
+                              );
+                            },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + o.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeObject(
+                                                  o, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
                               );
                             },
                           ),

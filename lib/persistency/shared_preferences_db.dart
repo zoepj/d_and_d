@@ -30,7 +30,7 @@ class DB {
   }
 
   static int getNewCharacterId() {
-    int counter = _preferences!.getInt("character_counter") ?? -1;
+    int counter = _preferences!.getInt("character_counter") ?? 0;
     counter++;
     _preferences!.setInt("character_counter", counter);
     return counter;
@@ -75,21 +75,21 @@ class DB {
   }
 
   static int getNewArmorId() {
-    int counter = _preferences!.getInt("armor_counter") ?? -1;
+    int counter = _preferences!.getInt("armor_counter") ?? 0;
     counter++;
     _preferences!.setInt("armor_counter", counter);
     return counter;
   }
 
   static int getNewWeaponId() {
-    int counter = _preferences!.getInt("weapon_counter") ?? -1;
+    int counter = _preferences!.getInt("weapon_counter") ?? 0;
     counter++;
     _preferences!.setInt("weapon_counter", counter);
     return counter;
   }
 
   static int getNewObjectId() {
-    int counter = _preferences!.getInt("object_counter") ?? -1;
+    int counter = _preferences!.getInt("object_counter") ?? 0;
     counter++;
     _preferences!.setInt("object_counter", counter);
     return counter;
@@ -104,9 +104,11 @@ class DB {
             (e) => e.id == a.id,
           )
           .first;
-      inDB.armors.remove(oldArmor);
-      print("update a" + a.toString());
-      inDB.armors.add(a);
+      print("oldObject" + oldArmor.toString());
+      print("c before" + c.toString());
+      c.armors.remove(oldArmor);
+      print("c after" + c.toString());
+      c.armors.add(a);
       updateCharacter(c);
     }
   }
@@ -120,8 +122,8 @@ class DB {
             (e) => e.id == w.id,
           )
           .first;
-      inDB.weapons.remove(oldWeapon);
-      inDB.weapons.add(w);
+      c.weapons.remove(oldWeapon);
+      c.weapons.add(w);
       updateCharacter(c);
     }
   }
@@ -135,9 +137,24 @@ class DB {
             (e) => e.id == o.id,
           )
           .first;
-      inDB.objects.remove(oldObject);
-      inDB.objects.add(o);
+      print("oldObject" + oldObject.toString());
+      print("c before" + c.toString());
+      c.objects.remove(oldObject);
+      print("c after" + c.toString());
+      c.objects.add(o);
       updateCharacter(c);
     }
+  }
+
+  static void removeArmor(Armor a, Character c) async {
+    c.armors.remove(a);
+  }
+
+  static void removeWeapon(Weapon w, Character c) async {
+    c.weapons.remove(w);
+  }
+
+  static void removeObject(MyObject o, Character c) async {
+    c.objects.remove(o);
   }
 }
