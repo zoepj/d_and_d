@@ -1,5 +1,4 @@
 import 'package:d_and_d/models/character.dart';
-import 'package:d_and_d/widgets/character/pop_up_menu.dart';
 import 'package:d_and_d/widgets/character/spells/spells_page.dart';
 import 'package:d_and_d/widgets/character/tab_information.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,16 +6,18 @@ import 'package:flutter/material.dart';
 
 import '../side_drawer.dart';
 import 'characteristics_page.dart';
-import 'details_page.dart';
+import 'details/details_page.dart';
 import 'equipment/equipment_page.dart';
 
 class CharacterMainPage extends StatefulWidget {
   const CharacterMainPage({
     Key? key,
     required this.character,
+    required this.initialIndex,
   }) : super(key: key);
 
   final Character character;
+  final int initialIndex;
 
   @override
   _CharacterMainPageState createState() => _CharacterMainPageState();
@@ -39,16 +40,9 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     // Tab controller initialization
     tabController = TabController(
       length: 4,
-      initialIndex: 0,
+      initialIndex: widget.initialIndex,
       vsync: this,
     );
-/*
-    context.read(tabIndexProvider).addListener((state) {
-      if (state != tabController.index) {
-        tabController.animateTo(state);
-      }
-    });
- */
   }
 
   @override
@@ -57,21 +51,6 @@ class _CharacterMainPageState extends State<CharacterMainPage>
 
     return Scaffold(
       drawer: const SideDrawer(),
-      appBar: AppBar(
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        }),
-        title: Text(widget.character.name),
-        actions: const [
-          PopUpMenu(),
-        ],
-      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 13,
         unselectedFontSize: 12,

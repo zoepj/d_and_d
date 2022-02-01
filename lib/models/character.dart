@@ -34,7 +34,7 @@ class Character {
   String? flaws;
   String? languages;
   String? abilities;
-  List<dynamic> armors;
+  List<Armor> armors;
   List<dynamic> weapons;
   List<dynamic> objects;
   List<dynamic> spells;
@@ -88,8 +88,8 @@ class Character {
     List<Armor> armorsList = List.empty(growable: true);
     final armors = jsonData['armors'];
     if (armors != null) {
-      List<Map<String, Object>> armorsListMap =
-          List<Map<String, Object>>.from(armors);
+      List<Map<String, dynamic>> armorsListMap =
+          List<Map<String, dynamic>>.from(armors);
       for (int i = 0; i < armorsListMap.length; i++) {
         armorsList.add(Armor.fromJson(armorsListMap[i]));
       }
