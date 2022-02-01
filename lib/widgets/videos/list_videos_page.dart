@@ -15,7 +15,6 @@ const String API_KEY = 'AIzaSyCwZJv9ajfl62HoQyDQc1ueiTo12zuiVH4';
 List<VideoItem> videos = [];
 PageInfo pageInfo = PageInfo();
 const String _playListId = "PLJmFJXf3BXjwXkNFo_-iwtHb24AuJcXqx";
-VideosList _videosList = VideosList(videos: videos, pageInfo: pageInfo);
 
 
 class ListVideosPage extends StatefulWidget {
@@ -47,11 +46,10 @@ class _ListVideosPageState extends State<ListVideosPage>{
       '/youtube/v3/playlistItems',
       parameters,
     );
-
+    print(uri.toString());
     var response = await http.get(uri, headers: headers);
     // print(response.body);
     VideosList videosList = videosListFromJson(response.body);
-    print ("AQUI" + videosList.videos.length.toString());
     return videosList;
   }
 
@@ -63,8 +61,6 @@ class _ListVideosPageState extends State<ListVideosPage>{
     _videosList.videos = [];
     _nextPageToken = tempVideosList.nextPageToken;
     _videosList.videos.addAll(tempVideosList.videos);
-    print('videos: ${_videosList.videos.length}');
-    print('_nextPageToken $_nextPageToken');
     setState(() {
     });
   }
@@ -77,24 +73,6 @@ class _ListVideosPageState extends State<ListVideosPage>{
         _loadVideos().then((_videosList) => setState(() {
           _first = false;
         }));
-      }
-
-      if (_videosList == null) {
-        return  Scaffold(
-                drawer: const SideDrawer(),
-                appBar: AppBar(
-                  leading: Builder(builder: (BuildContext context) {
-                    return IconButton(
-                      icon: const Icon(Icons.menu),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                    );
-                  }),
-                  title: const Text("Guide"),
-            )
-        );
       }
 
       return Scaffold(
@@ -128,14 +106,14 @@ class _ListVideosPageState extends State<ListVideosPage>{
                 }));
           },
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               children: [
                 CachedNetworkImage(
                   imageUrl: videoItem
                       .video.thumbnails.thumbnailsDefault.url,
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Flexible(child: Text(videoItem.video.title)),
               ],
             ),
