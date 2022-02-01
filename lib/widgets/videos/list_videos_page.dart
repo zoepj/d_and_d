@@ -14,7 +14,6 @@ const String API_KEY = 'AIzaSyCwZJv9ajfl62HoQyDQc1ueiTo12zuiVH4';
 List<VideoItem> videos = [];
 PageInfo pageInfo = PageInfo();
 const String _playListId = "PLJmFJXf3BXjwXkNFo_-iwtHb24AuJcXqx";
-VideosList _videosList = VideosList(videos: videos, pageInfo: pageInfo);
 
 class ListVideosPage extends StatefulWidget {
   const ListVideosPage({Key? key}) : super(key: key);
@@ -44,7 +43,7 @@ class _ListVideosPageState extends State<ListVideosPage> {
       '/youtube/v3/playlistItems',
       parameters,
     );
-
+    print(uri.toString());
     var response = await http.get(uri, headers: headers);
     // print(response.body);
     VideosList videosList = videosListFromJson(response.body);
@@ -58,7 +57,8 @@ class _ListVideosPageState extends State<ListVideosPage> {
     _videosList.videos = [];
     _nextPageToken = tempVideosList.nextPageToken;
     _videosList.videos.addAll(tempVideosList.videos);
-    setState(() {});
+    setState(() {
+    });
   }
 
   @override
@@ -103,6 +103,7 @@ class _ListVideosPageState extends State<ListVideosPage> {
         title: const Text("Guide"),
       ),
       body: ListView.builder(
+
         controller: _scrollController,
         itemCount: _videosList.videos.length,
         itemBuilder: (context, index) {
