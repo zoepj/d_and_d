@@ -109,9 +109,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                           initialValue:
                               widget.weapon.name.toString().toUpperCase(),
                           validator: (enteredValue) {
-                            if (enteredValue == null || enteredValue.isEmpty) {
-                              return 'Missing element';
-                            } else {
+                            if (enteredValue != null &&
+                                enteredValue.isNotEmpty) {
                               widget.weapon.name = enteredValue;
                             }
                             return null;
@@ -137,10 +136,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               initialValue: widget.weapon.ammunition.toString(),
                               keyboardType: TextInputType.number,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.ammunition =
                                       int.parse(enteredValue);
                                 }
@@ -168,10 +165,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.type.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.type = enteredValue;
                                 }
                                 return null;
@@ -198,10 +193,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.damage.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.damage = enteredValue;
                                 }
                                 return null;
@@ -228,10 +221,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.cost.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.cost = enteredValue;
                                 }
                                 return null;
@@ -258,10 +249,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.weight.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.weight = enteredValue;
                                 }
                                 return null;
@@ -288,10 +277,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.features.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.features = enteredValue;
                                 }
                                 return null;
@@ -318,10 +305,8 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                             child: TextFormField(
                               initialValue: widget.weapon.info.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.weapon.info = enteredValue;
                                 }
                                 return null;

@@ -105,6 +105,7 @@ class DB {
           )
           .first;
       inDB.armors.remove(oldArmor);
+      print("update a" + a.toString());
       inDB.armors.add(a);
       updateCharacter(c);
     }

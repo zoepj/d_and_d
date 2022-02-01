@@ -110,13 +110,11 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               initialValue:
                                   widget.armor.name.toString().toUpperCase(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.name = enteredValue;
+                                  return null;
                                 }
-                                return null;
                               },
                               style: _nameTextStyle,
                               decoration: _formDecoration,
@@ -142,14 +140,12 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               initialValue: widget.armor.armorClass.toString(),
                               keyboardType: TextInputType.number,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.armorClass =
                                       int.parse(enteredValue);
+                                  return null;
                                 }
-                                return null;
                               },
                               style: _textStyle,
                               decoration: _formDecoration,
@@ -173,13 +169,11 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.type,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.type = enteredValue;
+                                  return null;
                                 }
-                                return null;
                               },
                               style: _textStyle,
                               decoration: _formDecoration,
@@ -203,10 +197,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.characteristic,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.characteristic = enteredValue;
                                 }
                                 return null;
@@ -233,10 +225,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.cost,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.cost = enteredValue;
                                 }
                                 return null;
@@ -263,10 +253,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.info,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.info = enteredValue;
                                 }
                                 return null;
@@ -294,10 +282,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               initialValue: widget.armor.strength.toString(),
                               keyboardType: TextInputType.number,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.strength =
                                       int.parse(enteredValue);
                                 }
@@ -325,10 +311,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.stealth.toString(),
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.stealth = enteredValue == 'true';
                                 }
                                 return null;
@@ -355,10 +339,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             child: TextFormField(
                               initialValue: widget.armor.weight,
                               validator: (enteredValue) {
-                                if (enteredValue == null ||
-                                    enteredValue.isEmpty) {
-                                  return 'Missing element';
-                                } else {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
                                   widget.armor.weight = enteredValue;
                                 }
                                 return null;
