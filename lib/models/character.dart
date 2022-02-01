@@ -26,6 +26,7 @@ class Character {
   String? race;
   String? characterClass;
   String? background;
+  String? alignment;
   String? looks;
   String? traits;
   String? ideals;
@@ -59,6 +60,7 @@ class Character {
       this.race = "",
       this.characterClass = "",
       this.background = "",
+      this.alignment = "NN",
       this.looks = "",
       this.traits = "",
       this.ideals = "",
@@ -136,6 +138,14 @@ class Character {
       race: jsonData['race'] ?? "",
       characterClass: jsonData['characterClass'] ?? "",
       background: jsonData['background'] ?? "",
+      alignment: jsonData['alignment'] ?? "",
+      looks: jsonData['looks'] ?? "",
+      traits: jsonData['traits'] ?? "",
+      ideals: jsonData['ideals'] ?? "",
+      bonds: jsonData['bonds'] ?? "",
+      flaws: jsonData['flaws'] ?? "",
+      languages: jsonData['languages'] ?? "",
+      abilities: jsonData['abilities'] ?? "",
       armors: armorsList,
       weapons: weaponsList,
       objects: objectsList,
@@ -171,6 +181,7 @@ class Character {
     data['race'] = race;
     data['characterClass'] = characterClass;
     data['background'] = background;
+    data['alignment'] = alignment;
     data['looks'] = looks;
     data['traits'] = traits;
     data['ideals'] = ideals;
@@ -217,6 +228,22 @@ class Character {
         characterClass! +
         '", "background": "' +
         background! +
+        '", "alignment": "' +
+        alignment! +
+        '", "looks": "' +
+        looks! +
+        '", "traits": "' +
+        traits! +
+        '", "ideals": "' +
+        ideals! +
+        '", "bonds": "' +
+        bonds! +
+        '", "flaws": "' +
+        flaws! +
+        '", "languages": "' +
+        languages! +
+        '", "abilities": "' +
+        abilities! +
         '", "armors": ' +
         armors.toString() +
         ', "weapons": ' +

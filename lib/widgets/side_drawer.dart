@@ -63,10 +63,6 @@ class SideDrawer extends StatelessWidget {
                 );
               },
             ),
-            const ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
           ],
         ),
       ),
