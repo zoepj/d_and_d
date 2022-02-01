@@ -77,6 +77,9 @@ class _EquipmentPageState extends State<EquipmentPage> {
                       setState(
                         () {
                           _modifying = true;
+                          _expanded1 = true;
+                          _expanded2 = true;
+                          _expanded3 = true;
                         },
                       );
                     },
@@ -117,6 +120,12 @@ class _EquipmentPageState extends State<EquipmentPage> {
                               );
                             },
                           ),
+                        _modifying
+                            ? IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: () {},
+                              )
+                            : const SizedBox(),
                       ],
                     ),
                     isExpanded: _expanded1,
