@@ -42,4 +42,10 @@ class Weapon {
     data['info'] = info;
     return data;
   }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of Weapon";
+  }
 }

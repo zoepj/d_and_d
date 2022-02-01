@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'character/characters_list_page.dart';
+import 'characters_list_page.dart';
 import 'dices/roll_page.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -31,11 +31,10 @@ class SideDrawer extends StatelessWidget {
               leading: const Icon(Icons.people),
               title: const Text('Characters'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => CharactersListPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => CharactersListPage()),
+                  (Route<dynamic> route) => false,
                 );
               },
             ),

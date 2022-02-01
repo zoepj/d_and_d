@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/side_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../add_character_page.dart';
-import 'character_main_page.dart';
+import 'add_character_page.dart';
+import 'character/character_main_page.dart';
 
 const Map<String, dynamic> jsonSample = {
   "name": "Kerri Amblecrown",
@@ -60,7 +61,6 @@ const Map<String, dynamic> jsonSample = {
       "duration": "",
       "description": ""
     },
-
     {
       "level": 2,
       "name": "name2",
@@ -72,7 +72,6 @@ const Map<String, dynamic> jsonSample = {
       "duration": "",
       "description": ""
     },
-
     {
       "level": 0,
       "name": "name3",
@@ -82,10 +81,11 @@ const Map<String, dynamic> jsonSample = {
       "range": "Personal",
       "components": "",
       "duration": "",
-      "description": "After touching an object that is not being carried or worn, you place a curse on it that harvests the cold regrets of a creature that you've killed. The next creature that attempts to pick up the object must succeed on a Wisdom saving throw or be grabbed by a ghastly transparent claw manifesting from the object. The claw deals 2d4 cold damage and 1d4 necrotic damage when this happens. If the Wisdom save succeeds, no necrotic damage is dealt, the cold damage dealt is halved, and the claw manifests only to slap whoever picks up the object."
+      "description":
+          "After touching an object that is not being carried or worn, you place a curse on it that harvests the cold regrets of a creature that you've killed. The next creature that attempts to pick up the object must succeed on a Wisdom saving throw or be grabbed by a ghastly transparent claw manifesting from the object. The claw deals 2d4 cold damage and 1d4 necrotic damage when this happens. If the Wisdom save succeeds, no necrotic damage is dealt, the cold damage dealt is halved, and the claw manifests only to slap whoever picks up the object."
     }
   ],
-  'spellSave' : 2,
+  'spellSave': 2,
   'spellAttackBonus': 7,
   'spellcastingAbility': 'charisma',
 };
@@ -119,23 +119,21 @@ Future<Character> getJsonData(String path) async {
 Character character = Character.fromJson(jsonSample);
 Character character2 = Character.fromJson(jsonSample2);
 
-class CharactersListPage extends StatelessWidget {
+class CharactersListPage extends StatefulWidget {
   CharactersListPage({
     Key? key,
   }) : super(key: key);
-  final List<Character> charactersList = [
-    character,
-    character2,
-    character,
-    character,
-    character2,
-    character,
-    character,
-    character,
-    character,
-  ];
+
+  @override
+  State<CharactersListPage> createState() => _CharactersListPageState();
+}
+
+class _CharactersListPageState extends State<CharactersListPage> {
+  List<Character> charactersList = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
+    charactersList = DB.getCharacters();
     return Scaffold(
       drawer: const SideDrawer(),
       appBar: AppBar(
@@ -165,6 +163,43 @@ class CharactersListPage extends StatelessWidget {
                   ),
                 ),
               );
+            },
+            onLongPress: () {
+              print("longPress");
+              setState(() {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Do you want to delete ' +
+                          charactersList[index].name),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('CANCEL'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            print("id char: " +
+                                charactersList[index].id.toString());
+                            DB.removeCharacter(charactersList[index]);
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CharactersListPage()),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          child: const Text('DELETE'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              });
             },
           );
         },

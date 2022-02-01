@@ -1,10 +1,11 @@
+import 'dart:convert';
+
 import 'package:d_and_d/models/characteristics_enum.dart';
 import 'package:d_and_d/models/my_object.dart';
 import 'package:d_and_d/models/saving_throws.dart';
 import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -14,6 +15,7 @@ import 'characteristics.dart';
 
 class Character {
   String name;
+  int id;
   String? imagePath;
   int? level;
   int? armor;
@@ -31,20 +33,22 @@ class Character {
   String? flaws;
   String? languages;
   String? abilities;
-  List<Armor> armors;
+  List<dynamic> armors;
   List<dynamic> weapons;
   List<dynamic> objects;
   List<dynamic> spells;
   bool? favorite;
-  Characteristics characteristics;
-  SavingThrows savingThrows;
-  Skills skills;
+  Characteristics? characteristics;
+  SavingThrows? savingThrows;
+  Skills? skills;
   int? spellSave;
   int? spellAttackBonus;
   CharacteristicsEnum? spellcastingAbility;
+  static int idCounter = 0;
 
   Character(
       {required this.name,
+      required this.id,
       this.imagePath = "",
       this.level = 0,
       this.armor = 0,
@@ -67,16 +71,20 @@ class Character {
       required this.objects,
       required this.spells,
       this.favorite = false,
-      required this.characteristics,
-      required this.savingThrows,
-      required this.skills,
+      this.characteristics,
+      this.savingThrows,
+      this.skills,
       this.spellSave = 0,
       this.spellAttackBonus = 0,
-      this.spellcastingAbility = CharacteristicsEnum.intelligence});
+      this.spellcastingAbility = CharacteristicsEnum.intelligence}) {
+    characteristics = Characteristics();
+    savingThrows = SavingThrows();
+    skills = Skills();
+  }
 
-  factory Character.fromJson(Map<String, dynamic> json) {
+  factory Character.fromJson(Map<String, dynamic> jsonData) {
     List<Armor> armorsList = List.empty(growable: true);
-    final armors = json['armors'];
+    final armors = jsonData['armors'];
     if (armors != null) {
       List<Map<String, Object>> armorsListMap =
           List<Map<String, Object>>.from(armors);
@@ -86,7 +94,7 @@ class Character {
     }
 
     List<Weapon> weaponsList = List.empty(growable: true);
-    final weapons = json['weapons'];
+    final weapons = jsonData['weapons'];
     if (weapons != null) {
       List<Map<String, Object>> weaponsListMap =
           List<Map<String, Object>>.from(weapons);
@@ -96,7 +104,7 @@ class Character {
     }
 
     List<MyObject> objectsList = List.empty(growable: true);
-    final object = json['objects'];
+    final object = jsonData['objects'];
     if (object != null) {
       List<Map<String, Object>> objectsListMap =
           List<Map<String, Object>>.from(object);
@@ -106,7 +114,7 @@ class Character {
     }
 
     List<Spell> spellsList = List.empty(growable: true);
-    final spell = json['spells'];
+    final spell = jsonData['spells'];
     if (spell != null) {
       List<Map<String, Object>> spellsListMap =
           List<Map<String, Object>>.from(spell);
@@ -116,45 +124,43 @@ class Character {
     }
 
     return Character(
-        name: json['name'],
-        imagePath: json['imagePath'],
-        level: json['level'],
-        armor: json['armor'],
-        initiative: json['initiative'],
-        speed: json['speed'],
-        currentHitPoints: json['currentHitPoints'],
-        temporaryHitPoints: json['temporaryHitPoints'],
-        race: json['race'],
-        characterClass: json['characterClass'],
-        background: json['background'],
-        looks: json['looks'],
-        traits: json['traits'],
-        ideals: json['ideals'],
-        bonds: json['bonds'],
-        flaws: json['flaws'],
-        languages: json['languages'],
-        abilities: json['abilities'],
-        armors: armorsList,
-        weapons: weaponsList,
-        objects: objectsList,
-        spells: spellsList,
-        characteristics: json['characteristics'] == null
-            ? Characteristics()
-            : Characteristics.fromJson(json['characteristics']),
-        savingThrows: json['savingThrows'] == null
-            ? SavingThrows()
-            : SavingThrows.fromJson(json['savingThrows']),
-        skills:
-            json['skills'] == null ? Skills() : Skills.fromJson(json['skills']),
-        spellSave: json['spellSave'],
-        spellAttackBonus: json['spellAttackBonus'],
-        spellcastingAbility: EnumToString.fromString(CharacteristicsEnum.values, json['spellcastingAbility'])
+      name: jsonData['name'],
+      id: int.parse(jsonData['id']),
+      imagePath: jsonData['imagePath'] ?? "",
+      level: int.parse(jsonData['level']),
+      armor: int.parse(jsonData['armor']),
+      initiative: int.parse(jsonData['initiative']),
+      speed: int.parse(jsonData['speed']),
+      currentHitPoints: int.parse(jsonData['currentHitPoints']),
+      temporaryHitPoints: int.parse(jsonData['temporaryHitPoints']),
+      race: jsonData['race'] ?? "",
+      characterClass: jsonData['characterClass'] ?? "",
+      background: jsonData['background'] ?? "",
+      armors: armorsList,
+      weapons: weaponsList,
+      objects: objectsList,
+      spells: spellsList,
+      characteristics: jsonData['characteristics'] == null
+          ? Characteristics.fromJson(json.decode(jsonData['characteristics']))
+          : Characteristics(),
+      savingThrows: jsonData['savingThrows'] == null
+          ? SavingThrows.fromJson(json.decode(jsonData['savingThrows']))
+          : SavingThrows(),
+      skills: jsonData['skills'] == null
+          ? Skills.fromJson(json.decode(jsonData['skills']))
+          : Skills(),
+      spellSave: int.parse(jsonData['spellSave']),
+      spellAttackBonus: int.parse(jsonData['spellAttackBonus']),
+      spellcastingAbility: jsonData['spellcastingAbility'] == null
+          ? jsonData['spellcastingAbility']
+          : CharacteristicsEnum.intelligence,
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
+    data["name"] = name;
+    data["id"] = id;
     data['imagePath'] = imagePath;
     data['level'] = level;
     data['armor'] = armor;
@@ -183,5 +189,54 @@ class Character {
     data['spellAttackBonus'] = spellAttackBonus;
     data['spellcastingAbility'] = spellcastingAbility;
     return data;
+  }
+
+  @override
+  String toString() {
+    return '{"name": "' +
+        name +
+        '", "id": "' +
+        id.toString() +
+        '", "imagePath": "' +
+        imagePath! +
+        '", "level": "' +
+        level.toString() +
+        '", "armor": "' +
+        armor.toString() +
+        '", "initiative": "' +
+        initiative!.toString() +
+        '", "speed": "' +
+        speed.toString() +
+        '", "currentHitPoints": "' +
+        currentHitPoints.toString() +
+        '", "temporaryHitPoints": "' +
+        temporaryHitPoints.toString() +
+        '", "race": "' +
+        race! +
+        '", "characterClass": "' +
+        characterClass! +
+        '", "background": "' +
+        background! +
+        '", "armors": ' +
+        armors.toString() +
+        ', "weapons": ' +
+        weapons.toString() +
+        ', "objects": ' +
+        objects.toString() +
+        ', "spells": ' +
+        spells.toString() +
+        ', "characteristics": "' +
+        characteristics.toString() +
+        '", "savingThrows": "' +
+        savingThrows.toString() +
+        '", "skills": "' +
+        skills.toString() +
+        '", "spellSave": "' +
+        spellSave.toString() +
+        '", "spellAttackBonus": "' +
+        spellAttackBonus.toString() +
+        '", "spellcastingAbility": "' +
+        spellcastingAbility.toString() +
+        '"}';
   }
 }

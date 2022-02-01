@@ -51,4 +51,10 @@ class Spell {
     data['description'] = description;
     return data;
   }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of Spells";
+  }
 }

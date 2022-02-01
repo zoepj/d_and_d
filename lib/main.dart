@@ -1,7 +1,13 @@
-import 'package:d_and_d/widgets/character/characters_list_page.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
+import 'package:d_and_d/widgets/characters_list_page.dart';
+import 'package:d_and_d/widgets/dices/roll_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DB.init();
+
+  //DB.clear(); // to clear all data at launch
   runApp(const MyApp());
 }
 
@@ -33,6 +39,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return CharactersListPage();
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => CharactersListPage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/roll_page': (context) => const RollPage(),
+      },
+    );
   }
 }
