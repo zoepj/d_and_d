@@ -35,4 +35,10 @@ class Characteristics {
     data['charisma'] = charisma;
     return data;
   }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of characteristic";
+  }
 }

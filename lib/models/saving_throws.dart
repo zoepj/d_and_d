@@ -35,4 +35,10 @@ class SavingThrows {
     data['charisma'] = charisma;
     return data;
   }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of SavingThrows";
+  }
 }

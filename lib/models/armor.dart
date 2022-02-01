@@ -1,5 +1,6 @@
 class Armor {
   bool equipped;
+  String name;
   String type;
   int armorClass;
   String characteristic;
@@ -11,7 +12,8 @@ class Armor {
 
   Armor(
       {this.equipped = false,
-      required this.type,
+      required this.name,
+      this.type = "",
       required this.armorClass,
       this.characteristic = "",
       this.cost = "",
@@ -23,6 +25,7 @@ class Armor {
   factory Armor.fromJson(Map<String, dynamic> json) {
     return Armor(
         equipped: json['equipped'] ?? false,
+        name: json['name'],
         type: json['type'],
         armorClass: json['armorClass'],
         characteristic: json['characteristic'],
@@ -36,6 +39,7 @@ class Armor {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['equipped'] = equipped;
+    data['name'] = name;
     data['type'] = type;
     data['armorClass'] = armorClass;
     data['characteristic'] = characteristic;
@@ -45,5 +49,11 @@ class Armor {
     data['weight'] = weight;
     data['info'] = info;
     return data;
+  }
+
+  //TODO
+  @override
+  String toString() {
+    return "instance of armor";
   }
 }
