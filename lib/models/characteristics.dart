@@ -17,12 +17,13 @@ class Characteristics {
 
   factory Characteristics.fromJson(Map<String, dynamic> json) {
     return Characteristics(
-        strength: json['strength'],
-        dexterity: json['dexterity'],
-        constitution: json['constitution'],
-        intelligence: json['intelligence'],
-        wisdom: json['wisdom'],
-        charisma: json['charisma']);
+      strength: int.parse(json['strength']),
+      dexterity: int.parse(json['dexterity']),
+      constitution: int.parse(json['constitution']),
+      intelligence: int.parse(json['intelligence']),
+      wisdom: int.parse(json['wisdom']),
+      charisma: int.parse(json['charisma']),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -36,9 +37,20 @@ class Characteristics {
     return data;
   }
 
-  //TODO
   @override
   String toString() {
-    return "instance of characteristic";
+    return '{"strength": "' +
+        strength.toString() +
+        '", "dexterity": "' +
+        dexterity.toString() +
+        '", "constitution": "' +
+        constitution.toString() +
+        '", "intelligence": "' +
+        intelligence.toString() +
+        '", "wisdom": "' +
+        wisdom.toString() +
+        '", "charisma": "' +
+        charisma.toString() +
+        '"}';
   }
 }
