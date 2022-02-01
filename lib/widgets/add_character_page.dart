@@ -66,6 +66,10 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                 child: Column(
                   children: <Widget>[
                     // Add TextFormFields and ElevatedButton here.
+                    Row (
+                      children: const [Text("GENERAL INFORMATION", style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    ),
                     Row(
                       children: [
                         const Text("Name: "),
@@ -96,7 +100,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (level) {
                               if (level == null || level.isEmpty) {
-                                c1.level = 0;
+                                c1.level = 1;
                               } else if (int.parse(level) < 1 ||
                                   int.parse(level) > 20) {
                                 return 'Level must be between 1 and 20';
@@ -106,7 +110,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '1',
                             ),
                           ),
                         ),
@@ -147,8 +151,6 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (initiative) {
                               if (initiative == null || initiative.isEmpty) {
                                 c1.initiative = 0;
-                              } else if (int.parse(initiative) < 0) {
-                                return 'Initiative must be positive';
                               } else {
                                 c1.initiative = int.parse(initiative);
                               }
@@ -187,7 +189,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                     ),
                     Row(
                       children: [
-                        const Text("Current hit points: "),
+                        const Text("Hit points: "),
                         Flexible(
                           child: TextFormField(
                             // The validator receives the text that the user has entered.
@@ -219,7 +221,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             validator: (race) {
                               if (race == null || race.isEmpty) {
-                                c1.race = "Elf";
+                                c1.race = "Unknown";
                               } else {
                                 c1.race = race;
                               }
@@ -235,14 +237,14 @@ class AddCharacterPageState extends State<AddCharacterPage> {
 
                     Row(
                       children: [
-                        const Text("Class: "),
+                        const Text("Class(es): "),
                         Flexible(
                           child: TextFormField(
                             // The validator receives the text that the user has entered.
                             validator: (characterClass) {
                               if (characterClass == null ||
                                   characterClass.isEmpty) {
-                                c1.characterClass = "Sorcerer";
+                                c1.characterClass = " ";
                               } else {
                                 c1.characterClass = characterClass;
                               }
@@ -263,7 +265,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             // The validator receives the text that the user has entered.
                             validator: (background) {
                               if (background == null || background.isEmpty) {
-                                c1.background = "Gambler";
+                                c1.background = " ";
                               } else {
                                 c1.background = background;
                               }
@@ -278,6 +280,157 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                     ),
                     Row(
                       children: [
+                        const Text("Looks: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (looks) {
+                              if (looks == null || looks.isEmpty) {
+                                c1.looks = " ";
+                              } else {
+                                c1.looks = looks;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '6ft tall, blue eyes, red skin',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Personality traits: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (traits) {
+                              if (traits == null || traits.isEmpty) {
+                                c1.traits = " ";
+                              } else {
+                                c1.traits = traits;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Extroverted and friendly',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Ideals: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (ideals) {
+                              if (ideals == null || ideals.isEmpty) {
+                                c1.ideals = " ";
+                              } else {
+                                c1.ideals = ideals;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Always help if you can',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Bonds: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (bonds) {
+                              if (bonds == null || bonds.isEmpty) {
+                                c1.bonds = " ";
+                              } else {
+                                c1.bonds = bonds;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'My father is the King',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Flaws: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (flaws) {
+                              if (flaws == null || flaws.isEmpty) {
+                                c1.flaws = " ";
+                              } else {
+                                c1.flaws = flaws;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Naive',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Known Languages: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (languages) {
+                              if (languages == null || languages.isEmpty) {
+                                c1.languages = "";
+                              } else {
+                                c1.languages = languages;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Common, Elf and Celestial',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Abilities: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (abilities) {
+                              if (abilities == null || abilities.isEmpty) {
+                                c1.abilities = "";
+                              } else {
+                                c1.abilities = abilities;
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Hellish Resistance, Darkvision',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row (
+                      children: const [Text("\nCHARACTERISTICS", style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    ),
+                    Row(
+                      children: [
                         const Text("Strength: "),
                         Flexible(
                           child: TextFormField(
@@ -285,7 +438,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (strength) {
                               if (strength == null || strength.isEmpty) {
-                                c1.characteristics!.strength = 0;
+                                c1.characteristics!.strength = 3;
                               } else if (int.parse(strength) < 3 ||
                                   int.parse(strength) > 18) {
                                 return 'Level must be between 3 and 18';
@@ -296,7 +449,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
@@ -312,7 +465,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (dexterity) {
                               if (dexterity == null || dexterity.isEmpty) {
-                                c1.characteristics!.dexterity = 0;
+                                c1.characteristics!.dexterity = 3;
                               } else if (int.parse(dexterity) < 3 ||
                                   int.parse(dexterity) > 18) {
                                 return 'Dexterity must be between 3 and 18';
@@ -323,7 +476,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
@@ -338,7 +491,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (charisma) {
                               if (charisma == null || charisma.isEmpty) {
-                                c1.characteristics!.charisma = 0;
+                                c1.characteristics!.charisma = 3;
                               } else if (int.parse(charisma) < 3 ||
                                   int.parse(charisma) > 18) {
                                 return 'Charisma must be between 3 and 18';
@@ -349,7 +502,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
@@ -365,7 +518,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             keyboardType: TextInputType.number,
                             validator: (wisdom) {
                               if (wisdom == null || wisdom.isEmpty) {
-                                c1.characteristics!.wisdom = 0;
+                                c1.characteristics!.wisdom = 3;
                               } else if (int.parse(wisdom) < 3 ||
                                   int.parse(wisdom) > 18) {
                                 return 'Wisdom must be between 3 and 18';
@@ -375,7 +528,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
@@ -392,7 +545,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (intelligence) {
                               if (intelligence == null ||
                                   intelligence.isEmpty) {
-                                c1.characteristics!.intelligence = 0;
+                                c1.characteristics!.intelligence = 3;
                               } else if (int.parse(intelligence) < 3 ||
                                   int.parse(intelligence) > 18) {
                                 return 'Intelligence must be between 3 and 18';
@@ -403,7 +556,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
@@ -420,7 +573,7 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                             validator: (constitution) {
                               if (constitution == null ||
                                   constitution.isEmpty) {
-                                c1.characteristics!.constitution = 0;
+                                c1.characteristics!.constitution = 3;
                               } else if (int.parse(constitution) < 3 ||
                                   int.parse(constitution) > 18) {
                                 return 'Constitution must be between 3 and 18';
@@ -431,13 +584,17 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              hintText: '0',
+                              hintText: '10',
                             ),
                           ),
                         ),
                       ],
                     ),
 
+                    Row (
+                      children: const [Text("\nSAVING THROWS", style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    ),
                     Row(
                       children: [
                         const Text("Strength (Saving throws): "),
@@ -571,6 +728,424 @@ class AddCharacterPageState extends State<AddCharacterPage> {
                               } else {
                                 c1.savingThrows!.constitution =
                                     int.parse(constitutionST);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row (
+                      children: const [Text("\nSKILLS", style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Athletics: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (athletics) {
+                              if (athletics == null || athletics.isEmpty) {
+                                c1.skills!.athletics = 0;
+                              } else {
+                                c1.skills!.athletics =
+                                    int.parse(athletics);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Acrobatics: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (acrobatics) {
+                              if (acrobatics == null || acrobatics.isEmpty) {
+                                c1.skills!.acrobatics = 0;
+                              } else {
+                                c1.skills!.acrobatics =
+                                    int.parse(acrobatics);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Sleight Of Hand: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (sleightOfHand) {
+                              if (sleightOfHand == null || sleightOfHand.isEmpty) {
+                                c1.skills!.sleightOfHand = 0;
+                              } else {
+                                c1.skills!.sleightOfHand =
+                                    int.parse(sleightOfHand);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Stealth: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (stealth) {
+                              if (stealth == null || stealth.isEmpty) {
+                                c1.skills!.stealth = 0;
+                              } else {
+                                c1.skills!.stealth =
+                                    int.parse(stealth);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Arcana: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (arcana) {
+                              if (arcana == null || arcana.isEmpty) {
+                                c1.skills!.arcana = 0;
+                              } else {
+                                c1.skills!.arcana =
+                                    int.parse(arcana);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("History: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (history) {
+                              if (history == null || history.isEmpty) {
+                                c1.skills!.history = 0;
+                              } else {
+                                c1.skills!.history =
+                                    int.parse(history);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Investigation: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (investigation) {
+                              if (investigation == null || investigation.isEmpty) {
+                                c1.skills!.investigation = 0;
+                              } else {
+                                c1.skills!.investigation =
+                                    int.parse(investigation);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Nature: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (nature) {
+                              if (nature == null || nature.isEmpty) {
+                                c1.skills!.nature = 0;
+                              } else {
+                                c1.skills!.nature =
+                                    int.parse(nature);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Religion: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (religion) {
+                              if (religion == null || religion.isEmpty) {
+                                c1.skills!.religion = 0;
+                              } else {
+                                c1.skills!.religion =
+                                    int.parse(religion);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Animal Handling: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (animalHandling) {
+                              if (animalHandling == null || animalHandling.isEmpty) {
+                                c1.skills!.animalHandling = 0;
+                              } else {
+                                c1.skills!.animalHandling =
+                                    int.parse(animalHandling);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Insight: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (insight) {
+                              if (insight == null || insight.isEmpty) {
+                                c1.skills!.insight = 0;
+                              } else {
+                                c1.skills!.insight =
+                                    int.parse(insight);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Medicine: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (medicine) {
+                              if (medicine == null || medicine.isEmpty) {
+                                c1.skills!.medicine = 0;
+                              } else {
+                                c1.skills!.medicine =
+                                    int.parse(medicine);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Perception: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (perception) {
+                              if (perception == null || perception.isEmpty) {
+                                c1.skills!.perception = 0;
+                              } else {
+                                c1.skills!.perception =
+                                    int.parse(perception);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Survival: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (survival) {
+                              if (survival == null || survival.isEmpty) {
+                                c1.skills!.survival = 0;
+                              } else {
+                                c1.skills!.survival =
+                                    int.parse(survival);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Deception: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (deception) {
+                              if (deception == null || deception.isEmpty) {
+                                c1.skills!.deception = 0;
+                              } else {
+                                c1.skills!.deception =
+                                    int.parse(deception);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Intimidation: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (intimidation) {
+                              if (intimidation == null || intimidation.isEmpty) {
+                                c1.skills!.intimidation = 0;
+                              } else {
+                                c1.skills!.intimidation =
+                                    int.parse(intimidation);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Performance: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (performance) {
+                              if (performance == null || performance.isEmpty) {
+                                c1.skills!.performance = 0;
+                              } else {
+                                c1.skills!.performance =
+                                    int.parse(performance);
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: '0',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text("Persuasion: "),
+                        Flexible(
+                          child: TextFormField(
+                            // The validator receives the text that the user has entered.
+                            keyboardType: TextInputType.number,
+                            validator: (persuasion) {
+                              if (persuasion == null || persuasion.isEmpty) {
+                                c1.skills!.persuasion = 0;
+                              } else {
+                                c1.skills!.persuasion =
+                                    int.parse(persuasion);
                               }
                               return null;
                             },

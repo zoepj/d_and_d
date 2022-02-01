@@ -82,4 +82,9 @@ class Skills {
     data['persuasion'] = persuasion;
     return data;
   }
+
+  @override
+  String toString() {
+    return "instance of Skills";
+  }
 }
