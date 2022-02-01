@@ -40,7 +40,7 @@ class _CharacterMainPageState extends State<CharacterMainPage>
     // Tab controller initialization
     tabController = TabController(
       length: 4,
-      initialIndex: 0,
+      initialIndex: widget.initialIndex,
       vsync: this,
     );
   }

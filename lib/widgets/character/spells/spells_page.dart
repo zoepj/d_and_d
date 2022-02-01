@@ -64,7 +64,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CharacterMainPage(
-                                          initialIndex: 1,
+                                          initialIndex: 3,
                                           character: widget.character,
                                         )),
                                 (Route<dynamic> route) => false);

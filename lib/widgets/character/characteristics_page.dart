@@ -54,7 +54,7 @@ class _CharacteristicsPageState extends State<CharacteristicsPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CharacterMainPage(
-                                          initialIndex: 0,
+                                          initialIndex: 2,
                                           character: widget.character,
                                         )),
                                 (Route<dynamic> route) => false);
