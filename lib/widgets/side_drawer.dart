@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'character/characters_list_page.dart';
+import 'characters_list_page.dart';
 import 'dices/roll_page.dart';
 
 class SideDrawer extends StatelessWidget {

@@ -7,7 +7,6 @@ import 'package:d_and_d/models/skills.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 
 import 'armor.dart';
 import 'characteristics.dart';
@@ -85,7 +84,7 @@ class Character {
       this.skills,
       this.spellSave = 0,
       this.spellAttackBonus = 0,
-      this.spellcastingAbility = characteristicsEnum.intelligence}) {
+      this.spellcastingAbility = CharacteristicsEnum.intelligence}) {
     _id = _getNewID();
     armors = List.empty(growable: true);
     weapons = List.empty(growable: true);
@@ -166,7 +165,7 @@ class Character {
       spellAttackBonus: int.parse(jsonData['spellAttackBonus']),
       spellcastingAbility: jsonData['spellcastingAbility'] == null
           ? jsonData['spellcastingAbility']
-          : characteristicsEnum.intelligence,
+          : CharacteristicsEnum.intelligence,
     );
   }
 
