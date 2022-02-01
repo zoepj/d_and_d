@@ -127,10 +127,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue == null ||
-                                        enteredValue.isEmpty) {
-                                      return 'Missing element';
-                                    } else {
+                                    if (enteredValue != null) {
                                       int i = DB.getNewArmorId();
                                       Armor a =
                                           Armor(name: enteredValue, id: i);
@@ -195,10 +192,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue == null ||
-                                        enteredValue.isEmpty) {
-                                      return 'Missing element';
-                                    } else {
+                                    if (enteredValue != null) {
                                       int i = DB.getNewWeaponId();
                                       Weapon a =
                                           Weapon(name: enteredValue, id: i);
@@ -263,10 +257,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue == null ||
-                                        enteredValue.isEmpty) {
-                                      return 'Missing element';
-                                    } else {
+                                    if (enteredValue != null) {
                                       int i = DB.getNewObjectId();
                                       MyObject a =
                                           MyObject(name: enteredValue, id: i);
