@@ -92,7 +92,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ExpansionPanelList(
-                animationDuration: const Duration(milliseconds: 1500),
+                animationDuration: const Duration(milliseconds: 500),
                 children: [
                   ExpansionPanel(
                     headerBuilder: (BuildContext context, isExpanded) {

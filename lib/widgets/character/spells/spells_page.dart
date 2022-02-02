@@ -1,5 +1,6 @@
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/spell.dart';
+import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
@@ -26,9 +27,42 @@ class _SpellsPageState extends State<SpellsPage> {
   bool _expanded7 = false;
   bool _expanded8 = false;
   bool _expanded9 = false;
-  bool _modifying = false;
 
   final _formKey = GlobalKey<FormState>();
+
+  void _showDeleteDialog(Object o) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Do you want to delete ' + (o as Spell).name),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('CANCEL'),
+            ),
+            TextButton(
+              onPressed: () {
+                DB.removeSpell(o, widget.character);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        SpellsPage(character: widget.character),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+              },
+              child: const Text('DELETE'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +168,7 @@ class _SpellsPageState extends State<SpellsPage> {
               ),
               const Text("\n"),
               ExpansionPanelList(
-                animationDuration: const Duration(milliseconds: 1500),
+                animationDuration: const Duration(milliseconds: 500),
                 children: [
                   ExpansionPanel(
                     headerBuilder: (BuildContext context, isExpanded) {
@@ -146,24 +180,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 0) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 0) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded0,
                     canTapOnHeader: true,
                   ),
@@ -177,24 +220,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 1) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 1) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded1,
                     canTapOnHeader: true,
                   ),
@@ -208,24 +260,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 2) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 2) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded2,
                     canTapOnHeader: true,
                   ),
@@ -239,24 +300,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 3) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 3) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded3,
                     canTapOnHeader: true,
                   ),
@@ -270,24 +340,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 4) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 4) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded4,
                     canTapOnHeader: true,
                   ),
@@ -301,24 +380,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 5) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 5) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded5,
                     canTapOnHeader: true,
                   ),
@@ -332,24 +420,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 6) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 6) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded6,
                     canTapOnHeader: true,
                   ),
@@ -363,24 +460,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 7) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 7) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded7,
                     canTapOnHeader: true,
                   ),
@@ -394,24 +500,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 8) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 8) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded8,
                     canTapOnHeader: true,
                   ),
@@ -425,24 +540,33 @@ class _SpellsPageState extends State<SpellsPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Spell s in widget.character.spells)
-                        if (s.level == 9) ...[
-                          TextButton(
-                            child: Text(s.name.toUpperCase()),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SpellDetailsWidget(
-                                    spell: s,
+                    body: Column(
+                      children: [
+                        for (Spell s in widget.character.spells)
+                          if (s.level == 9) ...[
+                            TextButton(
+                              child: Text(s.name.toUpperCase()),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SpellDetailsWidget(
+                                      spell: s,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                    ]),
+                                );
+                              },
+                              onLongPress: () {
+                                setState(
+                                  () {
+                                    _showDeleteDialog(s);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                      ],
+                    ),
                     isExpanded: _expanded9,
                     canTapOnHeader: true,
                   ),
