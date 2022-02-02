@@ -95,22 +95,9 @@ class DB {
     return counter;
   }
 
-  static void updateArmor(Armor a, Character c) {
-    String char = _preferences!.getString(c.id.toString()) ?? "null";
-    if (char != "null") {
-      Character inDB = Character.fromJson(json.decode(char));
-      Armor oldArmor = inDB.armors
-          .where(
-            (e) => e.id == a.id,
-          )
-          .first;
-      print("oldObject" + oldArmor.toString());
-      print("c before" + c.toString());
-      c.armors.remove(oldArmor);
-      print("c after" + c.toString());
-      c.armors.add(a);
-      updateCharacter(c);
-    }
+  static void addArmor(Armor a, Character c) {
+    c.armors.add(a);
+    updateCharacter(c);
   }
 
   static void updateWeapon(Weapon w, Character c) {
@@ -148,13 +135,17 @@ class DB {
 
   static void removeArmor(Armor a, Character c) async {
     c.armors.remove(a);
+    updateCharacter(c);
+    print("char" + c.toString());
   }
 
   static void removeWeapon(Weapon w, Character c) async {
     c.weapons.remove(w);
+    updateCharacter(c);
   }
 
   static void removeObject(MyObject o, Character c) async {
     c.objects.remove(o);
+    updateCharacter(c);
   }
 }
