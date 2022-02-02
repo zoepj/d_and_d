@@ -32,9 +32,15 @@ class _WeaponWidgetState extends State<WeaponWidget> {
     fontSize: 17,
   );
 
-  final InputDecoration _formDecoration = const InputDecoration(
+  final InputDecoration _formDecorationText = const InputDecoration(
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+  );
+
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
   );
 
   @override
@@ -114,13 +120,14 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                           }
                         },
                         style: _nameTextStyle,
-                        decoration: _formDecoration,
+                        decoration: _formDecorationText,
                       ),
                     )
                   : Text(
                       widget.weapon.name.toUpperCase(),
                       style: _nameTextStyle,
                     ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -129,7 +136,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                   ),
                   _modifying
                       ? SizedBox(
-                          width: 20,
+                          width: 34,
                           child: TextFormField(
                             initialValue: widget.weapon.ammunition.toString(),
                             keyboardType: TextInputType.number,
@@ -142,7 +149,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationInt,
                           ),
                         )
                       : Text(
@@ -151,6 +158,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -170,7 +178,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationText,
                           ),
                         )
                       : Text(
@@ -179,6 +187,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -198,7 +207,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationText,
                           ),
                         )
                       : Text(
@@ -207,6 +216,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -226,7 +236,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationText,
                           ),
                         )
                       : Text(
@@ -235,6 +245,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -254,7 +265,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationText,
                           ),
                         )
                       : Text(
@@ -263,6 +274,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -282,7 +294,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationText,
                           ),
                         )
                       : Text(
@@ -291,6 +303,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                         ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -298,9 +311,9 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                     style: _textStyle,
                   ),
                   _modifying
-                      ? SizedBox(
-                          width: 150,
+                      ? Flexible(
                           child: TextFormField(
+                            maxLines: 6,
                             initialValue: widget.weapon.info.toString(),
                             validator: (enteredValue) {
                               if (enteredValue != null &&
@@ -310,13 +323,15 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationInt,
                           ),
                         )
-                      : Text(
-                          widget.weapon.info,
-                          style: _textStyle,
-                        ),
+                      : Flexible(
+                        child: Text(
+                            widget.weapon.info,
+                            style: _textStyle,
+                          ),
+                      ),
                 ],
               ),
             ],
