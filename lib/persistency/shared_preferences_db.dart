@@ -191,4 +191,9 @@ class DB {
     c.spells.add(s);
     updateCharacter(c);
   }
+
+  static Future removeSpell(Spell s, Character c) async {
+    c.spells.remove(s);
+    updateCharacter(c);
+  }
 }

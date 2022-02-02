@@ -26,5 +26,8 @@ void main() {
 
     await DB.addSpell(s, c);
     expect(DB.getCharacters()[0].spells.length, 1);
+
+    await DB.removeSpell(s, c);
+    expect(DB.getCharacters()[0].spells.length, 0);
   });
 }
