@@ -27,7 +27,12 @@ void main() {
     await DB.addSpell(s, c);
     expect(DB.getCharacters()[0].spells.length, 1);
 
-    await DB.removeSpell(s, c);
+    Spell s2 = Spell(level: 0, name: "s2", id: s.id);
+    await DB.updateSpell(s2, c);
+    expect(DB.getCharacters()[0].spells.length, 1);
+    expect(DB.getCharacters()[0].spells[0].name, s2.name);
+
+    await DB.removeSpell(s2, c);
     expect(DB.getCharacters()[0].spells.length, 0);
   });
 }
