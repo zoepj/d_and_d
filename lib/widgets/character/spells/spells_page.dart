@@ -1,11 +1,10 @@
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/spell.dart';
-import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
 import '../../side_drawer.dart';
-import '../character_main_page.dart';
+import 'add_spell_page.dart';
 import 'spell_details_widget.dart';
 
 class SpellsPage extends StatefulWidget {
@@ -49,42 +48,25 @@ class _SpellsPageState extends State<SpellsPage> {
           }),
           title: Text(widget.character.name),
           actions: [
-            _modifying
-                ? IconButton(
-                    icon: const Icon(
-                      Icons.check,
-                    ),
-                    onPressed: () {
-                      setState(
-                        () {
-                          _modifying = false;
-                          if (_formKey.currentState!.validate()) {
-                            DB.updateCharacter(widget.character);
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CharacterMainPage(
-                                          initialIndex: 3,
-                                          character: widget.character,
-                                        )),
-                                (Route<dynamic> route) => false);
-                          }
-                        },
-                      );
-                    },
-                  )
-                : IconButton(
-                    icon: const Icon(
-                      Icons.edit,
-                    ),
-                    onPressed: () {
-                      setState(
-                        () {
-                          _modifying = true;
-                        },
-                      );
-                    },
-                  ),
+            IconButton(
+              icon: const Icon(
+                Icons.add,
+              ),
+              onPressed: () {
+                setState(
+                  () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddSpellPage(
+                            character: widget.character,
+                          ),
+                        ),
+                        (Route<dynamic> route) => false);
+                  },
+                );
+              },
+            ),
           ],
         ),
         body: SingleChildScrollView(
