@@ -191,4 +191,33 @@ class DB {
     c.spells.add(s);
     updateCharacter(c);
   }
+
+  static Future removeSpell(Spell s, Character c) async {
+    c.spells.remove(s);
+    updateCharacter(c);
+  }
+
+  static Future updateSpell(Spell s, Character c) async{
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    int i = 0;
+    int f = 0;
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      Spell oldSpell = inDB.spells
+          .where(
+            (e) => e.id == s.id,
+      )
+          .first;
+      for (Spell sp in c.spells){
+        if (sp.id == oldSpell.id){
+          f = i;
+        }
+        i++;
+      }
+      c.spells.removeAt(f);
+
+      c.spells.add(s);
+      await updateCharacter(c);
+    }
+  }
 }
