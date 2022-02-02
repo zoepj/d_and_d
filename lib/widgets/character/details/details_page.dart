@@ -487,30 +487,172 @@ class _DetailsPageState extends State<DetailsPage> {
                             );
                           },
                           body: ListTile(
-                            title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'LOOKS: ${widget.character.looks}',
-                                  style: _stringTextStyle2,
-                                ),
-                                Text(
-                                  'PERSONALITY TRAITS: ${widget.character.traits}',
-                                  style: _stringTextStyle2,
-                                ),
-                                Text(
-                                  'IDEALS: ${widget.character.ideals}',
-                                  style: _stringTextStyle2,
-                                ),
-                                Text(
-                                  'BONDS: ${widget.character.bonds}',
-                                  style: _stringTextStyle2,
-                                ),
-                                Text(
-                                  'FLAWS: ${widget.character.flaws}',
-                                  style: _stringTextStyle2,
-                                ),
-                              ],
+                            title: Container(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'LOOKS: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.looks,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.looks =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.looks}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'PERSONALITY TRAITS: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? Flexible(
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.traits,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.traits =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.traits}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'IDEALS: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.ideals,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.ideals =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.ideals}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'BONDS: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.bonds,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.bonds =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.bonds}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'FLAWS: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.flaws,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.flaws =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.flaws}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           isExpanded: _expanded1,
@@ -523,18 +665,77 @@ class _DetailsPageState extends State<DetailsPage> {
                             );
                           },
                           body: ListTile(
-                            title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'LANGUAGES: ${widget.character.languages}',
-                                  style: _stringTextStyle2,
-                                ),
-                                Text(
-                                  'ABILITIES: ${widget.character.abilities}',
-                                  style: _stringTextStyle2,
-                                ),
-                              ],
+                            title: Container(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'LANGUAGES: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.languages,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.languages =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.languages}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'ABILITIES: ',
+                                        style: _stringTextStyle2,
+                                      ),
+                                      _modifying
+                                          ? SizedBox(
+                                              width: 150,
+                                              child: TextFormField(
+                                                initialValue:
+                                                    widget.character.abilities,
+                                                validator: (enteredValue) {
+                                                  if (enteredValue == null ||
+                                                      enteredValue.isEmpty) {
+                                                    return 'Missing element';
+                                                  } else {
+                                                    widget.character.abilities =
+                                                        enteredValue;
+                                                  }
+                                                  return null;
+                                                },
+                                                style: _stringTextStyle2,
+                                                decoration: _formDecorationText,
+                                              ),
+                                            )
+                                          : Text(
+                                              '${widget.character.abilities}',
+                                              style: _stringTextStyle2,
+                                            ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           isExpanded: _expanded2,
