@@ -120,6 +120,47 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                 ),
                               );
                             },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + a.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeArmor(
+                                                  a, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
                           ),
                         _modifying
                             ? Container(
@@ -127,10 +168,8 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                     const EdgeInsets.only(left: 15, right: 15),
                                 child: TextFormField(
                                   validator: (enteredValue) {
-                                    if (enteredValue == null ||
-                                        enteredValue.isEmpty) {
-                                      return 'Missing element';
-                                    } else {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
                                       int i = DB.getNewArmorId();
                                       Armor a =
                                           Armor(name: enteredValue, id: i);
@@ -157,7 +196,7 @@ class _EquipmentPageState extends State<EquipmentPage> {
                                   ),
                                 ),
                               )
-                            : const SizedBox(),
+                            : Container(child: null),
                       ],
                     ),
                     isExpanded: _expanded1,
@@ -173,22 +212,101 @@ class _EquipmentPageState extends State<EquipmentPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (Weapon w in widget.character.weapons)
-                        TextButton(
-                          child: Text(w.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => WeaponWidget(
-                                  weapon: w,
+                    body: Column(
+                      children: [
+                        for (Weapon w in widget.character.weapons)
+                          TextButton(
+                            child: Text(w.name.toUpperCase()),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WeaponWidget(
+                                    weapon: w,
+                                    character: widget.character,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]),
+                              );
+                            },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + w.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeWeapon(
+                                                  w, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        _modifying
+                            ? Container(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  validator: (enteredValue) {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
+                                      int i = DB.getNewWeaponId();
+                                      Weapon a =
+                                          Weapon(name: enteredValue, id: i);
+                                      widget.character.weapons.add(a);
+                                      return null;
+                                    }
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    label: Center(
+                                      child: Text(
+                                        "+",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 23,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                  ),
+                                ),
+                              )
+                            : Container(child: null),
+                      ],
+                    ),
                     isExpanded: _expanded2,
                     canTapOnHeader: true,
                   ),
@@ -202,22 +320,101 @@ class _EquipmentPageState extends State<EquipmentPage> {
                         ),
                       );
                     },
-                    body: Column(children: [
-                      for (MyObject o in widget.character.objects)
-                        TextButton(
-                          child: Text(o.name.toUpperCase()),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MyObjectWidget(
-                                  myObject: o,
+                    body: Column(
+                      children: [
+                        for (MyObject o in widget.character.objects)
+                          TextButton(
+                            child: Text(o.name.toUpperCase()),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyObjectWidget(
+                                    myObject: o,
+                                    character: widget.character,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                    ]),
+                              );
+                            },
+                            onLongPress: () {
+                              setState(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'Do you want to delete ' + o.name),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('CANCEL'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              DB.removeObject(
+                                                  o, widget.character);
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EquipmentPage(
+                                                          character:
+                                                              widget.character),
+                                                ),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                            child: const Text('DELETE'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        _modifying
+                            ? Container(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  validator: (enteredValue) {
+                                    if (enteredValue != null &&
+                                        enteredValue.isNotEmpty) {
+                                      int i = DB.getNewObjectId();
+                                      MyObject a =
+                                          MyObject(name: enteredValue, id: i);
+                                      widget.character.objects.add(a);
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    label: Center(
+                                      child: Text(
+                                        "+",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 23,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                  ),
+                                ),
+                              )
+                            : Container(child: null),
+                      ],
+                    ),
                     isExpanded: _expanded3,
                     canTapOnHeader: true,
                   ),
