@@ -57,7 +57,7 @@ class DB {
     }
   }
 
-  static void updateCharacter(Character c) {
+  static Future updateCharacter(Character c) async {
     _preferences!.remove(c.id.toString());
     _preferences!.setString(
       c.id.toString(),
@@ -95,8 +95,10 @@ class DB {
     return counter;
   }
 
-  static void updateArmor(Armor a, Character c) {
+  static Future updateArmor(Armor a, Character c) async {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
+    int i = 0;
+    int f = 0;
     if (char != "null") {
       Character inDB = Character.fromJson(json.decode(char));
       Armor oldArmor = inDB.armors
@@ -104,17 +106,22 @@ class DB {
             (e) => e.id == a.id,
           )
           .first;
-      print("oldObject" + oldArmor.toString());
-      print("c before" + c.toString());
-      c.armors.remove(oldArmor);
-      print("c after" + c.toString());
+      for (Armor ar in c.armors){
+        if (ar.id == oldArmor.id){
+          f = i;
+        }
+        i++;
+      }
+      c.armors.removeAt(f);
       c.armors.add(a);
-      updateCharacter(c);
+      await updateCharacter(c);
     }
   }
 
-  static void updateWeapon(Weapon w, Character c) {
+  static Future updateWeapon(Weapon w, Character c) async{
     String char = _preferences!.getString(c.id.toString()) ?? "null";
+    int i = 0;
+    int f = 0;
     if (char != "null") {
       Character inDB = Character.fromJson(json.decode(char));
       Weapon oldWeapon = inDB.weapons
@@ -122,14 +129,22 @@ class DB {
             (e) => e.id == w.id,
           )
           .first;
-      c.weapons.remove(oldWeapon);
+      for (Weapon wp in c.weapons){
+        if (wp.id == oldWeapon.id){
+          f = i;
+        }
+        i++;
+      }
+      c.weapons.removeAt(f);
       c.weapons.add(w);
-      updateCharacter(c);
+      await updateCharacter(c);
     }
   }
 
-  static void updateMyObject(MyObject o, Character c) {
+  static Future updateMyObject(MyObject o, Character c) async{
     String char = _preferences!.getString(c.id.toString()) ?? "null";
+    int i = 0;
+    int f = 0;
     if (char != "null") {
       Character inDB = Character.fromJson(json.decode(char));
       MyObject oldObject = inDB.objects
@@ -137,24 +152,30 @@ class DB {
             (e) => e.id == o.id,
           )
           .first;
-      print("oldObject" + oldObject.toString());
-      print("c before" + c.toString());
-      c.objects.remove(oldObject);
-      print("c after" + c.toString());
+      for (MyObject ob in c.objects){
+        if (ob.id == oldObject.id){
+          f = i;
+        }
+        i++;
+      }
+      c.objects.removeAt(f);
       c.objects.add(o);
-      updateCharacter(c);
+      await updateCharacter(c);
     }
   }
 
-  static void removeArmor(Armor a, Character c) async {
+  static Future removeArmor(Armor a, Character c) async {
     c.armors.remove(a);
+    updateCharacter(c);
   }
 
-  static void removeWeapon(Weapon w, Character c) async {
+  static Future removeWeapon(Weapon w, Character c) async {
     c.weapons.remove(w);
+    updateCharacter(c);
   }
 
-  static void removeObject(MyObject o, Character c) async {
+  static Future removeObject(MyObject o, Character c) async {
     c.objects.remove(o);
+    updateCharacter(c);
   }
 }

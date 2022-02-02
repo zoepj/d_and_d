@@ -8,7 +8,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DB.init();
 
-  DB.clear(); // to clear all data at launch
   runApp(const MyApp());
 }
 
