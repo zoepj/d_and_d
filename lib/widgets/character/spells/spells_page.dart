@@ -168,7 +168,7 @@ class _SpellsPageState extends State<SpellsPage> {
               ),
               const Text("\n"),
               ExpansionPanelList(
-                animationDuration: const Duration(milliseconds: 1500),
+                animationDuration: const Duration(milliseconds: 500),
                 children: [
                   ExpansionPanel(
                     headerBuilder: (BuildContext context, isExpanded) {

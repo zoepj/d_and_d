@@ -472,7 +472,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     const SizedBox(height: 10),
                     ExpansionPanelList(
-                      animationDuration: const Duration(milliseconds: 1500),
+                      animationDuration: const Duration(milliseconds: 500),
                       children: [
                         ExpansionPanel(
                           headerBuilder: (BuildContext context, isExpanded) {
