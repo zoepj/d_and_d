@@ -46,7 +46,6 @@ class DB {
       c.id.toString(),
       c.toString(),
     );
-    print("________" + c.toString());
     // add
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     if (list == []) {
@@ -113,6 +112,7 @@ class DB {
         i++;
       }
       c.armors.removeAt(f);
+
       c.armors.add(a);
       await updateCharacter(c);
     }
@@ -159,6 +159,7 @@ class DB {
         i++;
       }
       c.objects.removeAt(f);
+
       c.objects.add(o);
       await updateCharacter(c);
     }
