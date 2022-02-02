@@ -188,7 +188,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                 Row(
                   children: [
                     Text(
-                      "CHARACTERISTICS: ",
+                      "CHARACTERISTIC: ",
                       style: _textStyle,
                     ),
                     _modifying
@@ -272,7 +272,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                 Row(
                   children: [
                     Text(
-                      "STRENGTH: ",
+                      "REQUIRES STRENGTH: ",
                       style: _textStyle,
                     ),
                     _modifying
@@ -302,7 +302,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                 Row(
                   children: [
                     Text(
-                      "STEALTH: ",
+                      "STEALTH DISADVANTAGE: ",
                       style: _textStyle,
                     ),
                     _modifying

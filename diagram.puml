@@ -34,6 +34,7 @@ class "d_and_d::main.dart::_MyHomePageState" {
 class "d_and_d::models::armor.dart::Armor" {
   +bool equipped
   +String name
+  +int id
   +String type
   +int armorClass
   +String characteristic
@@ -67,7 +68,7 @@ class "d_and_d::models::character.dart::Character" {
   +String? flaws
   +String? languages
   +String? abilities
-  +List<dynamic> armors
+  +List<Armor> armors
   +List<dynamic> weapons
   +List<dynamic> objects
   +List<dynamic> spells
@@ -136,6 +137,7 @@ class "d_and_d::models::damage_type.dart::DamageType" {
 
 class "d_and_d::models::my_object.dart::MyObject" {
   +String name
+  +int id
   +int quantity
   +String info
   +Map<String, dynamic> toJson()
@@ -279,6 +281,7 @@ class "d_and_d::models::videos_list.dart::PageInfo" {
 class "d_and_d::models::weapon.dart::Weapon" {
   +int ammunition
   +String name
+  +int id
   +String type
   +String damage
   +String cost
@@ -293,13 +296,21 @@ class "d_and_d::persistency::shared_preferences_db.dart::DB" {
   {static} -SharedPreferences? _preferences
   {static} +Future<dynamic> init()
   {static} +void clear()
-  {static} +Future<dynamic> setTest()
-  {static} +bool? getTest()
   {static} +List<Character> getCharacters()
   {static} +int getNewCharacterId()
   {static} +Future<dynamic> incrementCharacterCounter()
-  {static} +void addCharacter()
+  {static} +Future<dynamic> addCharacter()
+  {static} +Future<dynamic> updateCharacter()
   {static} +Future<dynamic> removeCharacter()
+  {static} +int getNewArmorId()
+  {static} +int getNewWeaponId()
+  {static} +int getNewObjectId()
+  {static} +Future<dynamic> updateArmor()
+  {static} +Future<dynamic> updateWeapon()
+  {static} +Future<dynamic> updateMyObject()
+  {static} +Future<dynamic> removeArmor()
+  {static} +Future<dynamic> removeWeapon()
+  {static} +Future<dynamic> removeObject()
 }
 
 "d_and_d::persistency::shared_preferences_db.dart::DB" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
@@ -331,13 +342,17 @@ class "d_and_d::widgets::character::characteristics_page.dart::CharacteristicsPa
 class "d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState" {
   -bool _expanded1
   -bool _expanded2
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
   +Widget build()
 }
 
+"d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
 "flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState"
 
 class "d_and_d::widgets::character::character_main_page.dart::CharacterMainPage" {
   +Character character
+  +int initialIndex
   +_CharacterMainPageState createState()
 }
 
@@ -355,29 +370,54 @@ class "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPage
 "flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState"
 "flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState"
 
-class "d_and_d::widgets::character::details_page.dart::DetailsPage" {
+class "d_and_d::widgets::character::details::details_page.dart::DetailsPage" {
   +Character character
   +_DetailsPageState createState()
 }
 
-"d_and_d::widgets::character::details_page.dart::DetailsPage" o-- "d_and_d::models::character.dart::Character"
-"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::details_page.dart::DetailsPage"
+"d_and_d::widgets::character::details::details_page.dart::DetailsPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::details::details_page.dart::DetailsPage"
 
-class "d_and_d::widgets::character::details_page.dart::_DetailsPageState" {
+class "d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" {
   -bool _expanded1
   -bool _expanded2
+  -bool _modifying
+  -TextStyle _integerTextStyle
+  -TextStyle _stringTextStyle1
+  -TextStyle _stringTextStyle2
+  -InputDecoration _formDecoration
+  -GlobalKey<FormState> _formKey
   +Widget build()
 }
 
-"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::details_page.dart::_DetailsPageState"
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::details::details_page.dart::_DetailsPageState"
 
 class "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" {
   +Armor armor
-  +Widget build()
+  +Character character
+  +State<ArmorWidget> createState()
 }
 
 "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" o-- "d_and_d::models::armor.dart::Armor"
-"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget"
+"d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget"
+
+class "d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState"
 
 class "d_and_d::widgets::character::equipment::equipment_page.dart::EquipmentPage" {
   +Character character
@@ -391,26 +431,61 @@ class "d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPa
   -bool _expanded1
   -bool _expanded2
   -bool _expanded3
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
   +Widget build()
 }
 
+"d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
 "flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPageState"
 
 class "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" {
   +MyObject myObject
-  +Widget build()
+  +Character character
+  +State<MyObjectWidget> createState()
 }
 
 "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" o-- "d_and_d::models::my_object.dart::MyObject"
-"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget"
+"d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget"
 
-class "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" {
-  +Weapon weapon
+class "d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
   +Widget build()
 }
 
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState"
+
+class "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" {
+  +Weapon weapon
+  +Character character
+  +State<WeaponWidget> createState()
+}
+
 "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" o-- "d_and_d::models::weapon.dart::Weapon"
-"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget"
+
+class "d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState"
 
 class "d_and_d::widgets::character::pop_up_menu.dart::PopUpMenu" {
   +_PopUpMenuState createState()
@@ -454,9 +529,12 @@ class "d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState" 
   -bool _expanded7
   -bool _expanded8
   -bool _expanded9
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
   +Widget build()
 }
 
+"d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
 "flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState"
 
 class "d_and_d::widgets::character::spells::spell_details_widget.dart::SpellDetailsWidget" {
