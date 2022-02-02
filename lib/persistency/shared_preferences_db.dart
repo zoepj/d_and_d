@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
 import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/models/weapon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -94,6 +95,13 @@ class DB {
     return counter;
   }
 
+  static int getNewSpellId() {
+    int counter = _preferences!.getInt("spell_counter") ?? 0;
+    counter++;
+    _preferences!.setInt("spell_counter", counter);
+    return counter;
+  }
+
   static Future updateArmor(Armor a, Character c) async {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
     int i = 0;
@@ -177,6 +185,11 @@ class DB {
 
   static Future removeObject(MyObject o, Character c) async {
     c.objects.remove(o);
+    updateCharacter(c);
+  }
+
+  static void addSpell(Spell s, Character c) {
+    c.spells.add(s);
     updateCharacter(c);
   }
 }
