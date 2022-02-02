@@ -98,26 +98,66 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                   ),
           ],
         ),
+        
+        
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                widget.myObject.name.toUpperCase(),
-                style: _nameTextStyle,
+              Row(
+                children: [
+                  _modifying
+                      ? SizedBox(
+                        width: 250,
+                        child: TextFormField(
+                          initialValue:
+                          widget.myObject.name.toString().toUpperCase(),
+                          validator: (enteredValue) {
+                            if (enteredValue != null &&
+                              enteredValue.isNotEmpty) {
+                              widget.myObject.name = enteredValue;
+                              return null;
+                            }
+                          },
+                        style: _nameTextStyle,
+                        decoration: _formDecoration,
+                        ),
+                      )
+                      : Text(
+                    widget.myObject.name.toUpperCase(),
+                    style: _nameTextStyle,
+                  )
+                ],
               ),
-              const SizedBox(height: 15),
               Row(
                 children: [
                   Text(
                     "QUANTITY: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.myObject.quantity}",
+                  _modifying
+                     ? SizedBox(
+                      width: 150,
+                      child: TextFormField(
+                      initialValue:
+                        widget.myObject.quantity.toString().toUpperCase(),
+                        keyboardType: TextInputType.number,
+                        validator: (enteredValue) {
+                          if (enteredValue != null &&
+                            enteredValue.isNotEmpty) {
+                            widget.myObject.quantity = int.parse(enteredValue);
+                            return null;
+                          }
+                        },
+                        style: _textStyle,
+                        decoration: _formDecoration,
+                      ),
+                    )
+                      : Text(
+                    widget.myObject.quantity.toString(),
                     style: _textStyle,
-                  ),
+                  )
                 ],
               ),
               Row(
@@ -126,10 +166,27 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                     "INFORMATION: ",
                     style: _textStyle,
                   ),
-                  Text(
+                  _modifying
+                      ? SizedBox(
+                    width: 150,
+                    child: TextFormField(
+                      initialValue:
+                      widget.myObject.info.toString().toUpperCase(),
+                      validator: (enteredValue) {
+                        if (enteredValue != null &&
+                            enteredValue.isNotEmpty) {
+                          widget.myObject.info = enteredValue;
+                          return null;
+                        }
+                      },
+                      style: _textStyle,
+                      decoration: _formDecoration,
+                    ),
+                  )
+                      : Text(
                     widget.myObject.info,
                     style: _textStyle,
-                  ),
+                  )
                 ],
               ),
             ],
