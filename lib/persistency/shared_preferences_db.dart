@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/my_object.dart';
+import 'package:d_and_d/models/weapon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DB {
@@ -28,7 +30,7 @@ class DB {
   }
 
   static int getNewCharacterId() {
-    int counter = _preferences!.getInt("character_counter") ?? -1;
+    int counter = _preferences!.getInt("character_counter") ?? 0;
     counter++;
     _preferences!.setInt("character_counter", counter);
     return counter;
@@ -73,9 +75,23 @@ class DB {
   }
 
   static int getNewArmorId() {
-    int counter = _preferences!.getInt("armor_counter") ?? -1;
+    int counter = _preferences!.getInt("armor_counter") ?? 0;
     counter++;
     _preferences!.setInt("armor_counter", counter);
+    return counter;
+  }
+
+  static int getNewWeaponId() {
+    int counter = _preferences!.getInt("weapon_counter") ?? 0;
+    counter++;
+    _preferences!.setInt("weapon_counter", counter);
+    return counter;
+  }
+
+  static int getNewObjectId() {
+    int counter = _preferences!.getInt("object_counter") ?? 0;
+    counter++;
+    _preferences!.setInt("object_counter", counter);
     return counter;
   }
 
@@ -88,9 +104,57 @@ class DB {
             (e) => e.id == a.id,
           )
           .first;
-      inDB.armors.remove(oldArmor);
-      inDB.armors.add(a);
+      print("oldObject" + oldArmor.toString());
+      print("c before" + c.toString());
+      c.armors.remove(oldArmor);
+      print("c after" + c.toString());
+      c.armors.add(a);
       updateCharacter(c);
     }
+  }
+
+  static void updateWeapon(Weapon w, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      Weapon oldWeapon = inDB.weapons
+          .where(
+            (e) => e.id == w.id,
+          )
+          .first;
+      c.weapons.remove(oldWeapon);
+      c.weapons.add(w);
+      updateCharacter(c);
+    }
+  }
+
+  static void updateMyObject(MyObject o, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      MyObject oldObject = inDB.objects
+          .where(
+            (e) => e.id == o.id,
+          )
+          .first;
+      print("oldObject" + oldObject.toString());
+      print("c before" + c.toString());
+      c.objects.remove(oldObject);
+      print("c after" + c.toString());
+      c.objects.add(o);
+      updateCharacter(c);
+    }
+  }
+
+  static void removeArmor(Armor a, Character c) async {
+    c.armors.remove(a);
+  }
+
+  static void removeWeapon(Weapon w, Character c) async {
+    c.weapons.remove(w);
+  }
+
+  static void removeObject(MyObject o, Character c) async {
+    c.objects.remove(o);
   }
 }
