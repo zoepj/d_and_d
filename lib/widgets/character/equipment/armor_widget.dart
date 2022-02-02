@@ -69,11 +69,9 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                             _modifying = false;
                             if (_formKey.currentState!.validate()) {
                               DB.removeArmor(widget.armor, widget.character);
-                              print("oldArmor" + widget.armor.toString());
                               int idA = DB.getNewArmorId();
                               _newArmor.id = idA;
-                              print("newArmor" + _newArmor.toString());
-                              DB.addArmor(_newArmor, widget.character);
+                              DB.updateArmor(_newArmor, widget.character);
                               widget.armor = _newArmor;
                               Navigator.pushAndRemoveUntil(
                                   context,
