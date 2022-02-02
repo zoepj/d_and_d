@@ -1,12 +1,23 @@
 class MyObject {
   String name;
+  int id;
   int quantity;
   String info;
 
-  MyObject({required this.name, this.quantity = 0, this.info = ""});
+  MyObject({
+    required this.name,
+    required this.id,
+    this.quantity = 0,
+    this.info = "",
+  });
 
   factory MyObject.fromJson(Map<String, dynamic> json) {
-    return MyObject(name:json['name'], quantity: json['quantity'], info: json['info']);
+    return MyObject(
+      name: json['name'],
+      quantity: int.parse(json['quantity']),
+      id: int.parse(json['id']),
+      info: json['info'],
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -16,9 +27,16 @@ class MyObject {
     return data;
   }
 
-  //TODO
   @override
   String toString() {
-    return "instance of MyObject";
+    return '{"name": "' +
+        name +
+        '", "id": "' +
+        id.toString() +
+        '", "quantity": "' +
+        quantity.toString() +
+        '", "info": "' +
+        info +
+        '"}';
   }
 }

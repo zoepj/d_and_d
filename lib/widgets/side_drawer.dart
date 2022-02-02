@@ -1,3 +1,4 @@
+import 'package:d_and_d/widgets/videos/list_videos_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,9 +51,17 @@ class SideDrawer extends StatelessWidget {
                 );
               },
             ),
-            const ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+            ListTile(
+              leading: Icon(Icons.menu_book),
+              title: const Text('Guide'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListVideosPage(),
+                  ),
+                );
+              },
             ),
           ],
         ),

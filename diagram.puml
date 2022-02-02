@@ -1,0 +1,647 @@
+@startuml
+set namespaceSeparator ::
+
+class "d_and_d::icons::my_icons.dart::MyIcons" {
+  {static} -String _kFontFam
+  {static} -String? _kFontPkg
+  {static} +IconData shield
+  {static} +IconData sword
+  {static} +IconData userId
+  {static} +IconData octahedron
+}
+
+"d_and_d::icons::my_icons.dart::MyIcons" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "d_and_d::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::main.dart::MyApp"
+
+class "d_and_d::main.dart::MyHomePage" {
+  +String title
+  +State<MyHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::main.dart::MyHomePage"
+
+class "d_and_d::main.dart::_MyHomePageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::main.dart::_MyHomePageState"
+
+class "d_and_d::models::armor.dart::Armor" {
+  +bool equipped
+  +String name
+  +int id
+  +String type
+  +int armorClass
+  +String characteristic
+  +String cost
+  +int strength
+  +bool stealth
+  +String weight
+  +String info
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::models::character.dart::Character" {
+  +String name
+  +int id
+  +String? imagePath
+  +int? level
+  +int? armor
+  +int? initiative
+  +int? speed
+  +int? currentHitPoints
+  +int? temporaryHitPoints
+  +String? race
+  +String? characterClass
+  +String? background
+  +String? alignment
+  +String? looks
+  +String? traits
+  +String? ideals
+  +String? bonds
+  +String? flaws
+  +String? languages
+  +String? abilities
+  +List<Armor> armors
+  +List<dynamic> weapons
+  +List<dynamic> objects
+  +List<dynamic> spells
+  +bool? favorite
+  +Characteristics? characteristics
+  +SavingThrows? savingThrows
+  +Skills? skills
+  +int? spellSave
+  +int? spellAttackBonus
+  +CharacteristicsEnum? spellcastingAbility
+  {static} +int idCounter
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+"d_and_d::models::character.dart::Character" o-- "d_and_d::models::characteristics.dart::Characteristics"
+"d_and_d::models::character.dart::Character" o-- "d_and_d::models::saving_throws.dart::SavingThrows"
+"d_and_d::models::character.dart::Character" o-- "d_and_d::models::skills.dart::Skills"
+"d_and_d::models::character.dart::Character" o-- "d_and_d::models::characteristics_enum.dart::CharacteristicsEnum"
+
+class "d_and_d::models::characteristics.dart::Characteristics" {
+  +int strength
+  +int dexterity
+  +int constitution
+  +int intelligence
+  +int wisdom
+  +int charisma
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::models::characteristics_enum.dart::CharacteristicsEnum" {
+  +int index
+  {static} +List<CharacteristicsEnum> values
+  {static} +CharacteristicsEnum strength
+  {static} +CharacteristicsEnum dexterity
+  {static} +CharacteristicsEnum constitution
+  {static} +CharacteristicsEnum intelligence
+  {static} +CharacteristicsEnum wisdom
+  {static} +CharacteristicsEnum charisma
+}
+
+"d_and_d::models::characteristics_enum.dart::CharacteristicsEnum" o-- "d_and_d::models::characteristics_enum.dart::CharacteristicsEnum"
+"dart::core::Enum" <|-- "d_and_d::models::characteristics_enum.dart::CharacteristicsEnum"
+
+class "d_and_d::models::damage_type.dart::DamageType" {
+  +int index
+  {static} +List<DamageType> values
+  {static} +DamageType acid
+  {static} +DamageType bludgeoning
+  {static} +DamageType cold
+  {static} +DamageType fire
+  {static} +DamageType force
+  {static} +DamageType lightning
+  {static} +DamageType necrotic
+  {static} +DamageType piercing
+  {static} +DamageType poison
+  {static} +DamageType psychic
+  {static} +DamageType radiant
+  {static} +DamageType slashing
+  {static} +DamageType thunder
+}
+
+"d_and_d::models::damage_type.dart::DamageType" o-- "d_and_d::models::damage_type.dart::DamageType"
+"dart::core::Enum" <|-- "d_and_d::models::damage_type.dart::DamageType"
+
+class "d_and_d::models::my_object.dart::MyObject" {
+  +String name
+  +int id
+  +int quantity
+  +String info
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::models::saving_throws.dart::SavingThrows" {
+  +int strength
+  +int dexterity
+  +int constitution
+  +int intelligence
+  +int wisdom
+  +int charisma
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::models::school.dart::School" {
+  +int index
+  {static} +List<School> values
+  {static} +School abjuration
+  {static} +School conjuration
+  {static} +School divination
+  {static} +School enchantment
+  {static} +School evocation
+  {static} +School illusion
+  {static} +School necromancy
+  {static} +School transmutation
+}
+
+"d_and_d::models::school.dart::School" o-- "d_and_d::models::school.dart::School"
+"dart::core::Enum" <|-- "d_and_d::models::school.dart::School"
+
+class "d_and_d::models::skills.dart::Skills" {
+  +int athletics
+  +int acrobatics
+  +int sleightOfHand
+  +int stealth
+  +int arcana
+  +int history
+  +int investigation
+  +int nature
+  +int religion
+  +int animalHandling
+  +int insight
+  +int medicine
+  +int perception
+  +int survival
+  +int deception
+  +int intimidation
+  +int performance
+  +int persuasion
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::models::spell.dart::Spell" {
+  +int level
+  +String name
+  +DamageType? damageType
+  +School? school
+  +String? castingTime
+  +String? range
+  +String? components
+  +String? duration
+  +String? description
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+"d_and_d::models::spell.dart::Spell" o-- "d_and_d::models::damage_type.dart::DamageType"
+"d_and_d::models::spell.dart::Spell" o-- "d_and_d::models::school.dart::School"
+
+class "d_and_d::models::videos_list.dart::VideosList" {
+  +String kind
+  +String etag
+  +String nextPageToken
+  +List<VideoItem> videos
+  +PageInfo pageInfo
+  +Map<String, dynamic> toJson()
+}
+
+"d_and_d::models::videos_list.dart::VideosList" o-- "d_and_d::models::videos_list.dart::PageInfo"
+
+class "d_and_d::models::videos_list.dart::VideoItem" {
+  +String kind
+  +String etag
+  +String id
+  +Video video
+  +Map<String, dynamic> toJson()
+}
+
+"d_and_d::models::videos_list.dart::VideoItem" o-- "d_and_d::models::videos_list.dart::Video"
+
+class "d_and_d::models::videos_list.dart::Video" {
+  +DateTime publishedAt
+  +String channelId
+  +String title
+  +String description
+  +Thumbnails thumbnails
+  +String channelTitle
+  +String playlistId
+  +int position
+  +ResourceId resourceId
+  +Map<String, dynamic> toJson()
+}
+
+"d_and_d::models::videos_list.dart::Video" o-- "d_and_d::models::videos_list.dart::Thumbnails"
+"d_and_d::models::videos_list.dart::Video" o-- "d_and_d::models::videos_list.dart::ResourceId"
+
+class "d_and_d::models::videos_list.dart::ResourceId" {
+  +String kind
+  +String videoId
+  +Map<String, dynamic> toJson()
+}
+
+class "d_and_d::models::videos_list.dart::Thumbnails" {
+  +Default thumbnailsDefault
+  +Default medium
+  +Default high
+  +Default? standard
+  +Default? maxres
+  +Map<String, dynamic> toJson()
+}
+
+"d_and_d::models::videos_list.dart::Thumbnails" o-- "d_and_d::models::videos_list.dart::Default"
+
+class "d_and_d::models::videos_list.dart::Default" {
+  +String url
+  +int width
+  +int height
+  +Map<String, dynamic> toJson()
+}
+
+class "d_and_d::models::videos_list.dart::PageInfo" {
+  +int totalResults
+  +int resultsPerPage
+  +Map<String, dynamic> toJson()
+}
+
+class "d_and_d::models::weapon.dart::Weapon" {
+  +int ammunition
+  +String name
+  +int id
+  +String type
+  +String damage
+  +String cost
+  +String weight
+  +String features
+  +String info
+  +Map<String, dynamic> toJson()
+  +String toString()
+}
+
+class "d_and_d::persistency::shared_preferences_db.dart::DB" {
+  {static} -SharedPreferences? _preferences
+  {static} +Future<dynamic> init()
+  {static} +void clear()
+  {static} +List<Character> getCharacters()
+  {static} +int getNewCharacterId()
+  {static} +Future<dynamic> incrementCharacterCounter()
+  {static} +Future<dynamic> addCharacter()
+  {static} +Future<dynamic> updateCharacter()
+  {static} +Future<dynamic> removeCharacter()
+  {static} +int getNewArmorId()
+  {static} +int getNewWeaponId()
+  {static} +int getNewObjectId()
+  {static} +Future<dynamic> updateArmor()
+  {static} +Future<dynamic> updateWeapon()
+  {static} +Future<dynamic> updateMyObject()
+  {static} +Future<dynamic> removeArmor()
+  {static} +Future<dynamic> removeWeapon()
+  {static} +Future<dynamic> removeObject()
+}
+
+"d_and_d::persistency::shared_preferences_db.dart::DB" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "d_and_d::widgets::add_character_page.dart::AddCharacterPage" {
+  +AddCharacterPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::add_character_page.dart::AddCharacterPage"
+
+class "d_and_d::widgets::add_character_page.dart::AddCharacterPageState" {
+  -GlobalKey<FormState> _formKey
+  +int idCounter
+  +int getNewID()
+  +Widget build()
+}
+
+"d_and_d::widgets::add_character_page.dart::AddCharacterPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::add_character_page.dart::AddCharacterPageState"
+
+class "d_and_d::widgets::character::characteristics_page.dart::CharacteristicsPage" {
+  +Character character
+  +_CharacteristicsPageState createState()
+}
+
+"d_and_d::widgets::character::characteristics_page.dart::CharacteristicsPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::characteristics_page.dart::CharacteristicsPage"
+
+class "d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState" {
+  -bool _expanded1
+  -bool _expanded2
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::characteristics_page.dart::_CharacteristicsPageState"
+
+class "d_and_d::widgets::character::character_main_page.dart::CharacterMainPage" {
+  +Character character
+  +int initialIndex
+  +_CharacterMainPageState createState()
+}
+
+"d_and_d::widgets::character::character_main_page.dart::CharacterMainPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::character_main_page.dart::CharacterMainPage"
+
+class "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState" {
+  +TabController tabController
+  -void _updateIndex()
+  +void initState()
+  +Widget build()
+}
+
+"d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState" o-- "flutter::src::material::tab_controller.dart::TabController"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "d_and_d::widgets::character::character_main_page.dart::_CharacterMainPageState"
+
+class "d_and_d::widgets::character::details::details_page.dart::DetailsPage" {
+  +Character character
+  +_DetailsPageState createState()
+}
+
+"d_and_d::widgets::character::details::details_page.dart::DetailsPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::details::details_page.dart::DetailsPage"
+
+class "d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" {
+  -bool _expanded1
+  -bool _expanded2
+  -bool _modifying
+  -TextStyle _integerTextStyle
+  -TextStyle _stringTextStyle1
+  -TextStyle _stringTextStyle2
+  -InputDecoration _formDecoration
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"d_and_d::widgets::character::details::details_page.dart::_DetailsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::details::details_page.dart::_DetailsPageState"
+
+class "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" {
+  +Armor armor
+  +Character character
+  +State<ArmorWidget> createState()
+}
+
+"d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" o-- "d_and_d::models::armor.dart::Armor"
+"d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::armor_widget.dart::ArmorWidget"
+
+class "d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::armor_widget.dart::_ArmorWidgetState"
+
+class "d_and_d::widgets::character::equipment::equipment_page.dart::EquipmentPage" {
+  +Character character
+  +_EquipmentPageState createState()
+}
+
+"d_and_d::widgets::character::equipment::equipment_page.dart::EquipmentPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::equipment_page.dart::EquipmentPage"
+
+class "d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPageState" {
+  -bool _expanded1
+  -bool _expanded2
+  -bool _expanded3
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::equipment_page.dart::_EquipmentPageState"
+
+class "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" {
+  +MyObject myObject
+  +Character character
+  +State<MyObjectWidget> createState()
+}
+
+"d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" o-- "d_and_d::models::my_object.dart::MyObject"
+"d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::object_widget.dart::MyObjectWidget"
+
+class "d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::object_widget.dart::_MyObjectWidgetState"
+
+class "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" {
+  +Weapon weapon
+  +Character character
+  +State<WeaponWidget> createState()
+}
+
+"d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" o-- "d_and_d::models::weapon.dart::Weapon"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::equipment::weapon_widget.dart::WeaponWidget"
+
+class "d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" {
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  -TextStyle _nameTextStyle
+  -TextStyle _textStyle
+  -InputDecoration _formDecoration
+  +Widget build()
+}
+
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::equipment::weapon_widget.dart::_WeaponWidgetState"
+
+class "d_and_d::widgets::character::pop_up_menu.dart::PopUpMenu" {
+  +_PopUpMenuState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::pop_up_menu.dart::PopUpMenu"
+
+class "d_and_d::widgets::character::pop_up_menu.dart::_PopUpMenuState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::pop_up_menu.dart::_PopUpMenuState"
+
+class "d_and_d::widgets::character::pop_up_menu.dart::PopUpItem" {
+  +int index
+  {static} +List<PopUpItem> values
+  {static} +PopUpItem favourite
+  {static} +PopUpItem share
+  {static} +PopUpItem modify
+}
+
+"d_and_d::widgets::character::pop_up_menu.dart::PopUpItem" o-- "d_and_d::widgets::character::pop_up_menu.dart::PopUpItem"
+"dart::core::Enum" <|-- "d_and_d::widgets::character::pop_up_menu.dart::PopUpItem"
+
+class "d_and_d::widgets::character::spells::spells_page.dart::SpellsPage" {
+  +Character character
+  +_SpellsPageState createState()
+}
+
+"d_and_d::widgets::character::spells::spells_page.dart::SpellsPage" o-- "d_and_d::models::character.dart::Character"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::character::spells::spells_page.dart::SpellsPage"
+
+class "d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState" {
+  -bool _expanded0
+  -bool _expanded1
+  -bool _expanded2
+  -bool _expanded3
+  -bool _expanded4
+  -bool _expanded5
+  -bool _expanded6
+  -bool _expanded7
+  -bool _expanded8
+  -bool _expanded9
+  -bool _modifying
+  -GlobalKey<FormState> _formKey
+  +Widget build()
+}
+
+"d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::character::spells::spells_page.dart::_SpellsPageState"
+
+class "d_and_d::widgets::character::spells::spell_details_widget.dart::SpellDetailsWidget" {
+  +Spell spell
+  +Widget build()
+}
+
+"d_and_d::widgets::character::spells::spell_details_widget.dart::SpellDetailsWidget" o-- "d_and_d::models::spell.dart::Spell"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::widgets::character::spells::spell_details_widget.dart::SpellDetailsWidget"
+
+class "d_and_d::widgets::character::tab_information.dart::TabInformation" {
+  +int order
+  +IconData icon
+  +String title
+}
+
+"d_and_d::widgets::character::tab_information.dart::TabInformation" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "d_and_d::widgets::characters_list_page.dart::CharactersListPage" {
+  +State<CharactersListPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::characters_list_page.dart::CharactersListPage"
+
+class "d_and_d::widgets::characters_list_page.dart::_CharactersListPageState" {
+  +List<Character> charactersList
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::characters_list_page.dart::_CharactersListPageState"
+
+class "d_and_d::widgets::dices::roll_page.dart::RollPage" {
+  +_RollPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::dices::roll_page.dart::RollPage"
+
+class "d_and_d::widgets::dices::roll_page.dart::_RollPageState" {
+  -int _d2
+  -int _d4
+  -int _d6
+  -int _d8
+  -int _d10
+  -int _d20
+  -int _res
+  -void _incrementDC2()
+  -void _decrementDC2()
+  -void _incrementDC4()
+  -void _decrementDC4()
+  -void _incrementDC6()
+  -void _decrementDC6()
+  -void _incrementDC8()
+  -void _decrementDC8()
+  -void _incrementDC10()
+  -void _decrementDC10()
+  -void _incrementDC20()
+  -void _decrementDC20()
+  -void _roll()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::dices::roll_page.dart::_RollPageState"
+
+class "d_and_d::widgets::side_drawer.dart::SideDrawer" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "d_and_d::widgets::side_drawer.dart::SideDrawer"
+
+class "d_and_d::widgets::videos::list_videos_page.dart::ListVideosPage" {
+  +_ListVideosPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::videos::list_videos_page.dart::ListVideosPage"
+
+class "d_and_d::widgets::videos::list_videos_page.dart::_ListVideosPageState" {
+  -String _nextPageToken
+  -VideosList _videosList
+  -bool _first
+  +Future<VideosList> getVideosList()
+  -dynamic _loadVideos()
+  +Widget build()
+}
+
+"d_and_d::widgets::videos::list_videos_page.dart::_ListVideosPageState" o-- "d_and_d::models::videos_list.dart::VideosList"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::videos::list_videos_page.dart::_ListVideosPageState"
+
+class "d_and_d::widgets::videos::video_player_page.dart::VideoPlayerPage" {
+  +VideoItem videoItem
+  +_VideoPlayerPageState createState()
+}
+
+"d_and_d::widgets::videos::video_player_page.dart::VideoPlayerPage" o-- "d_and_d::models::videos_list.dart::VideoItem"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "d_and_d::widgets::videos::video_player_page.dart::VideoPlayerPage"
+
+class "d_and_d::widgets::videos::video_player_page.dart::_VideoPlayerPageState" {
+  -YoutubePlayerController _controller
+  -bool _isPlayerReady
+  +void initState()
+  -void _listener()
+  +void deactivate()
+  +void dispose()
+  +Widget build()
+}
+
+"d_and_d::widgets::videos::video_player_page.dart::_VideoPlayerPageState" o-- "youtube_player_flutter::src::utils::youtube_player_controller.dart::YoutubePlayerController"
+"flutter::src::widgets::framework.dart::State" <|-- "d_and_d::widgets::videos::video_player_page.dart::_VideoPlayerPageState"
+
+
+@enduml

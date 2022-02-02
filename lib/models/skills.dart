@@ -40,24 +40,25 @@ class Skills {
 
   factory Skills.fromJson(Map<String, dynamic> json) {
     return Skills(
-        athletics: json['athletics'],
-        acrobatics: json['acrobatics'],
-        sleightOfHand: json['sleightOfHand'],
-        stealth: json['stealth'],
-        arcana: json['arcana'],
-        history: json['history'],
-        investigation: json['investigation'],
-        nature: json['nature'],
-        religion: json['religion'],
-        animalHandling: json['animalHandling'],
-        insight: json['insight'],
-        medicine: json['medicine'],
-        perception: json['perception'],
-        survival: json['survival'],
-        deception: json['deception'],
-        intimidation: json['intimidation'],
-        performance: json['performance'],
-        persuasion: json['persuasion']);
+      athletics: int.parse(json['athletics']),
+      acrobatics: int.parse(json['acrobatics']),
+      sleightOfHand: int.parse(json['sleightOfHand']),
+      stealth: int.parse(json['stealth']),
+      arcana: int.parse(json['arcana']),
+      history: int.parse(json['history']),
+      investigation: int.parse(json['investigation']),
+      nature: int.parse(json['nature']),
+      religion: int.parse(json['religion']),
+      animalHandling: int.parse(json['animalHandling']),
+      insight: int.parse(json['insight']),
+      medicine: int.parse(json['medicine']),
+      perception: int.parse(json['perception']),
+      survival: int.parse(json['survival']),
+      deception: int.parse(json['deception']),
+      intimidation: int.parse(json['intimidation']),
+      performance: int.parse(json['performance']),
+      persuasion: int.parse(json['persuasion']),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -81,5 +82,46 @@ class Skills {
     data['performance'] = performance;
     data['persuasion'] = persuasion;
     return data;
+  }
+
+  @override
+  String toString() {
+    return '{"athletics": "' +
+        athletics.toString() +
+        '", "acrobatics": "' +
+        acrobatics.toString() +
+        '", "sleightOfHand": "' +
+        sleightOfHand.toString() +
+        '", "stealth": "' +
+        stealth.toString() +
+        '", "arcana": "' +
+        arcana.toString() +
+        '", "history": "' +
+        history.toString() +
+        '", "investigation": "' +
+        investigation.toString() +
+        '", "nature": "' +
+        nature.toString() +
+        '", "religion": "' +
+        religion.toString() +
+        '", "animalHandling": "' +
+        animalHandling.toString() +
+        '", "insight": "' +
+        insight.toString() +
+        '", "medicine": "' +
+        medicine.toString() +
+        '", "perception": "' +
+        perception.toString() +
+        '", "survival": "' +
+        survival.toString() +
+        '", "deception": "' +
+        deception.toString() +
+        '", "intimidation": "' +
+        intimidation.toString() +
+        '", "performance": "' +
+        performance.toString() +
+        '", "persuasion": "' +
+        persuasion.toString() +
+        '"}';
   }
 }
