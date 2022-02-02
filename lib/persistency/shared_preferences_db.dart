@@ -120,7 +120,6 @@ class DB {
         i++;
       }
       c.armors.removeAt(f);
-
       c.armors.add(a);
       await updateCharacter(c);
     }
@@ -188,7 +187,7 @@ class DB {
     updateCharacter(c);
   }
 
-  static void addSpell(Spell s, Character c) {
+  static Future addSpell(Spell s, Character c) async {
     c.spells.add(s);
     updateCharacter(c);
   }
