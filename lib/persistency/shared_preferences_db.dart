@@ -46,7 +46,6 @@ class DB {
       c.id.toString(),
       c.toString(),
     );
-    print("________" + c.toString());
     // add
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     if (list == []) {
@@ -104,10 +103,7 @@ class DB {
             (e) => e.id == a.id,
           )
           .first;
-      print("oldObject" + oldArmor.toString());
-      print("c before" + c.toString());
       c.armors.remove(oldArmor);
-      print("c after" + c.toString());
       c.armors.add(a);
       updateCharacter(c);
     }
@@ -137,10 +133,7 @@ class DB {
             (e) => e.id == o.id,
           )
           .first;
-      print("oldObject" + oldObject.toString());
-      print("c before" + c.toString());
       c.objects.remove(oldObject);
-      print("c after" + c.toString());
       c.objects.add(o);
       updateCharacter(c);
     }
