@@ -5,6 +5,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 class Spell {
   int level;
   String name;
+  int id;
   DamageType? damageType;
   School? school;
   String? castingTime;
@@ -16,6 +17,7 @@ class Spell {
   Spell(
       {required this.level,
       required this.name,
+      required this.id,
       this.damageType = DamageType.acid,
       this.school = School.abjuration,
       this.castingTime = "",
@@ -27,7 +29,8 @@ class Spell {
   factory Spell.fromJson(Map<String, dynamic> json) {
     return Spell(
         name: json['name'],
-        level: json['level'],
+        level: int.parse(json['level']),
+        id: int.parse(json['id']),
         damageType:
             EnumToString.fromString(DamageType.values, json['damageType']),
         school: EnumToString.fromString(School.values, json['school']),
@@ -42,6 +45,7 @@ class Spell {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['level'] = level;
     data['name'] = name;
+    data['id'] = id;
     data['damageType'] = damageType;
     data['school'] = school;
     data['castingTime'] = castingTime;
@@ -58,6 +62,8 @@ class Spell {
         level.toString() +
         '", "name": "' +
         name +
+        '", "id": "' +
+        id.toString() +
         '", "damageType": "' +
         damageType.toString() +
         '", "school": "' +
