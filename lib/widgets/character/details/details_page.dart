@@ -35,9 +35,15 @@ class _DetailsPageState extends State<DetailsPage> {
     fontSize: 17,
   );
 
-  final InputDecoration _formDecoration = const InputDecoration(
+  final InputDecoration _formDecorationText = const InputDecoration(
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+  );
+
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
   );
 
   final _formKey = GlobalKey<FormState>();
@@ -114,7 +120,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                         _modifying
                             ? SizedBox(
-                                width: 20,
+                                width: 34,
                                 child: TextFormField(
                                   initialValue:
                                       widget.character.level.toString(),
@@ -130,7 +136,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     return null;
                                   },
                                   style: _integerTextStyle,
-                                  decoration: _formDecoration,
+                                  decoration: _formDecorationInt,
                                 ),
                               )
                             : Text(
@@ -145,7 +151,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             child: TextFormField(
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 30,
+                                fontSize: 34,
                               ),
                               initialValue: widget.character.name.toString(),
                               validator: (enteredValue) {
@@ -168,7 +174,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             widget.character.name,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: 34,
                             ),
                           ),
                     const Icon(
@@ -182,7 +188,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             _modifying
                                 ? SizedBox(
-                                    width: 20,
+                                    width: 34,
                                     child: TextFormField(
                                       initialValue:
                                           widget.character.armor.toString(),
@@ -198,7 +204,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                         return null;
                                       },
                                       style: _integerTextStyle,
-                                      decoration: _formDecoration,
+                                      decoration: _formDecorationInt,
                                     ),
                                   )
                                 : Text(
@@ -216,7 +222,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             _modifying
                                 ? SizedBox(
-                                    width: 20,
+                                    width: 34,
                                     child: TextFormField(
                                       initialValue: widget.character.initiative
                                           .toString(),
@@ -232,7 +238,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                         return null;
                                       },
                                       style: _integerTextStyle,
-                                      decoration: _formDecoration,
+                                      decoration: _formDecorationInt,
                                     ),
                                   )
                                 : Text(
@@ -250,7 +256,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             _modifying
                                 ? SizedBox(
-                                    width: 20,
+                                    width: 34,
                                     child: TextFormField(
                                       initialValue:
                                           widget.character.speed.toString(),
@@ -266,7 +272,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                         return null;
                                       },
                                       style: _integerTextStyle,
-                                      decoration: _formDecoration,
+                                      decoration: _formDecorationInt,
                                     ),
                                   )
                                 : Text(
@@ -290,7 +296,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             _modifying
                                 ? SizedBox(
-                                    width: 20,
+                                    width: 34,
                                     child: TextFormField(
                                       initialValue: widget
                                           .character.currentHitPoints
@@ -307,7 +313,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                         return null;
                                       },
                                       style: _integerTextStyle,
-                                      decoration: _formDecoration,
+                                      decoration: _formDecorationInt,
                                     ),
                                   )
                                 : Text(
@@ -326,7 +332,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             _modifying
                                 ? SizedBox(
-                                    width: 20,
+                                    width: 34,
                                     child: TextFormField(
                                       initialValue: widget
                                           .character.temporaryHitPoints
@@ -343,7 +349,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                         return null;
                                       },
                                       style: _integerTextStyle,
-                                      decoration: _formDecoration,
+                                      decoration: _formDecorationInt,
                                     ),
                                   )
                                 : Text(
@@ -390,7 +396,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                             return null;
                                           },
                                           style: _stringTextStyle2,
-                                          decoration: _formDecoration,
+                                          decoration: _formDecorationText,
                                         ),
                                       )
                                     : Text(
@@ -423,7 +429,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                             return null;
                                           },
                                           style: _stringTextStyle2,
-                                          decoration: _formDecoration,
+                                          decoration: _formDecorationText,
                                         ),
                                       )
                                     : Text(
@@ -456,7 +462,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                             return null;
                                           },
                                           style: _stringTextStyle2,
-                                          decoration: _formDecoration,
+                                          decoration: _formDecorationText,
                                         ),
                                       )
                                     : Text(
@@ -481,16 +487,30 @@ class _DetailsPageState extends State<DetailsPage> {
                             );
                           },
                           body: ListTile(
-                            title: Text(
-                              'LOOKS: ${widget.character.looks}\n'
-                              'PERSONALITY TRAITS: ${widget.character.traits}\n'
-                              'IDEALS: ${widget.character.ideals}\n'
-                              'BONDS: ${widget.character.bonds}\n'
-                              'FLAWS: ${widget.character.flaws}\n',
-                              style: const TextStyle(
-                                  height: 2,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 17),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'LOOKS: ${widget.character.looks}',
+                                  style: _stringTextStyle2,
+                                ),
+                                Text(
+                                  'PERSONALITY TRAITS: ${widget.character.traits}',
+                                  style: _stringTextStyle2,
+                                ),
+                                Text(
+                                  'IDEALS: ${widget.character.ideals}',
+                                  style: _stringTextStyle2,
+                                ),
+                                Text(
+                                  'BONDS: ${widget.character.bonds}',
+                                  style: _stringTextStyle2,
+                                ),
+                                Text(
+                                  'FLAWS: ${widget.character.flaws}',
+                                  style: _stringTextStyle2,
+                                ),
+                              ],
                             ),
                           ),
                           isExpanded: _expanded1,
@@ -503,13 +523,18 @@ class _DetailsPageState extends State<DetailsPage> {
                             );
                           },
                           body: ListTile(
-                            title: Text(
-                              'LANGUAGES: ${widget.character.languages}\n'
-                              'ABILITIES: ${widget.character.abilities}\n',
-                              style: const TextStyle(
-                                  height: 2,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 17),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'LANGUAGES: ${widget.character.languages}',
+                                  style: _stringTextStyle2,
+                                ),
+                                Text(
+                                  'ABILITIES: ${widget.character.abilities}',
+                                  style: _stringTextStyle2,
+                                ),
+                              ],
                             ),
                           ),
                           isExpanded: _expanded2,

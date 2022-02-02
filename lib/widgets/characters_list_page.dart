@@ -192,7 +192,9 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                 (Route<dynamic> route) => false,
                               );
                             },
-                            child: const Text('DELETE'),
+                            child: Container(
+                              child: const Text('DELETE'),
+                            ),
                           ),
                         ],
                       );

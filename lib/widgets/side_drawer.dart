@@ -16,9 +16,9 @@ class SideDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.indigo[800],
               ),
               child: Text(
                 'D&D',
