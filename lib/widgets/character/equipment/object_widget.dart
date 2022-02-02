@@ -33,9 +33,15 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
     fontSize: 17,
   );
 
-  final InputDecoration _formDecoration = const InputDecoration(
+  final InputDecoration _formDecorationText = const InputDecoration(
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+  );
+
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
   );
 
   @override
@@ -98,8 +104,6 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                   ),
           ],
         ),
-        
-        
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -109,27 +113,28 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                 children: [
                   _modifying
                       ? SizedBox(
-                        width: 250,
-                        child: TextFormField(
-                          initialValue:
-                          widget.myObject.name.toString().toUpperCase(),
-                          validator: (enteredValue) {
-                            if (enteredValue != null &&
-                              enteredValue.isNotEmpty) {
-                              widget.myObject.name = enteredValue;
-                              return null;
-                            }
-                          },
-                        style: _nameTextStyle,
-                        decoration: _formDecoration,
-                        ),
-                      )
+                          width: 250,
+                          child: TextFormField(
+                            initialValue:
+                                widget.myObject.name.toString().toUpperCase(),
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.myObject.name = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _nameTextStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
                       : Text(
-                    widget.myObject.name.toUpperCase(),
-                    style: _nameTextStyle,
-                  )
+                          widget.myObject.name.toUpperCase(),
+                          style: _nameTextStyle,
+                        )
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -137,29 +142,32 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                     style: _textStyle,
                   ),
                   _modifying
-                     ? SizedBox(
-                      width: 150,
-                      child: TextFormField(
-                      initialValue:
-                        widget.myObject.quantity.toString().toUpperCase(),
-                        keyboardType: TextInputType.number,
-                        validator: (enteredValue) {
-                          if (enteredValue != null &&
-                            enteredValue.isNotEmpty) {
-                            widget.myObject.quantity = int.parse(enteredValue);
-                            return null;
-                          }
-                        },
-                        style: _textStyle,
-                        decoration: _formDecoration,
-                      ),
-                    )
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            initialValue: widget.myObject.quantity
+                                .toString()
+                                .toUpperCase(),
+                            keyboardType: TextInputType.number,
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.myObject.quantity =
+                                    int.parse(enteredValue);
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationInt,
+                          ),
+                        )
                       : Text(
-                    widget.myObject.quantity.toString(),
-                    style: _textStyle,
-                  )
+                          widget.myObject.quantity.toString(),
+                          style: _textStyle,
+                        )
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
@@ -168,25 +176,28 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
                   ),
                   _modifying
                       ? SizedBox(
-                    width: 150,
-                    child: TextFormField(
-                      initialValue:
-                      widget.myObject.info.toString().toUpperCase(),
-                      validator: (enteredValue) {
-                        if (enteredValue != null &&
-                            enteredValue.isNotEmpty) {
-                          widget.myObject.info = enteredValue;
-                          return null;
-                        }
-                      },
-                      style: _textStyle,
-                      decoration: _formDecoration,
-                    ),
-                  )
-                      : Text(
-                    widget.myObject.info,
-                    style: _textStyle,
-                  )
+                          width: 150,
+                          child: TextFormField(
+                            maxLines: 6,
+                            initialValue:
+                                widget.myObject.info.toString().toUpperCase(),
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.myObject.info = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationInt,
+                          ),
+                        )
+                      : Flexible(
+                          child: Text(
+                            widget.myObject.info,
+                            style: _textStyle,
+                          ),
+                        )
                 ],
               ),
             ],
