@@ -17,8 +17,6 @@ class ArmorWidget extends StatefulWidget {
 
 class _ArmorWidgetState extends State<ArmorWidget> {
   bool _modifying = false;
-  final Armor _newArmor = Armor(name: "", id: -1);
-
   final _formKey = GlobalKey<FormState>();
 
   final _nameTextStyle = const TextStyle(
@@ -68,11 +66,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                           () {
                             _modifying = false;
                             if (_formKey.currentState!.validate()) {
-                              DB.removeArmor(widget.armor, widget.character);
-                              int idA = DB.getNewArmorId();
-                              _newArmor.id = idA;
-                              DB.updateArmor(_newArmor, widget.character);
-                              widget.armor = _newArmor;
+                              DB.updateArmor(widget.armor, widget.character);
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
@@ -117,10 +111,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.name = enteredValue;
+                                  widget.armor.name = enteredValue;
                                   return null;
-                                } else {
-                                  _newArmor.name = widget.armor.name;
                                 }
                               },
                               style: _nameTextStyle,
@@ -149,12 +141,9 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.armorClass =
+                                  widget.armor.armorClass =
                                       int.parse(enteredValue);
                                   return null;
-                                } else {
-                                  _newArmor.armorClass =
-                                      widget.armor.armorClass;
                                 }
                               },
                               style: _textStyle,
@@ -181,10 +170,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.type = enteredValue;
+                                  widget.armor.type = enteredValue;
                                   return null;
-                                } else {
-                                  _newArmor.type = widget.armor.type;
                                 }
                               },
                               style: _textStyle,
@@ -211,10 +198,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.characteristic = enteredValue;
-                                } else {
-                                  _newArmor.characteristic =
-                                      widget.armor.characteristic;
+                                  widget.armor.characteristic = enteredValue;
                                 }
                                 return null;
                               },
@@ -242,9 +226,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.cost = enteredValue;
-                                } else {
-                                  _newArmor.cost = widget.armor.cost;
+                                  widget.armor.cost = enteredValue;
                                 }
                                 return null;
                               },
@@ -272,9 +254,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.info = enteredValue;
-                                } else {
-                                  _newArmor.info = widget.armor.info;
+                                  widget.armor.info = enteredValue;
                                 }
                                 return null;
                               },
@@ -303,9 +283,8 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.strength = int.parse(enteredValue);
-                                } else {
-                                  _newArmor.strength = widget.armor.strength;
+                                  widget.armor.strength =
+                                      int.parse(enteredValue);
                                 }
                                 return null;
                               },
@@ -366,9 +345,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                               validator: (enteredValue) {
                                 if (enteredValue != null &&
                                     enteredValue.isNotEmpty) {
-                                  _newArmor.weight = enteredValue;
-                                } else {
-                                  _newArmor.weight = widget.armor.weight;
+                                  widget.armor.weight = enteredValue;
                                 }
                                 return null;
                               },
