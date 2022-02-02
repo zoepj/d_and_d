@@ -148,65 +148,92 @@ class _CharactersListPageState extends State<CharactersListPage> {
         }),
         title: const Text("Characters"),
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(8),
-        itemCount: charactersList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return TextButton(
-            child: Center(child: Text(charactersList[index].name)),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CharacterMainPage(
-                    character: charactersList[index],
-                    initialIndex: 0,
+      body: charactersList.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        "You don't have any character",
+                        style: TextStyle(
+                          height: 1.5,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text("Tap on the button below to add one"),
+                      SizedBox(height: 25),
+                    ],
                   ),
                 ),
-              );
-            },
-            onLongPress: () {
-              setState(
-                () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Do you want to delete ' +
-                            charactersList[index].name),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('CANCEL'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              DB.removeCharacter(charactersList[index]);
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CharactersListPage()),
-                                (Route<dynamic> route) => false,
-                              );
-                            },
-                            child: Container(
-                              child: const Text('DELETE'),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      ),
+                const Icon(Icons.subdirectory_arrow_right, size: 100),
+              ],
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.all(8),
+              itemCount: charactersList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TextButton(
+                  child: Center(child: Text(charactersList[index].name)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CharacterMainPage(
+                          character: charactersList[index],
+                          initialIndex: 0,
+                        ),
+                      ),
+                    );
+                  },
+                  onLongPress: () {
+                    setState(
+                      () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Do you want to delete ' +
+                                  charactersList[index].name),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('CANCEL'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    DB.removeCharacter(charactersList[index]);
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CharactersListPage()),
+                                      (Route<dynamic> route) => false,
+                                    );
+                                  },
+                                  child: Container(
+                                    child: const Text('DELETE'),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
