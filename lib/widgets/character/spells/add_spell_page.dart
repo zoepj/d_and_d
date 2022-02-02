@@ -37,6 +37,12 @@ class _AddSpellPageState extends State<AddSpellPage> {
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
   );
 
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,14 +97,18 @@ class _AddSpellPageState extends State<AddSpellPage> {
                           style: _textStyle,
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 170,
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
+                              if (enteredValue == null ||
+                                  enteredValue.isEmpty) {
+                                return 'Enter Level';
+                              } else if (int.parse(enteredValue) < 0 ||
+                                  int.parse(enteredValue) > 9) {
+                                return 'Level must be between 0 and 9';
+                              } else {
                                 s1.level = int.parse(enteredValue);
-                                return null;
                               }
                             },
                             style: _textStyle,
@@ -260,15 +270,16 @@ class _AddSpellPageState extends State<AddSpellPage> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         Text(
                           "DESCRIPTION: ",
                           style: _textStyle,
                         ),
-                        SizedBox(
-                          width: 200,
+                        Flexible(
                           child: TextFormField(
+                            maxLines: 5,
                             validator: (enteredValue) {
                               if (enteredValue != null &&
                                   enteredValue.isNotEmpty) {
@@ -277,7 +288,7 @@ class _AddSpellPageState extends State<AddSpellPage> {
                               }
                             },
                             style: _textStyle,
-                            decoration: _formDecoration,
+                            decoration: _formDecorationInt,
                           ),
                         ),
                       ],
