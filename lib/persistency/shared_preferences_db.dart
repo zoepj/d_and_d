@@ -46,7 +46,6 @@ class DB {
       c.id.toString(),
       c.toString(),
     );
-    print("________" + c.toString());
     // add
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     if (list == []) {
@@ -95,9 +94,19 @@ class DB {
     return counter;
   }
 
-  static void addArmor(Armor a, Character c) {
-    c.armors.add(a);
-    updateCharacter(c);
+  static void updateArmor(Armor a, Character c) {
+    String char = _preferences!.getString(c.id.toString()) ?? "null";
+    if (char != "null") {
+      Character inDB = Character.fromJson(json.decode(char));
+      Armor oldArmor = inDB.armors
+          .where(
+            (e) => e.id == a.id,
+          )
+          .first;
+      c.armors.remove(oldArmor);
+      c.armors.add(a);
+      updateCharacter(c);
+    }
   }
 
   static void updateWeapon(Weapon w, Character c) {
@@ -124,10 +133,7 @@ class DB {
             (e) => e.id == o.id,
           )
           .first;
-      print("oldObject" + oldObject.toString());
-      print("c before" + c.toString());
       c.objects.remove(oldObject);
-      print("c after" + c.toString());
       c.objects.add(o);
       updateCharacter(c);
     }
