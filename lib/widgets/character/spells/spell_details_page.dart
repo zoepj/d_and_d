@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../side_drawer.dart';
 
-class SpellDetailsWidget extends StatelessWidget {
-  const SpellDetailsWidget({Key? key, required this.spell}) : super(key: key);
+class SpellDetailsPage extends StatelessWidget {
+  const SpellDetailsPage({Key? key, required this.spell}) : super(key: key);
   final Spell spell;
 
   final TextStyle _nameTextStyle = const TextStyle(
