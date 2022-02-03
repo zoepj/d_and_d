@@ -111,10 +111,31 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "LEVEL:  ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.level}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 170,
+                          child: TextFormField(
+                            initialValue: widget.spell.level.toString(),
+                            keyboardType: TextInputType.number,
+                            validator: (enteredValue) {
+                              if (enteredValue == null ||
+                                  enteredValue.isEmpty) {
+                                return 'Enter Level';
+                              } else if (int.parse(enteredValue) < 0 ||
+                                  int.parse(enteredValue) > 9) {
+                                return 'Level must be between 0 and 9';
+                              } else {
+                                widget.spell.level = int.parse(enteredValue);
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.level}",
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
