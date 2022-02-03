@@ -65,13 +65,26 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         }),
         title: const Text("Guide"),
       ),
-      body: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
-        onReady: () {
-          _isPlayerReady = true;
-        },
-      ),
+      body: SingleChildScrollView (child: Column(
+        children: [
+          YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              _isPlayerReady = true;
+            },
+          ),
+          Padding(padding: const EdgeInsets.all(10),child:
+            Text(widget.videoItem.video.title, style: const TextStyle(fontSize: 20,  fontWeight: FontWeight.bold),)
+          ),
+          Padding(padding: const EdgeInsets.all(10),child:
+            Text(widget.videoItem.video.description, style: const TextStyle(fontSize: 15),)
+          ),
+
+
+        ],
+      )
+      )
     );
   }
 }
