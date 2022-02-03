@@ -46,8 +46,8 @@ class Spell {
     data['level'] = level;
     data['name'] = name;
     data['id'] = id;
-    data['damageType'] = damageType;
-    data['school'] = school;
+    data['damageType'] = EnumToString.convertToString(damageType);
+    data['school'] = EnumToString.convertToString(school);
     data['castingTime'] = castingTime;
     data['range'] = range;
     data['components'] = components;
