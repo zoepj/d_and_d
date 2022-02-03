@@ -14,45 +14,135 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  testWidgets('Character', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences.setMockInitialValues({}); //set values here
-    await DB.init();
-    DB.clear();
-    await tester.pumpWidget(const MyApp());
 
-    //test when the app starts there are no characters
-    expect(DB.getCharacters().length, 0);
+  group ('character', (){
+    test('0characters', () async {
+      // Build our app and trigger a frame.
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({}); //set values here
+      await DB.init();
+      DB.clear();
 
-    //test adding a character
-    int nCharacters = DB.getCharacters().length;
-    Character c = Character(
-        name: "c",
-        id: DB.getNewCharacterId(),
-        armors: [],
-        weapons: [],
-        objects: [],
-        spells: []);
-    DB.addCharacter(c);
-    expect(DB.getCharacters().length, nCharacters + 1);
+      //test when the app starts there are no characters
+      expect(DB.getCharacters().length, 0);
 
-    //test updating a character
-    Character c2 = Character(
-        name: "c2", id: c.id, armors: [], weapons: [], objects: [], spells: []);
-    DB.updateCharacter(c2);
-    expect(DB.getCharacters()[0].name, c2.name);
+    });
 
-    //test adding adding to a character
-    int nArmors = DB.getCharacters()[0].armors.length;
-    Armor a = Armor(name: "a", id: DB.getNewArmorId());
-    c2.armors.add(a);
-    DB.updateCharacter(c2);
-    expect(DB.getCharacters()[0].armors.length, nArmors + 1);
+    test('addCharacter', () async {
+      // Build our app and trigger a frame.
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({}); //set values here
+      await DB.init();
+      DB.clear();
 
-    //test deleting a character
-    nCharacters = DB.getCharacters().length;
-    await DB.removeCharacter(c);
-    expect(DB.getCharacters().length, nCharacters - 1);
+      //test when the app starts there are no characters
+      expect(DB.getCharacters().length, 0);
+
+      //test adding a character
+      int nCharacters = DB.getCharacters().length;
+      Character c = Character(
+          name: "c",
+          id: DB.getNewCharacterId(),
+          armors: [],
+          weapons: [],
+          objects: [],
+          spells: []);
+      DB.addCharacter(c);
+      expect(DB.getCharacters().length, nCharacters + 1);
+
+
+    });
+
+    test('updateCharacter', () async {
+      // Build our app and trigger a frame.
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({}); //set values here
+      await DB.init();
+      DB.clear();
+
+      //test when the app starts there are no characters
+      expect(DB.getCharacters().length, 0);
+
+      //test adding a character
+      int nCharacters = DB.getCharacters().length;
+      Character c = Character(
+          name: "c",
+          id: DB.getNewCharacterId(),
+          armors: [],
+          weapons: [],
+          objects: [],
+          spells: []);
+      DB.addCharacter(c);
+      expect(DB.getCharacters().length, nCharacters + 1);
+
+      //test updating a character
+      Character c2 = Character(
+          name: "c2", id: c.id, armors: [], weapons: [], objects: [], spells: []);
+      DB.updateCharacter(c2);
+      expect(DB.getCharacters()[0].name, c2.name);
+
+    });
+
+    test('addArmorCharacter', () async {
+      // Build our app and trigger a frame.
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({}); //set values here
+      await DB.init();
+      DB.clear();
+
+      //test when the app starts there are no characters
+      expect(DB.getCharacters().length, 0);
+
+      //test adding a character
+      int nCharacters = DB.getCharacters().length;
+      Character c = Character(
+          name: "c",
+          id: DB.getNewCharacterId(),
+          armors: [],
+          weapons: [],
+          objects: [],
+          spells: []);
+      DB.addCharacter(c);
+      expect(DB.getCharacters().length, nCharacters + 1);
+
+
+      //test adding armor to a character
+      int nArmors = DB.getCharacters()[0].armors.length;
+      Armor a = Armor(name: "a", id: DB.getNewArmorId());
+      c.armors.add(a);
+      DB.updateCharacter(c);
+      expect(DB.getCharacters()[0].armors.length, nArmors + 1);
+
+    });
+
+    test('removeCharacter', () async {
+      // Build our app and trigger a frame.
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({}); //set values here
+      await DB.init();
+      DB.clear();
+
+      //test when the app starts there are no characters
+      expect(DB.getCharacters().length, 0);
+
+      //test adding a character
+      int nCharacters = DB.getCharacters().length;
+      Character c = Character(
+          name: "c",
+          id: DB.getNewCharacterId(),
+          armors: [],
+          weapons: [],
+          objects: [],
+          spells: []);
+      DB.addCharacter(c);
+      expect(DB.getCharacters().length, nCharacters + 1);
+
+      //test deleting a character
+      nCharacters = DB.getCharacters().length;
+      await DB.removeCharacter(c);
+      expect(DB.getCharacters().length, nCharacters - 1);
+    });
   });
+
+
 }
