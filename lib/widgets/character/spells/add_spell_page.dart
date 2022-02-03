@@ -78,8 +78,10 @@ class _AddSpellPageState extends State<AddSpellPage> {
                           width: 150,
                           child: TextFormField(
                             validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
+                              if (enteredValue == null ||
+                                  enteredValue.isEmpty) {
+                                return 'Enter name';
+                              } else {
                                 s1.name = enteredValue;
                                 return null;
                               }
