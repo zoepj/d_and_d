@@ -4,6 +4,7 @@ import 'package:d_and_d/models/school.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:d_and_d/widgets/character/spells/spells_page.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

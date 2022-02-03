@@ -40,13 +40,13 @@ class SideDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.crop_square),
+              leading: const Icon(Icons.crop_square),
               title: const Text('Dices'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RollPage(),
+                    builder: (context) => const RollPage(),
                   ),
                 );
               },
