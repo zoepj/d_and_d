@@ -61,7 +61,7 @@ class _WeaponWidgetState extends State<WeaponWidget> {
               );
             },
           ),
-          title: Text(widget.character.name),
+          title: Text(widget.character.name + "  -  Weapon"),
           actions: [
             _modifying
                 ? IconButton(
@@ -327,11 +327,11 @@ class _WeaponWidgetState extends State<WeaponWidget> {
                           ),
                         )
                       : Flexible(
-                        child: Text(
+                          child: Text(
                             widget.weapon.info,
                             style: _textStyle,
                           ),
-                      ),
+                        ),
                 ],
               ),
             ],

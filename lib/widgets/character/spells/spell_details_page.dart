@@ -1,25 +1,29 @@
-import 'package:d_and_d/models/armor.dart';
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/damage_type.dart';
+import 'package:d_and_d/models/school.dart';
+import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
 import '../../side_drawer.dart';
 
-class ArmorWidget extends StatefulWidget {
-  ArmorWidget({Key? key, required this.armor, required this.character})
+class SpellDetailsPage extends StatefulWidget {
+  const SpellDetailsPage(
+      {Key? key, required this.spell, required this.character})
       : super(key: key);
-  Armor armor;
+  final Spell spell;
   final Character character;
 
   @override
-  State<ArmorWidget> createState() => _ArmorWidgetState();
+  State<SpellDetailsPage> createState() => _SpellDetailsPageState();
 }
 
-class _ArmorWidgetState extends State<ArmorWidget> {
+class _SpellDetailsPageState extends State<SpellDetailsPage> {
   bool _modifying = false;
   final _formKey = GlobalKey<FormState>();
 
-  final _nameTextStyle = const TextStyle(
+  final TextStyle _nameTextStyle = const TextStyle(
     height: 1.5,
     fontWeight: FontWeight.bold,
     fontSize: 20,
@@ -30,11 +34,11 @@ class _ArmorWidgetState extends State<ArmorWidget> {
     fontWeight: FontWeight.w400,
     fontSize: 17,
   );
+
   final InputDecoration _formDecorationText = const InputDecoration(
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
   );
-
   final InputDecoration _formDecorationInt = const InputDecoration(
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
@@ -48,18 +52,16 @@ class _ArmorWidgetState extends State<ArmorWidget> {
       child: Scaffold(
         drawer: const SideDrawer(),
         appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          title: Text(widget.character.name + "  -  Armor"),
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          }),
+          title: Text(widget.character.name + "  -  Spell"),
           actions: [
             _modifying
                 ? IconButton(
@@ -71,13 +73,13 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                         () {
                           _modifying = false;
                           if (_formKey.currentState!.validate()) {
-                            DB.updateArmor(widget.armor, widget.character);
+                            DB.updateSpell(widget.spell, widget.character);
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ArmorWidget(
+                                  builder: (context) => SpellDetailsPage(
                                     character: widget.character,
-                                    armor: widget.armor,
+                                    spell: widget.spell,
                                   ),
                                 ),
                                 (Route<dynamic> route) => false);
@@ -105,79 +107,32 @@ class _ArmorWidgetState extends State<ArmorWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  _modifying
-                      ? SizedBox(
-                          width: 250,
-                          child: TextFormField(
-                            initialValue:
-                                widget.armor.name.toString().toUpperCase(),
-                            validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.name = enteredValue;
-                                return null;
-                              }
-                            },
-                            style: _nameTextStyle,
-                            decoration: _formDecorationText,
-                          ),
-                        )
-                      : Text(
-                          widget.armor.name.toUpperCase(),
-                          style: _nameTextStyle,
-                        )
-                ],
+              Text(
+                widget.spell.name.toUpperCase(),
+                style: _nameTextStyle,
               ),
               const SizedBox(height: 15),
               Row(
                 children: [
                   Text(
-                    "ARMOR CLASS: ",
+                    "LEVEL:  ",
                     style: _textStyle,
                   ),
                   _modifying
                       ? SizedBox(
-                          width: 34,
+                          width: 170,
                           child: TextFormField(
-                            initialValue: widget.armor.armorClass.toString(),
+                            initialValue: widget.spell.level.toString(),
                             keyboardType: TextInputType.number,
                             validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.armorClass =
-                                    int.parse(enteredValue);
-                                return null;
-                              }
-                            },
-                            style: _textStyle,
-                            decoration: _formDecorationInt,
-                          ),
-                        )
-                      : Text(
-                          "${widget.armor.armorClass}",
-                          style: _textStyle,
-                        ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              Row(
-                children: [
-                  Text(
-                    "TYPE: ",
-                    style: _textStyle,
-                  ),
-                  _modifying
-                      ? SizedBox(
-                          width: 150,
-                          child: TextFormField(
-                            initialValue: widget.armor.type,
-                            validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.type = enteredValue;
-                                return null;
+                              if (enteredValue == null ||
+                                  enteredValue.isEmpty) {
+                                return 'Enter Level';
+                              } else if (int.parse(enteredValue) < 0 ||
+                                  int.parse(enteredValue) > 9) {
+                                return 'Level must be between 0 and 9';
+                              } else {
+                                widget.spell.level = int.parse(enteredValue);
                               }
                             },
                             style: _textStyle,
@@ -185,158 +140,179 @@ class _ArmorWidgetState extends State<ArmorWidget> {
                           ),
                         )
                       : Text(
-                          widget.armor.type,
+                          "${widget.spell.level}",
                           style: _textStyle,
                         ),
                 ],
               ),
-              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
-                    "CHARACTERISTIC: ",
+                    "DAMAGE TYPE: ",
                     style: _textStyle,
                   ),
                   _modifying
-                      ? SizedBox(
-                          width: 150,
-                          child: TextFormField(
-                            initialValue: widget.armor.characteristic,
-                            validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.characteristic = enteredValue;
-                              }
-                              return null;
-                            },
-                            style: _textStyle,
-                            decoration: _formDecorationText,
-                          ),
-                        )
-                      : Text(
-                          widget.armor.characteristic,
-                          style: _textStyle,
-                        ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              Row(
-                children: [
-                  Text(
-                    "COST: ",
-                    style: _textStyle,
-                  ),
-                  _modifying
-                      ? SizedBox(
-                          width: 150,
-                          child: TextFormField(
-                            initialValue: widget.armor.cost,
-                            validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.cost = enteredValue;
-                              }
-                              return null;
-                            },
-                            style: _textStyle,
-                            decoration: _formDecorationText,
-                          ),
-                        )
-                      : Text(
-                          widget.armor.cost,
-                          style: _textStyle,
-                        ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              Row(
-                children: [
-                  Text(
-                    "REQUIRES STRENGTH: ",
-                    style: _textStyle,
-                  ),
-                  _modifying
-                      ? SizedBox(
-                          width: 34,
-                          child: TextFormField(
-                            initialValue: widget.armor.strength.toString(),
-                            keyboardType: TextInputType.number,
-                            validator: (enteredValue) {
-                              if (enteredValue != null &&
-                                  enteredValue.isNotEmpty) {
-                                widget.armor.strength = int.parse(enteredValue);
-                              }
-                              return null;
-                            },
-                            style: _textStyle,
-                            decoration: _formDecorationInt,
-                          ),
-                        )
-                      : Text(
-                          "${widget.armor.strength}",
-                          style: _textStyle,
-                        ),
-                ],
-              ),
-              /*
-              const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Text(
-                      "STEALTH DISADVANTAGE: ",
-                      style: _textStyle,
-                    ),
-                    _modifying
-                        ? SizedBox(
-                            width: 150,
-                            child: TextFormField(
-                              initialValue: widget.armor.stealth.toString(),
-                              validator: (enteredValue) {
-                                if (enteredValue != null &&
-                                    enteredValue.isNotEmpty) {
-                                  _newArmor.stealth = enteredValue == 'true';
-                                }else {
-                                  _newArmor.stealth = widget.armor.stealth;
-                                }
-                                return null;
+                      ? DropdownButton<DamageType>(
+                          value: widget.spell.damageType,
+                          onChanged: (newValue) {
+                            setState(
+                              () {
+                                widget.spell.damageType = newValue;
                               },
-                              style: _textStyle,
-                              decoration: _formDecoration,
-                            ),
-                          )
-                        : Text(
-                            "${widget.armor.stealth}",
-                            style: _textStyle,
-                          ),
-                  ],
-                ),
-
-                 */
-              const SizedBox(height: 5),
+                            );
+                          },
+                          items: DamageType.values.map((DamageType classType) {
+                            return DropdownMenuItem<DamageType>(
+                              value: classType,
+                              child: Text(getString(classType)),
+                            );
+                          }).toList(),
+                        )
+                      : Text(
+                          widget.spell.damageType == null
+                              ? ""
+                              : EnumToString.convertToString(
+                                  widget.spell.damageType),
+                          style: _textStyle,
+                        ),
+                ],
+              ),
               Row(
                 children: [
                   Text(
-                    "WEIGHT: ",
+                    "SCHOOL OF MAGIC: ",
+                    style: _textStyle,
+                  ),
+                  _modifying
+                      ? DropdownButton<School>(
+                          value: widget.spell.school,
+                          onChanged: (newValue) {
+                            setState(
+                              () {
+                                widget.spell.school = newValue;
+                              },
+                            );
+                          },
+                          items: School.values.map((School classType) {
+                            return DropdownMenuItem<School>(
+                              value: classType,
+                              child: Text(getSchoolString(classType)),
+                            );
+                          }).toList(),
+                        )
+                      : Text(
+                          widget.spell.damageType == null
+                              ? ""
+                              : EnumToString.convertToString(
+                                  widget.spell.school),
+                          style: _textStyle,
+                        ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "CASTING TIME: ",
                     style: _textStyle,
                   ),
                   _modifying
                       ? SizedBox(
                           width: 150,
                           child: TextFormField(
-                            initialValue: widget.armor.weight,
                             validator: (enteredValue) {
                               if (enteredValue != null &&
                                   enteredValue.isNotEmpty) {
-                                widget.armor.weight = enteredValue;
+                                widget.spell.castingTime = enteredValue;
+                                return null;
                               }
-                              return null;
                             },
                             style: _textStyle,
                             decoration: _formDecorationText,
                           ),
                         )
                       : Text(
-                          widget.armor.weight,
+                          "${widget.spell.castingTime}",
+                          style: _textStyle,
+                        ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "RANGE: ",
+                    style: _textStyle,
+                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.range = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.range}",
+                          style: _textStyle,
+                        ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "COMPONENTS: ",
+                    style: _textStyle,
+                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.components = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.components}",
+                          style: _textStyle,
+                        ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "DURATION: ",
+                    style: _textStyle,
+                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.duration = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.duration}",
                           style: _textStyle,
                         ),
                 ],
@@ -345,31 +321,30 @@ class _ArmorWidgetState extends State<ArmorWidget> {
               Row(
                 children: [
                   Text(
-                    "INFORMATION: ",
+                    "DESCRIPTION: ",
                     style: _textStyle,
                   ),
                   _modifying
                       ? Flexible(
                           child: TextFormField(
-                            initialValue: widget.armor.info,
-                            maxLines: 6,
+                            maxLines: 5,
                             validator: (enteredValue) {
                               if (enteredValue != null &&
                                   enteredValue.isNotEmpty) {
-                                widget.armor.info = enteredValue;
+                                widget.spell.description = enteredValue;
+                                return null;
                               }
-                              return null;
                             },
                             style: _textStyle,
                             decoration: _formDecorationInt,
                           ),
                         )
                       : Flexible(
-                          child: Text(
-                            widget.armor.info,
+                        child: Text(
+                            "${widget.spell.description}",
                             style: _textStyle,
                           ),
-                        ),
+                      ),
                 ],
               ),
             ],

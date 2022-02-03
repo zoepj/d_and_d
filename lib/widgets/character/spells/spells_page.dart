@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../side_drawer.dart';
 import 'add_spell_page.dart';
-import 'spell_details_widget.dart';
+import 'spell_details_page.dart';
 
 class SpellsPage extends StatefulWidget {
   const SpellsPage({Key? key, required this.character}) : super(key: key);
@@ -89,14 +89,14 @@ class _SpellsPageState extends State<SpellsPage> {
               onPressed: () {
                 setState(
                   () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddSpellPage(
-                            character: widget.character,
-                          ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddSpellPage(
+                          character: widget.character,
                         ),
-                        (Route<dynamic> route) => false);
+                      ),
+                    );
                   },
                 );
               },
@@ -190,8 +190,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -230,8 +231,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -270,8 +272,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -310,8 +313,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -350,8 +354,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -390,8 +395,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -430,8 +436,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -470,8 +477,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -510,8 +518,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -550,8 +559,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SpellDetailsWidget(
+                                    builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );

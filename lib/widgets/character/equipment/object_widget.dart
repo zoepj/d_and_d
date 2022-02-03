@@ -62,7 +62,7 @@ class _MyObjectWidgetState extends State<MyObjectWidget> {
               );
             },
           ),
-          title: Text(widget.character.name),
+          title: Text(widget.character.name + "  -  Object"),
           actions: [
             _modifying
                 ? IconButton(

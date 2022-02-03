@@ -20,8 +20,14 @@ void main() {
     Armor a = Armor(name: "a", id: DB.getNewArmorId());
     Weapon w = Weapon(name: "w", id: DB.getNewWeaponId());
     MyObject o = MyObject(name: "o", id: DB.getNewObjectId());
-    Character c = Character(name: "c", id: DB.getNewCharacterId(), armors: [a], weapons: [w], objects: [o], spells: []);
-    await DB.addCharacter(c);
+    Character c = Character(
+        name: "c",
+        id: DB.getNewCharacterId(),
+        armors: [a],
+        weapons: [w],
+        objects: [o],
+        spells: []);
+    DB.addCharacter(c);
 
     Armor a2 = Armor(name: "a2", id: a.id);
     await DB.updateArmor(a2, c);
