@@ -41,19 +41,19 @@ class DB {
     await _preferences!.setInt("character_counter", value);
   }
 
-  static Future addCharacter(Character c) async {
+  static void addCharacter(Character c) {
     // add character with key being the id of the character and value being json data
-    await _preferences!.setString(
+    _preferences!.setString(
       c.id.toString(),
       c.toString(),
     );
     // add
     List<String> list = _preferences!.getStringList("character_id_list") ?? [];
     if (list == []) {
-      await _preferences!.setStringList("character_id_list", [c.id.toString()]);
+      _preferences!.setStringList("character_id_list", [c.id.toString()]);
     } else {
       list.add(c.id.toString());
-      await _preferences!.setStringList("character_id_list", list);
+      _preferences!.setStringList("character_id_list", list);
     }
   }
 
@@ -113,8 +113,8 @@ class DB {
             (e) => e.id == a.id,
           )
           .first;
-      for (Armor ar in c.armors){
-        if (ar.id == oldArmor.id){
+      for (Armor ar in c.armors) {
+        if (ar.id == oldArmor.id) {
           f = i;
         }
         i++;
@@ -125,7 +125,7 @@ class DB {
     }
   }
 
-  static Future updateWeapon(Weapon w, Character c) async{
+  static Future updateWeapon(Weapon w, Character c) async {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
     int i = 0;
     int f = 0;
@@ -136,8 +136,8 @@ class DB {
             (e) => e.id == w.id,
           )
           .first;
-      for (Weapon wp in c.weapons){
-        if (wp.id == oldWeapon.id){
+      for (Weapon wp in c.weapons) {
+        if (wp.id == oldWeapon.id) {
           f = i;
         }
         i++;
@@ -148,7 +148,7 @@ class DB {
     }
   }
 
-  static Future updateMyObject(MyObject o, Character c) async{
+  static Future updateMyObject(MyObject o, Character c) async {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
     int i = 0;
     int f = 0;
@@ -159,8 +159,8 @@ class DB {
             (e) => e.id == o.id,
           )
           .first;
-      for (MyObject ob in c.objects){
-        if (ob.id == oldObject.id){
+      for (MyObject ob in c.objects) {
+        if (ob.id == oldObject.id) {
           f = i;
         }
         i++;
@@ -197,7 +197,7 @@ class DB {
     updateCharacter(c);
   }
 
-  static Future updateSpell(Spell s, Character c) async{
+  static Future updateSpell(Spell s, Character c) async {
     String char = _preferences!.getString(c.id.toString()) ?? "null";
     int i = 0;
     int f = 0;
@@ -206,10 +206,10 @@ class DB {
       Spell oldSpell = inDB.spells
           .where(
             (e) => e.id == s.id,
-      )
+          )
           .first;
-      for (Spell sp in c.spells){
-        if (sp.id == oldSpell.id){
+      for (Spell sp in c.spells) {
+        if (sp.id == oldSpell.id) {
           f = i;
         }
         i++;
