@@ -192,6 +192,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -232,6 +233,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -272,6 +274,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -312,6 +315,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -352,6 +356,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -392,6 +397,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -432,6 +438,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -472,6 +479,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -512,6 +520,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
@@ -552,6 +561,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                   MaterialPageRoute(
                                     builder: (context) => SpellDetailsPage(
                                       spell: s,
+                                      character: widget.character,
                                     ),
                                   ),
                                 );
