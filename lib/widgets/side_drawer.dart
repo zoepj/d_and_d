@@ -21,7 +21,7 @@ class SideDrawer extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: Text(
-                'D&D',
+                'DragonsRoll',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
