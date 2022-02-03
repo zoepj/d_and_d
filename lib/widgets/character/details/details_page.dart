@@ -683,10 +683,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                                 initialValue:
                                                     widget.character.languages,
                                                 validator: (enteredValue) {
-                                                  if (enteredValue == null ||
-                                                      enteredValue.isEmpty) {
-                                                    return 'Missing element';
-                                                  } else {
+                                                  if (enteredValue != null &&
+                                                      enteredValue.isNotEmpty) {
                                                     widget.character.languages =
                                                         enteredValue;
                                                   }
@@ -715,8 +713,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                                 initialValue:
                                                     widget.character.abilities,
                                                 validator: (enteredValue) {
-                                                  if (enteredValue == null ||
-                                                      enteredValue.isEmpty) {
+                                                  if (enteredValue != null &&
+                                                      enteredValue.isNotEmpty) {
                                                     return 'Missing element';
                                                   } else {
                                                     widget.character.abilities =
