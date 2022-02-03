@@ -1,4 +1,5 @@
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/characteristics_enum.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -27,8 +28,23 @@ class _SpellsPageState extends State<SpellsPage> {
   bool _expanded7 = false;
   bool _expanded8 = false;
   bool _expanded9 = false;
+  bool _modifying = false;
 
   final _formKey = GlobalKey<FormState>();
+
+
+  final _textStyle = const TextStyle(
+    height: 1.5,
+    fontWeight: FontWeight.w400,
+    fontSize: 17,
+  );
+
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
+  );
+
 
   void _showDeleteDialog(Object o) {
     showDialog(
@@ -81,7 +97,41 @@ class _SpellsPageState extends State<SpellsPage> {
             );
           }),
           title: Text(widget.character.name),
-          actions: [
+          actions: [_modifying
+              ? IconButton(
+                icon: const Icon(
+                  Icons.check,
+                ),
+                onPressed: () {
+                  setState(
+                    () {
+                      _modifying = false;
+                      if (_formKey.currentState!.validate()) {
+                        DB.updateCharacter(widget.character);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SpellsPage(
+                                  character: widget.character,
+                                )),
+                                (Route<dynamic> route) => false);
+                      }
+                    },
+                  );
+                },
+              )
+              : IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                ),
+                onPressed: () {
+                  setState(
+                      () {
+                    _modifying = true;
+                  },
+                );
+              },
+            ),
             IconButton(
               icon: const Icon(
                 Icons.add,
@@ -113,11 +163,31 @@ class _SpellsPageState extends State<SpellsPage> {
                 children: [
                   Column(
                     children: [
-                      Text(
-                        "${widget.character.spellSave}",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 17),
-                      ),
+                      _modifying
+                          ? SizedBox(
+                            width: 34,
+                            child: TextFormField(
+                              initialValue: widget
+                                  .character.spellSave
+                                  .toString(),
+                              keyboardType: TextInputType.number,
+                              validator: (enteredValue) {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
+                                  widget.character.spellSave =
+                                      int.parse(enteredValue);
+                                  return null;
+                                }
+                              },
+                              style: _textStyle,
+                              decoration: _formDecorationInt,
+                            ),
+                          )
+                          : Text(
+                            "${widget.character.spellSave}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 17),
+                          ),
                       const Text(
                         "SPELL SAVE\nDC",
                         textAlign: TextAlign.center,
@@ -130,11 +200,31 @@ class _SpellsPageState extends State<SpellsPage> {
                   ),
                   Column(
                     children: [
-                      Text(
-                        "${widget.character.spellAttackBonus}",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 17),
-                      ),
+                      _modifying
+                          ? SizedBox(
+                            width: 34,
+                            child: TextFormField(
+                              initialValue: widget
+                                  .character.spellAttackBonus
+                                  .toString(),
+                              keyboardType: TextInputType.number,
+                              validator: (enteredValue) {
+                                if (enteredValue != null &&
+                                    enteredValue.isNotEmpty) {
+                                  widget.character.spellAttackBonus =
+                                      int.parse(enteredValue);
+                                  return null;
+                                }
+                              },
+                              style: _textStyle,
+                              decoration: _formDecorationInt,
+                            ),
+                          )
+                          : Text(
+                            "${widget.character.spellAttackBonus}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 17),
+                          ),
                       const Text(
                         "SPELL ATTACK\nBONUS",
                         textAlign: TextAlign.center,
@@ -147,12 +237,29 @@ class _SpellsPageState extends State<SpellsPage> {
                   ),
                   Column(
                     children: [
-                      Text(
-                        EnumToString.convertToString(
+                      _modifying
+                          ? DropdownButton<CharacteristicsEnum>(
+                        value: widget.character.spellcastingAbility,
+                        onChanged: (newValue) {
+                          setState(
+                                () {
+                              widget.character.spellcastingAbility = newValue;
+                            },
+                          );
+                        },
+                        items: CharacteristicsEnum.values.map((CharacteristicsEnum classType) {
+                          return DropdownMenuItem<CharacteristicsEnum>(
+                            value: classType,
+                            child: Text(EnumToString.convertToString(classType)),
+                          );
+                        }).toList(),
+                      )
+                          : Text(
+                            EnumToString.convertToString(
                                 widget.character.spellcastingAbility)
-                            .toUpperCase(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 17),
+                                .toUpperCase(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 17),
                       ),
                       const Text(
                         "SPELLCASTING\nABILITY",
