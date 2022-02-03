@@ -59,7 +59,7 @@ class _ArmorWidgetState extends State<ArmorWidget> {
               );
             },
           ),
-          title: Text(widget.character.name),
+          title: Text(widget.character.name + "  -  Armor"),
           actions: [
             _modifying
                 ? IconButton(

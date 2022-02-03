@@ -1,4 +1,6 @@
 import 'package:d_and_d/models/character.dart';
+import 'package:d_and_d/models/damage_type.dart';
+import 'package:d_and_d/models/school.dart';
 import 'package:d_and_d/models/spell.dart';
 import 'package:d_and_d/persistency/shared_preferences_db.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -37,6 +39,11 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
     isDense: true,
     contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
   );
+  final InputDecoration _formDecorationInt = const InputDecoration(
+    isDense: true,
+    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+    border: OutlineInputBorder(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,7 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
-          title: Text(widget.character.name),
+          title: Text(widget.character.name + "  -  Spell"),
           actions: [
             _modifying
                 ? IconButton(
@@ -144,12 +151,30 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "DAMAGE TYPE: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    widget.spell.damageType == null
-                        ? ""
-                        : EnumToString.convertToString(widget.spell.damageType),
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? DropdownButton<DamageType>(
+                          value: widget.spell.damageType,
+                          onChanged: (newValue) {
+                            setState(
+                              () {
+                                widget.spell.damageType = newValue;
+                              },
+                            );
+                          },
+                          items: DamageType.values.map((DamageType classType) {
+                            return DropdownMenuItem<DamageType>(
+                              value: classType,
+                              child: Text(getString(classType)),
+                            );
+                          }).toList(),
+                        )
+                      : Text(
+                          widget.spell.damageType == null
+                              ? ""
+                              : EnumToString.convertToString(
+                                  widget.spell.damageType),
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
@@ -158,12 +183,30 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "SCHOOL OF MAGIC: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    widget.spell.damageType == null
-                        ? ""
-                        : EnumToString.convertToString(widget.spell.school),
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? DropdownButton<School>(
+                          value: widget.spell.school,
+                          onChanged: (newValue) {
+                            setState(
+                              () {
+                                widget.spell.school = newValue;
+                              },
+                            );
+                          },
+                          items: School.values.map((School classType) {
+                            return DropdownMenuItem<School>(
+                              value: classType,
+                              child: Text(getSchoolString(classType)),
+                            );
+                          }).toList(),
+                        )
+                      : Text(
+                          widget.spell.damageType == null
+                              ? ""
+                              : EnumToString.convertToString(
+                                  widget.spell.school),
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
@@ -172,10 +215,25 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "CASTING TIME: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.castingTime}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.castingTime = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.castingTime}",
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
@@ -184,10 +242,25 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "RANGE: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.range}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.range = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.range}",
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
@@ -196,10 +269,25 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "COMPONENTS: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.components}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.components = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.components}",
+                          style: _textStyle,
+                        ),
                 ],
               ),
               Row(
@@ -208,22 +296,55 @@ class _SpellDetailsPageState extends State<SpellDetailsPage> {
                     "DURATION: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.duration}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? SizedBox(
+                          width: 150,
+                          child: TextFormField(
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.duration = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationText,
+                          ),
+                        )
+                      : Text(
+                          "${widget.spell.duration}",
+                          style: _textStyle,
+                        ),
                 ],
               ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Text(
                     "DESCRIPTION: ",
                     style: _textStyle,
                   ),
-                  Text(
-                    "${widget.spell.description}",
-                    style: _textStyle,
-                  ),
+                  _modifying
+                      ? Flexible(
+                          child: TextFormField(
+                            maxLines: 5,
+                            validator: (enteredValue) {
+                              if (enteredValue != null &&
+                                  enteredValue.isNotEmpty) {
+                                widget.spell.description = enteredValue;
+                                return null;
+                              }
+                            },
+                            style: _textStyle,
+                            decoration: _formDecorationInt,
+                          ),
+                        )
+                      : Flexible(
+                        child: Text(
+                            "${widget.spell.description}",
+                            style: _textStyle,
+                          ),
+                      ),
                 ],
               ),
             ],
