@@ -65,9 +65,9 @@ class Spell {
         '", "id": "' +
         id.toString() +
         '", "damageType": "' +
-        damageType.toString() +
+        EnumToString.convertToString(damageType)+
         '", "school": "' +
-        school.toString() +
+        EnumToString.convertToString(school) +
         '", "castingTime": "' +
         castingTime! +
         '", "range": "' +
